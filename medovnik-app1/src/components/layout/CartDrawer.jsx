@@ -10,7 +10,8 @@ import PreorderModal from '../ui/PreorderModal';
 export default function CartDrawer() {
   const {
     items, isOpen, total, toggleCart, closeCart,
-    removeFromCart, clearCart, discordUnlocked, toDiscord,
+    removeFromCart, incrementCart, decrementCart,
+    clearCart, discordUnlocked, toDiscord,
   } = useCart();
   const [showModal, setShowModal] = useState(false);
 
@@ -34,16 +35,29 @@ export default function CartDrawer() {
           ) : (
             items.map((item) => (
               <div className="cart-item" key={item.id}>
-                <div className="ci-emoji">{item.emoji}</div>
+                <div className="ci-emoji">{item.emoji || '📦'}</div>
                 <div className="ci-info" style={{ flex: 1 }}>
                   <div className="ci-name">{item.name}</div>
-                  <div className="ci-price">{formatPrice(item.price)}</div>
+                  <div className="ci-price">
+                    {formatPrice(item.price * (item.qty || 1))}
+                    {item.qty > 1 && (
+                      <span className="ci-unit"> ({item.price} лв. × {item.qty})</span>
+                    )}
+                  </div>
                 </div>
-                <button
-                  className="ci-rm"
-                  onClick={() => removeFromCart(item.id)}
-                  aria-label={`Премахни ${item.name}`}
-                >✕</button>
+                {item.quantifiable ? (
+                  <div className="ci-qty-ctrl">
+                    <button className="ci-q-btn" onClick={() => decrementCart(item.id)}>−</button>
+                    <span className="ci-q-num">{item.qty}</span>
+                    <button className="ci-q-btn" onClick={() => incrementCart(item.id)}>+</button>
+                  </div>
+                ) : (
+                  <button
+                    className="ci-rm"
+                    onClick={() => removeFromCart(item.id)}
+                    aria-label={`Премахни ${item.name}`}
+                  >✕</button>
+                )}
               </div>
             ))
           )}
@@ -76,6 +90,7 @@ export default function CartDrawer() {
         <PreorderModal
           items={items}
           total={total}
+          discordUnlocked={discordUnlocked}
           onClose={() => setShowModal(false)}
           onSuccess={() => { clearCart(); closeCart(); setShowModal(false); }}
         />

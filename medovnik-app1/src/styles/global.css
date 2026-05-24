@@ -1348,25 +1348,39 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(184, 98, 26, 0.18);
       border-radius: 8px;
-      padding: 1.8rem 1.6rem 1.6rem;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
       transition: border-color 0.25s, transform 0.25s, background 0.25s;
     }
     .addon:hover {
-      border-color: rgba(242, 200, 78, 0.4);
-      background: rgba(184, 98, 26, 0.06);
+      border-color: rgba(242, 200, 78, 0.45);
+      background: rgba(184, 98, 26, 0.04);
       transform: translateY(-3px);
     }
-    .addon-emoji {
-      font-size: 2.4rem;
-      line-height: 1;
-      margin-bottom: 0.4rem;
+    .addon-visual {
+      height: 160px;
+      background: linear-gradient(135deg, rgba(42,26,13,0.9) 0%, rgba(8,6,3,0.95) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .addon-svg-wrap {
+      width: 110px;
+      height: 110px;
+    }
+    .addon-svg-wrap svg { width: 100%; height: 100%; }
+    .addon-emoji { font-size: 2.8rem; }
+    .addon-content {
+      padding: 1.4rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 0.5rem;
     }
     .addon-name {
       font-family: 'UniSans', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--cream);
@@ -1374,20 +1388,22 @@
     .addon-desc {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1rem;
+      font-size: 0.97rem;
       line-height: 1.55;
       color: var(--text);
-      min-height: 2.5rem;
+      flex: 1;
     }
     .addon-foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.8rem;
-      margin-top: auto;
+      gap: 0.6rem;
+      margin-top: 0.8rem;
       padding-top: 0.8rem;
       border-top: 1px solid rgba(184, 98, 26, 0.12);
+      flex-wrap: wrap;
     }
+    .addon-price-col { display: flex; flex-direction: column; gap: 0.15rem; }
     .addon-price {
       font-family: 'UniSans', sans-serif;
       font-size: 1.15rem;
@@ -1396,32 +1412,220 @@
       letter-spacing: 0.02em;
     }
     .addon-price .placeholder { opacity: 0.45; font-weight: 400; }
+    .addon-in-cart {
+      font-size: 0.72rem;
+      color: rgba(242, 200, 78, 0.6);
+      font-family: 'UniSans', sans-serif;
+      letter-spacing: 0.06em;
+    }
+    .addon-actions { display: flex; align-items: center; gap: 0.5rem; }
+    .addon-qty {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(184, 98, 26, 0.35);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .addon-qty-btn {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      color: var(--honey);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .addon-qty-btn:hover { background: rgba(184, 98, 26, 0.2); }
+    .addon-qty-num {
+      min-width: 22px;
+      text-align: center;
+      font-family: 'UniSans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--cream);
+    }
     .addon-add {
       font-family: 'UniSans', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--cream);
       background: transparent;
       border: 1px solid rgba(184, 98, 26, 0.4);
       border-radius: 999px;
-      padding: 0.55rem 1rem;
+      padding: 0.5rem 0.9rem;
       cursor: pointer;
       transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
     }
     .addon-add:hover {
       background: rgba(184, 98, 26, 0.18);
       color: var(--honey);
       border-color: rgba(242, 200, 78, 0.6);
     }
-    .addon-add:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
+    .addon-add:disabled { cursor: not-allowed; opacity: 0.45; }
+    /* Cart qty controls */
+    .ci-unit { font-size: 0.75rem; opacity: 0.6; margin-left: 0.3rem; }
+    .ci-qty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      border: 1px solid rgba(184, 98, 26, 0.3);
+      border-radius: 999px;
+      padding: 0.15rem 0.3rem;
+    }
+    .ci-q-btn {
+      width: 22px;
+      height: 22px;
+      background: transparent;
+      border: none;
+      color: var(--honey);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.15s;
+    }
+    .ci-q-btn:hover { background: rgba(184,98,26,0.2); }
+    .ci-q-num {
+      min-width: 18px;
+      text-align: center;
+      font-family: 'UniSans', sans-serif;
+      font-size: 0.8rem;
+      color: var(--cream);
+    }
+
+    /* ── HONEY CARD ─────────────────────────────────────────── */
+    .honey-grid {
+      display: flex;
+      justify-content: center;
+    }
+    .honey-card {
+      display: flex;
+      align-items: stretch;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(184, 98, 26, 0.22);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 680px;
+      width: 100%;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .honey-card:hover {
+      border-color: rgba(242, 200, 78, 0.55);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(184, 98, 26, 0.12);
+    }
+    .honey-visual {
+      width: 200px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(42, 26, 13, 0.9) 0%, rgba(8, 6, 3, 0.95) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .honey-jar-ico {
+      font-size: 5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .honey-glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(242, 200, 78, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .honey-body {
+      padding: 2rem 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      flex: 1;
+    }
+    .honey-label {
+      font-family: 'UniSans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ember);
+    }
+    .honey-title {
+      font-family: 'UniSans', sans-serif;
+      font-size: 1.5rem;
+      color: var(--cream);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .honey-select-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.3rem;
+    }
+    .honey-select-label {
+      font-family: 'UniSans', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .honey-select {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(184, 98, 26, 0.35);
+      border-radius: 6px;
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      padding: 0.5rem 0.8rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8621a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      padding-right: 2.2rem;
+    }
+    .honey-select:focus { outline: none; border-color: rgba(242, 200, 78, 0.55); }
+    .honey-select option { background: #0c0501; color: var(--cream); }
+    .honey-desc {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .honey-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(184, 98, 26, 0.12);
+    }
+    .honey-price {
+      font-family: 'UniSans', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--honey);
+      letter-spacing: 0.02em;
+    }
+    @media (max-width: 768px) {
+      .honey-card { flex-direction: column; }
+      .honey-visual { width: 100%; height: 160px; }
     }
 
     .products {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 4rem;
     }
@@ -1434,15 +1638,16 @@
       transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       cursor: pointer;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
     .prod:hover {
-      border-color: rgba(212, 131, 31, 0.5);
+      border-color: rgba(242, 200, 78, 0.55);
       transform: translateY(-10px);
       box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), 0 0 50px rgba(184, 98, 26, 0.15);
     }
     .prod.featured {
-      border-color: rgba(242, 200, 78, 0.35);
-      background: rgba(184, 98, 26, 0.05);
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .prod-visual {
@@ -1507,7 +1712,7 @@
       border-radius: 3px;
       z-index: 2;
     }
-    .prod-body { padding: 2.2rem 2.2rem 2.4rem; }
+    .prod-body { padding: 2.2rem 2.2rem 2.4rem; flex: 1; display: flex; flex-direction: column; }
     .prod-cat {
       font-family: 'UniSans', sans-serif;
       font-size: 0.72rem;
@@ -1520,10 +1725,17 @@
       font-family: 'UniSans', sans-serif;
       font-size: 1.6rem;
       color: var(--cream);
-      margin-bottom: 1rem;
+      margin-bottom: 0.3rem;
       letter-spacing: 0.02em;
       text-transform: uppercase;
       line-height: 1.2;
+    }
+    .prod-subtitle {
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-bottom: 0.9rem;
+      opacity: 0.85;
     }
     .prod-desc {
       font-size: 1.08rem;
@@ -1550,21 +1762,100 @@
       transition: all 0.3s;
     }
     .prod:hover .tag { border-color: rgba(184, 98, 26, 0.5); color: var(--text); }
-    .prod-foot { display: flex; align-items: center; justify-content: space-between; }
+    .prod-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
     .prod-price {
       font-family: 'UniSans', sans-serif;
-      font-size: 2.2rem;
       color: var(--honey);
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+    .prod-price-eur {
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .prod-price-bgn {
+      font-size: 0.9rem;
+      color: rgba(242, 200, 78, 0.6);
+      letter-spacing: 0.03em;
     }
     .prod-price small {
       font-family: 'UniSans', sans-serif;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: var(--muted);
       display: block;
       font-style: normal;
       letter-spacing: 0.1em;
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
     }
+    /* Pre-order banner */
+    .preorder-banner {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      background: linear-gradient(90deg, rgba(184,98,26,0.12) 0%, rgba(242,200,78,0.07) 50%, rgba(184,98,26,0.12) 100%);
+      border: 1px solid rgba(242, 200, 78, 0.25);
+      border-radius: 8px;
+      padding: 1rem 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .preorder-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .preorder-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.08rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .preorder-text strong { color: var(--honey); font-style: normal; }
+    /* Lightbox */
+    .prod-img-zoomable { cursor: zoom-in; }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      background: rgba(0, 0, 0, 0.93);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+      animation: lbIn 0.2s ease-out;
+    }
+    @keyframes lbIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8), 0 0 60px rgba(184, 98, 26, 0.15);
+      cursor: default;
+      animation: lbImgIn 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes lbImgIn {
+      from { transform: scale(0.88); opacity: 0; }
+      to   { transform: scale(1);    opacity: 1; }
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.4rem;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.18); color: #fff; }
     .btn-add {
       background: linear-gradient(135deg, var(--ember), var(--amber));
       color: var(--ink);
@@ -2665,6 +2956,7 @@
 
     @media (max-width: 1024px) {
       .products { grid-template-columns: 1fr; }
+      .prod-subtitle { font-size: 0.8rem; }
       .testi-grid { grid-template-columns: 1fr; }
       .comm-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }

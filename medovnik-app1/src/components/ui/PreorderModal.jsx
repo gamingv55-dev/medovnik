@@ -1,36 +1,47 @@
 import { useState } from 'react';
 import { formatPrice } from '../../utils/format';
 
-// Paste your deployed Google Apps Script URL here after setup:
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznixroXH49aoXdDFts5ZT3kDU6ILG8msYcI9yw8wall0RViQD2er59-cgw8WN6CKkfTg/exec';
+const EUR_RATE   = 1.95583;
 
-export default function PreorderModal({ items, total, onClose, onSuccess }) {
-  const [name,  setName]  = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [note,  setNote]  = useState('');
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+export default function PreorderModal({ items, total, discordUnlocked, onClose, onSuccess }) {
+  const [name,   setName]   = useState('');
+  const [phone,  setPhone]  = useState('');
+  const [email,  setEmail]  = useState('');
+  const [note,   setNote]   = useState('');
+  const [status, setStatus] = useState('idle');
+
+  const totalEur = items
+    .reduce((s, i) => s + (i.priceEur ?? i.price / EUR_RATE) * (i.qty || 1), 0)
+    .toFixed(2);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus('loading');
     try {
+      const itemsDetail = items.map(i => ({
+        name:     i.name,
+        qty:      i.qty || 1,
+        priceEur: i.priceEur ? Number(i.priceEur) : Number((i.price / EUR_RATE).toFixed(2)),
+        priceBgn: i.price,
+      }));
+
       const params = new URLSearchParams({
         name,
         phone,
         email,
-        items: items.map(i => i.name).join(', '),
-        total,
-        note,
-        date: new Date().toLocaleString('bg-BG'),
+        note:            note || '',
+        date:            new Date().toLocaleString('bg-BG'),
+        items:           items.map(i => `${i.name}${i.qty > 1 ? ' ×' + i.qty : ''}`).join(', '),
+        total:           total,
+        totalEur:        totalEur,
+        discordUnlocked: discordUnlocked ? '1' : '0',
+        itemsJson:       JSON.stringify(itemsDetail),
       });
-      await fetch(SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: params,
-      });
+
+      await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: params });
       setStatus('success');
-      setTimeout(() => { onSuccess?.(); onClose?.(); }, 2200);
+      setTimeout(() => { onSuccess?.(); onClose?.(); }, 2400);
     } catch {
       setStatus('error');
     }
@@ -45,7 +56,7 @@ export default function PreorderModal({ items, total, onClose, onSuccess }) {
           <div className="po-success">
             <div className="po-success-icon">✓</div>
             <h3>Поръчката е приета!</h3>
-            <p>Ще се свържем с вас скоро!</p>
+            <p>Изпратихме потвърждение на <strong>{email}</strong>. Ще се свържем с вас скоро!</p>
           </div>
         ) : (
           <>
@@ -54,73 +65,50 @@ export default function PreorderModal({ items, total, onClose, onSuccess }) {
             <div className="po-summary">
               {items.map(item => (
                 <div className="po-summary-row" key={item.id}>
-                  <span>{item.emoji} {item.name}</span>
-                  <span>{formatPrice(item.price)}</span>
+                  <span>
+                    {item.emoji && `${item.emoji} `}{item.name}
+                    {item.qty > 1 && <span className="po-qty"> ×{item.qty}</span>}
+                  </span>
+                  <span>{formatPrice(item.price * (item.qty || 1))}</span>
                 </div>
               ))}
               <div className="po-summary-total">
                 <span>Общо</span>
-                <span>{formatPrice(total)}</span>
+                <span>{totalEur} € / {formatPrice(total)}</span>
               </div>
             </div>
 
             <form className="po-form" onSubmit={handleSubmit}>
               <label className="po-label">
                 Имe *
-                <input
-                  className="po-input"
-                  type="text"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  required
-                  placeholder="Иван Иванов"
-                  autoFocus
-                />
+                <input className="po-input" type="text" value={name}
+                  onChange={e => setName(e.target.value)} required placeholder="Иван Иванов" autoFocus />
               </label>
 
               <label className="po-label">
                 Телефон *
-                <input
-                  className="po-input"
-                  type="tel"
-                  value={phone}
-                  onChange={e => setPhone(e.target.value)}
-                  required
-                  placeholder="+359 88 888 8888"
-                />
+                <input className="po-input" type="tel" value={phone}
+                  onChange={e => setPhone(e.target.value)} required placeholder="+359 88 888 8888" />
               </label>
 
               <label className="po-label">
-                Имейл <span className="po-optional">(незадължително)</span>
-                <input
-                  className="po-input"
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="ivan@example.com"
-                />
+                Имейл * <span className="po-optional">(за потвърждение на поръчката)</span>
+                <input className="po-input" type="email" value={email}
+                  onChange={e => setEmail(e.target.value)} required placeholder="ivan@example.com" />
               </label>
 
               <label className="po-label">
                 Допълнителна информация <span className="po-optional">(незадължително)</span>
-                <textarea
-                  className="po-input po-textarea"
-                  value={note}
+                <textarea className="po-input po-textarea" value={note}
                   onChange={e => setNote(e.target.value)}
-                  placeholder="Адрес за доставка, въпроси, предпочитания…"
-                  rows={3}
-                />
+                  placeholder="Адрес за доставка, въпроси, предпочитания…" rows={3} />
               </label>
 
               {status === 'error' && (
                 <p className="po-error">Нещо се обърка. Провери интернет връзката и опитай отново.</p>
               )}
 
-              <button
-                className="po-submit"
-                type="submit"
-                disabled={status === 'loading'}
-              >
+              <button className="po-submit" type="submit" disabled={status === 'loading'}>
                 {status === 'loading' ? 'Изпращане…' : 'Потвърди поръчката →'}
               </button>
             </form>

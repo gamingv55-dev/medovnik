@@ -3,7 +3,13 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(npm install *)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(cp \"c:\\\\Users\\\\gamin\\\\Desktop\\\\1.png\" \"c:\\\\Users\\\\gamin\\\\Desktop\\\\medovnik\\\\medovnik-app1\\\\public\\\\kit2.png\" && echo \"copied\")",
+      "Bash(ls -t \"c:\\\\Users\\\\gamin\\\\Desktop\\\\\"*.png 2>/dev/null | head -10)",
+      "Read(//c/Users/gamin/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\gamin\\Desktop"
     ]
   }
 }
