@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.png';
 
 // ── Pointy-top hexagon grid math ──────────────────────────────
+const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 const R     = 44;
 const W     = R * Math.sqrt(3);
 const H     = R * 2;
 const ROW_H = H * 0.75;
-const COLS  = 19;
-const ROWS  = 14;
+const COLS  = isMobile ? 12 : 19;
+const ROWS  = isMobile ? 9  : 14;
 const GRID_W = (COLS + 0.5) * W;
 const GRID_H = ROWS * ROW_H + H * 0.25;
 const CX = GRID_W / 2;
