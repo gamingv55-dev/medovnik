@@ -6,7 +6,9 @@
       "Bash(npx vite *)",
       "Bash(cp \"c:\\\\Users\\\\gamin\\\\Desktop\\\\1.png\" \"c:\\\\Users\\\\gamin\\\\Desktop\\\\medovnik\\\\medovnik-app1\\\\public\\\\kit2.png\" && echo \"copied\")",
       "Bash(ls -t \"c:\\\\Users\\\\gamin\\\\Desktop\\\\\"*.png 2>/dev/null | head -10)",
-      "Read(//c/Users/gamin/**)"
+      "Read(//c/Users/gamin/**)",
+      "Bash(timeout 5)",
+      "Bash(dir \"C:\\\\Users\\\\gamin\\\\Desktop\" /b)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gamin\\Desktop"

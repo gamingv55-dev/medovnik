@@ -19,9 +19,11 @@ export default function AddonCard({ addon }) {
   return (
     <article className="addon">
       <div className="addon-visual">
-        {Visual
-          ? <div className="addon-svg-wrap"><Visual /></div>
-          : <div className="addon-emoji">{addon.emoji}</div>
+        {addon.image
+          ? <img src={addon.image} alt={addon.name} className="addon-img" />
+          : Visual
+            ? <div className="addon-svg-wrap"><Visual /></div>
+            : <div className="addon-emoji">{addon.emoji}</div>
         }
       </div>
 

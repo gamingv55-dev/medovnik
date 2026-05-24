@@ -1,7 +1,6 @@
 // Google Apps Script — Extensions > Apps Script > paste > Save > Deploy as web app
 // ⚠️  След промяна задължително направи НОВА версия при Deploy (не редактирай старата)
 
-var DISCORD_URL  = 'https://discord.gg/ВАШИЯТ_ЛИНК'; // <-- смени с реалния Discord invite
 var ADMIN_EMAIL  = 'medovnikbg@gmail.com';
 
 // ─────────────────────────────────────────────────────────────
@@ -72,17 +71,24 @@ function doPost(e) {
 
       var discordSection = discordUnlocked
         ? '<div style="background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.35);'
-          + 'border-radius:8px;padding:22px;margin:28px 0;text-align:center">'
-          + '<div style="color:#7289da;font-size:16px;margin-bottom:8px">🎉 Отключихте Discord общността!</div>'
-          + '<p style="color:#b8a882;font-size:13px;margin:8px 0 14px">'
-          + 'Поръчката ви надхвърля 70 лв. — добре дошли в общността на Медовник пивоварите.</p>'
-          + '<a href="' + DISCORD_URL + '" style="display:inline-block;background:#5865f2;color:white;'
-          + 'padding:11px 28px;border-radius:6px;text-decoration:none;font-size:14px;letter-spacing:1px">'
-          + 'Влез в Discord →</a></div>'
-        : '<div style="background:rgba(184,98,26,0.1);border:1px solid rgba(242,200,78,0.2);'
-          + 'border-radius:6px;padding:16px;margin:20px 0">'
-          + '<p style="color:#b8a882;font-size:13px;margin:0;text-align:center">'
-          + '💡 Поръчай за над 70 лв. и получи достъп до нашата Discord общност от домашни пивовари.</p>'
+          + 'border-radius:8px;padding:26px 28px;margin:28px 0">'
+          + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
+          + '<span style="font-size:20px">🎉</span>'
+          + '<span style="color:#7289da;font-size:15px;font-weight:bold;letter-spacing:0.5px">Отключихте Discord общността!</span>'
+          + '</div>'
+          + '<p style="color:#b8a882;font-size:13px;margin:0 0 14px;line-height:1.6">'
+          + 'Поръчката ви надхвърля 70 лв. — заделили сме ви място в общността на Медовник пивоварите.</p>'
+          + '<div style="background:rgba(88,101,242,0.08);border-radius:6px;padding:14px 16px">'
+          + '<p style="color:#b8c4f0;font-size:13px;margin:0;line-height:1.6">'
+          + '⏳ <strong>Поканата ще бъде изпратена автоматично</strong> в момента, в който официално стартираме продукта. '
+          + 'Не е нужно да правите нищо допълнително — просто очаквайте имейл от нас.</p>'
+          + '</div></div>'
+        : '<div style="background:rgba(88,101,242,0.07);border:1px solid rgba(88,101,242,0.2);'
+          + 'border-radius:6px;padding:16px 18px;margin:20px 0">'
+          + '<p style="color:#b8a882;font-size:13px;margin:0;line-height:1.6">'
+          + '💬 <strong style="color:#7289da">Discord общност:</strong> '
+          + 'При поръчка над 70 лв. получавате достъп до нашата общност от домашни пивовари — '
+          + 'поканата пристига автоматично при официалния старт.</p>'
           + '</div>';
 
       var htmlBody = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body '
@@ -152,7 +158,8 @@ function doPost(e) {
 
       MailApp.sendEmail({
         to:       p.email,
-        subject:  '✅ Поръчка ' + orderCode + ' — потвърждение | Медовник',
+        subject:  'Поръчка ' + orderCode + ' — потвърждение | Медовник',
+        name:     'Медовник',
         body:     'Здравейте ' + p.name + ',\n\nПолучихме вашата поръчка ' + orderCode + '.\n'
                 + 'Общо: ' + (p.totalEur || '') + ' € / ' + p.total + ' лв.\n\n'
                 + 'Ще се свържем с вас скоро.\n\nМедовник',
