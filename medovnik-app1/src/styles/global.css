@@ -61,7 +61,14 @@
       background: rgba(8, 6, 3, 0.97);
       border-bottom: 1px solid rgba(184, 98, 26, 0.2);
       padding: 0.8rem 3.5rem;
+    }
+    .nav.solid::before {
+      content: '';
+      position: absolute;
+      inset: 0;
       backdrop-filter: blur(20px);
+      z-index: -1;
+      pointer-events: none;
     }
     .logo-wrap {
       display: flex;
