@@ -1393,11 +1393,11 @@
       color: var(--cream);
     }
     .addon-desc {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.97rem;
-      line-height: 1.55;
-      color: var(--text);
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--cream);
+      opacity: 0.75;
       flex: 1;
     }
     .addon-foot {
