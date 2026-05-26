@@ -1,44 +1,40 @@
 // Google Apps Script — Extensions > Apps Script > paste > Save > Deploy as web app
 // ⚠️  След промяна задължително направи НОВА версия при Deploy (не редактирай старата)
 
-var ADMIN_EMAIL  = 'medovnikbg@gmail.com';
+var ADMIN_EMAIL = 'medovnikbg@gmail.com';
 
-// ─────────────────────────────────────────────────────────────
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   try {
     var p = e.parameter;
 
-    // Header row on first run
+    // Ensure header row exists
+    var headers = ['Код','Дата','Имe','Телефон','Имейл','Продукти','Общо (€)','Допълнителна информация','Готово'];
     if (sheet.getLastRow() === 0) {
-      var hdr = sheet.getRange(1, 1, 1, 10);
-      hdr.setValues([['Код','Дата','Имe','Телефон','Имейл','Продукти','Общо (лв.)','Общо (€)','Бележка','Готово']]);
+      var hdr = sheet.getRange(1, 1, 1, headers.length);
+      hdr.setValues([headers]);
       hdr.setFontWeight('bold');
-      var rule = SpreadsheetApp.newConditionalFormatRule()
-        .whenFormulaSatisfied('=$J2=TRUE')
-        .setBackground('#b7e1cd')
-        .setRanges([sheet.getRange('A2:J1000')])
-        .build();
-      sheet.setConditionalFormatRules([rule]);
+      sheet.setConditionalFormatRules([
+        SpreadsheetApp.newConditionalFormatRule()
+          .whenFormulaSatisfied('=$I2=TRUE')
+          .setBackground('#b7e1cd')
+          .setRanges([sheet.getRange('A2:I1000')])
+          .build()
+      ]);
     }
 
-    var orderNum  = sheet.getLastRow();
-    var orderCode = 'MED-' + String(orderNum).padStart(4, '0');
+    var orderCode = 'MED-' + String(sheet.getLastRow()).padStart(4, '0');
     var date      = p.date || new Date().toLocaleString('bg-BG');
+    var totalEur  = p.totalEur || '';
 
-    sheet.appendRow([
-      orderCode, date, p.name, p.phone, p.email || '',
-      p.items, p.total, p.totalEur || '', p.note || '', false,
-    ]);
-    sheet.getRange(sheet.getLastRow(), 10).insertCheckboxes();
+    sheet.appendRow([orderCode, date, p.name, p.phone, p.email || '', p.items, totalEur, p.note || '', false]);
+    sheet.getRange(sheet.getLastRow(), 9).insertCheckboxes();
 
-    // Parse detailed items
     var itemsList = [];
     try { itemsList = JSON.parse(p.itemsJson || '[]'); } catch(ex) {}
-
     var discordUnlocked = p.discordUnlocked === '1';
 
-    // ── Admin notification ──────────────────────────────────
+    // ── Admin notification ──────────────────────────────────────
     MailApp.sendEmail({
       to:      ADMIN_EMAIL,
       subject: '🍯 ' + orderCode + ' — ' + p.name,
@@ -50,13 +46,13 @@ function doPost(e) {
         'Телефон:  ' + p.phone,
         'Имейл:    ' + (p.email || '—'),
         'Продукти: ' + p.items,
-        'Общо:     ' + (p.totalEur || '?') + ' € / ' + p.total + ' лв.',
+        'Общо:     ' + totalEur + ' €',
         'Бележка:  ' + (p.note || '—'),
         'Discord:  ' + (discordUnlocked ? 'ДА' : 'НЕ'),
       ].join('\n'),
     });
 
-    // ── Customer confirmation email ─────────────────────────
+    // ── Customer confirmation email ─────────────────────────────
     if (p.email) {
       var itemRows = itemsList.map(function(item) {
         return '<tr>'
@@ -64,92 +60,61 @@ function doPost(e) {
           + '<td style="padding:10px 8px;text-align:center;color:#b8a882;font-size:14px">' + item.qty + '</td>'
           + '<td style="padding:10px 8px;text-align:right;color:#f2c84e;font-size:14px;font-weight:bold">'
           + (item.priceEur ? item.priceEur + ' €' : '') + '</td>'
-          + '<td style="padding:10px 8px;text-align:right;color:#b8a882;font-size:13px">'
-          + (item.priceBgn ? (item.priceBgn * item.qty).toFixed(2) + ' лв.' : '') + '</td>'
           + '</tr>';
       }).join('');
 
       var discordSection = discordUnlocked
-        ? '<div style="background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.35);'
-          + 'border-radius:8px;padding:26px 28px;margin:28px 0">'
+        ? '<div style="background:rgba(88,101,242,0.12);border:1px solid rgba(88,101,242,0.35);border-radius:8px;padding:26px 28px;margin:28px 0">'
           + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">'
           + '<span style="font-size:20px">🎉</span>'
-          + '<span style="color:#7289da;font-size:15px;font-weight:bold;letter-spacing:0.5px">Отключихте Discord общността!</span>'
+          + '<span style="color:#7289da;font-size:15px;font-weight:bold">Отключихте Discord общността!</span>'
           + '</div>'
-          + '<p style="color:#b8a882;font-size:13px;margin:0 0 14px;line-height:1.6">'
-          + 'Поръчката ви надхвърля 70 лв. — заделили сме ви място в общността на Медовник пивоварите.</p>'
+          + '<p style="color:#b8a882;font-size:13px;margin:0 0 14px;line-height:1.6">Поръчката ви надхвърля 70 лв. — заделили сме ви място в общността на Медовник пивоварите.</p>'
           + '<div style="background:rgba(88,101,242,0.08);border-radius:6px;padding:14px 16px">'
-          + '<p style="color:#b8c4f0;font-size:13px;margin:0;line-height:1.6">'
-          + '⏳ <strong>Поканата ще бъде изпратена автоматично</strong> в момента, в който официално стартираме продукта. '
-          + 'Не е нужно да правите нищо допълнително — просто очаквайте имейл от нас.</p>'
+          + '<p style="color:#b8c4f0;font-size:13px;margin:0;line-height:1.6">⏳ <strong>Поканата ще бъде изпратена автоматично</strong> в момента, в който официално стартираме продукта. Просто очаквайте имейл от нас.</p>'
           + '</div></div>'
-        : '<div style="background:rgba(88,101,242,0.07);border:1px solid rgba(88,101,242,0.2);'
-          + 'border-radius:6px;padding:16px 18px;margin:20px 0">'
-          + '<p style="color:#b8a882;font-size:13px;margin:0;line-height:1.6">'
-          + '💬 <strong style="color:#7289da">Discord общност:</strong> '
-          + 'При поръчка над 70 лв. получавате достъп до нашата общност от домашни пивовари — '
-          + 'поканата пристига автоматично при официалния старт.</p>'
+        : '<div style="background:rgba(88,101,242,0.07);border:1px solid rgba(88,101,242,0.2);border-radius:6px;padding:16px 18px;margin:20px 0">'
+          + '<p style="color:#b8a882;font-size:13px;margin:0;line-height:1.6">💬 <strong style="color:#7289da">Discord общност:</strong> При поръчка над 70 лв. получавате достъп до нашата общност от домашни пивовари — поканата пристига автоматично при официалния старт.</p>'
           + '</div>';
 
-      var htmlBody = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body '
-        + 'style="margin:0;padding:0;background:#0c0501;font-family:Georgia,serif;color:#e8d5b0">'
+      var htmlBody = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head>'
+        + '<body style="margin:0;padding:0;background:#0c0501;font-family:Georgia,serif;color:#e8d5b0">'
         + '<div style="max-width:580px;margin:0 auto">'
 
-        // Header
-        + '<div style="background:#120a03;padding:36px 40px;text-align:center;'
-        + 'border-bottom:2px solid #b8621a">'
+        + '<div style="background:#120a03;padding:36px 40px;text-align:center;border-bottom:2px solid #b8621a">'
         + '<div style="font-size:30px;color:#f2c84e;letter-spacing:8px;font-weight:bold">МЕДОВНИК</div>'
         + '<div style="font-size:12px;color:#b8621a;letter-spacing:3px;margin-top:6px">ДОМАШНА МЕДОВИНА</div>'
         + '</div>'
 
-        // Body
         + '<div style="padding:36px 40px;background:#120a03">'
         + '<div style="font-size:19px;color:#f2c84e;margin-bottom:6px">Здравейте, ' + p.name + '!</div>'
-        + '<p style="color:#b8a882;font-size:15px;margin:8px 0 24px;line-height:1.6">'
-        + 'Получихме вашата предварителна поръчка. Ще се свържем с вас скоро за потвърждение и детайли по доставката.</p>'
+        + '<p style="color:#b8a882;font-size:15px;margin:8px 0 24px;line-height:1.6">Получихме вашата предварителна поръчка. Ще се свържем с вас скоро за потвърждение и детайли по доставката.</p>'
 
-        // Order code badge
-        + '<div style="display:inline-block;background:rgba(184,98,26,0.2);border:1px solid #b8621a;'
-        + 'border-radius:4px;padding:5px 14px;font-size:13px;color:#f2c84e;letter-spacing:3px">'
-        + orderCode + '</div>'
+        + '<div style="display:inline-block;background:rgba(184,98,26,0.2);border:1px solid #b8621a;border-radius:4px;padding:5px 14px;font-size:13px;color:#f2c84e;letter-spacing:3px">' + orderCode + '</div>'
         + '<p style="font-size:12px;color:rgba(232,213,176,0.45);margin:8px 0 28px">Дата: ' + date + '</p>'
 
-        // Items table
-        + '<div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#b8621a;'
-        + 'margin-bottom:10px;border-bottom:1px solid rgba(184,98,26,0.25);padding-bottom:6px">Поръчани продукти</div>'
+        + '<div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#b8621a;margin-bottom:10px;border-bottom:1px solid rgba(184,98,26,0.25);padding-bottom:6px">Поръчани продукти</div>'
         + '<table style="width:100%;border-collapse:collapse;margin-bottom:8px">'
-        + '<tr><th style="text-align:left;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;'
-        + 'border-bottom:1px solid rgba(184,98,26,0.2)">Продукт</th>'
-        + '<th style="text-align:center;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;'
-        + 'border-bottom:1px solid rgba(184,98,26,0.2)">Бр.</th>'
-        + '<th style="text-align:right;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;'
-        + 'border-bottom:1px solid rgba(184,98,26,0.2)">€</th>'
-        + '<th style="text-align:right;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;'
-        + 'border-bottom:1px solid rgba(184,98,26,0.2)">лв.</th></tr>'
+        + '<tr>'
+        + '<th style="text-align:left;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;border-bottom:1px solid rgba(184,98,26,0.2)">Продукт</th>'
+        + '<th style="text-align:center;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;border-bottom:1px solid rgba(184,98,26,0.2)">Бр.</th>'
+        + '<th style="text-align:right;padding:8px;font-size:11px;letter-spacing:2px;color:#b8621a;border-bottom:1px solid rgba(184,98,26,0.2)">€</th>'
+        + '</tr>'
         + itemRows
-        + '<tr><td colspan="2" style="padding:14px 8px 8px;border-top:1px solid rgba(184,98,26,0.4);'
-        + 'color:#f2c84e;font-size:15px;font-weight:bold">Общо</td>'
-        + '<td style="padding:14px 8px 8px;border-top:1px solid rgba(184,98,26,0.4);text-align:right;'
-        + 'color:#f2c84e;font-size:15px;font-weight:bold">' + (p.totalEur || '') + ' €</td>'
-        + '<td style="padding:14px 8px 8px;border-top:1px solid rgba(184,98,26,0.4);text-align:right;'
-        + 'color:#b8a882;font-size:13px">' + p.total + ' лв.</td></tr>'
+        + '<tr>'
+        + '<td colspan="2" style="padding:14px 8px 8px;border-top:1px solid rgba(184,98,26,0.4);color:#f2c84e;font-size:15px;font-weight:bold">Общо</td>'
+        + '<td style="padding:14px 8px 8px;border-top:1px solid rgba(184,98,26,0.4);text-align:right;color:#f2c84e;font-size:15px;font-weight:bold">' + totalEur + ' €</td>'
+        + '</tr>'
         + '</table>'
 
-        // 10% discount notice
-        + '<div style="background:rgba(242,200,78,0.07);border:1px solid rgba(242,200,78,0.25);'
-        + 'border-radius:6px;padding:14px 18px;margin:20px 0">'
-        + '<p style="color:#f2c84e;font-size:14px;margin:0">🎁 '
-        + 'Вашата <strong>10% отстъпка</strong> е запазена — ще бъде приложена автоматично при официалния старт на продукта.</p>'
+        + '<div style="background:rgba(242,200,78,0.07);border:1px solid rgba(242,200,78,0.25);border-radius:6px;padding:14px 18px;margin:20px 0">'
+        + '<p style="color:#f2c84e;font-size:14px;margin:0">🎁 Вашата <strong>10% отстъпка</strong> е запазена — ще бъде приложена автоматично при официалния старт на продукта.</p>'
         + '</div>'
 
-        // Discord section
         + discordSection
-
         + '</div>'
 
-        // Footer
-        + '<div style="background:#0c0501;padding:24px 40px;text-align:center;'
-        + 'border-top:1px solid rgba(184,98,26,0.2)">'
+        + '<div style="background:#0c0501;padding:24px 40px;text-align:center;border-top:1px solid rgba(184,98,26,0.2)">'
         + '<p style="font-size:13px;color:rgba(232,213,176,0.5);margin:4px 0">📞 +359 98 877 9092</p>'
         + '<p style="font-size:13px;color:rgba(232,213,176,0.5);margin:4px 0">✉️ medovnikbg@gmail.com</p>'
         + '<p style="font-size:11px;color:rgba(232,213,176,0.25);margin-top:14px">© Медовник · Домашна медовина</p>'
@@ -160,9 +125,7 @@ function doPost(e) {
         to:       p.email,
         subject:  'Поръчка ' + orderCode + ' — потвърждение | Медовник',
         name:     'Медовник',
-        body:     'Здравейте ' + p.name + ',\n\nПолучихме вашата поръчка ' + orderCode + '.\n'
-                + 'Общо: ' + (p.totalEur || '') + ' € / ' + p.total + ' лв.\n\n'
-                + 'Ще се свържем с вас скоро.\n\nМедовник',
+        body:     'Здравейте ' + p.name + ',\n\nПолучихме вашата поръчка ' + orderCode + '.\nОбщо: ' + totalEur + ' €\n\nЩе се свържем с вас скоро.\n\nМедовник',
         htmlBody: htmlBody,
       });
     }
@@ -172,7 +135,7 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch(err) {
-    sheet.appendRow(['ГРЕШКА', err.message]);
+    Logger.log('Error: ' + err.message);
     return ContentService
       .createTextOutput(JSON.stringify({ ok: false, error: err.message }))
       .setMimeType(ContentService.MimeType.JSON);
