@@ -2,6 +2,7 @@ import { useState } from 'react';
 // import { useAuth } from '../context/AuthContext';
 import { TESTIMONIALS } from '../data/testimonials';
 import TestimonialCard from '../components/ui/TestimonialCard';
+import { StarIcon, QuillIcon } from '../components/ui/Icons';
 
 /**
  * Reviews page. Shows all testimonials and an auth-gated form
@@ -49,7 +50,7 @@ function ReviewForm({ onPost }) {
       text: trimmed,
       author: user.displayName || user.email,
       detail: 'Нов отзив · ' + new Date().toLocaleDateString('bg-BG'),
-      avatar: '⭐',
+      avatar: 'farmer',
       rating,
     });
     setText('');
@@ -97,7 +98,7 @@ function ReviewForm({ onPost }) {
 function LoginWall({ onClick }) {
   return (
     <div className="login-wall" style={{ display: 'block' }}>
-      <div className="lw-ico">✍️</div>
+      <div className="lw-ico" style={{ color: 'var(--honey)' }}><QuillIcon size={40} /></div>
       <h3>Сподели своя опит</h3>
       <p>Влез в профила си, за да публикуваш отзив. Профилната ти снимка и името ще се появят автоматично.</p>
       <button className="btn-primary" onClick={onClick}>Влез с Google</button>

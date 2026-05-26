@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HONEY_TYPES } from '../../data/honey';
 import { useCart } from '../../context/CartContext';
+import { HoneyJarIcon } from './Icons';
 
 export default function HoneyCard() {
   const [selectedId, setSelectedId] = useState(HONEY_TYPES[0].id);
@@ -12,7 +13,7 @@ export default function HoneyCard() {
   return (
     <div className="honey-card">
       <div className="honey-visual">
-        <span className="honey-jar-ico">🍯</span>
+        <span className="honey-jar-ico"><HoneyJarIcon size={52} /></span>
         <div className="honey-glow" />
       </div>
 

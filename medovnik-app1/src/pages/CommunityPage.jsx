@@ -1,4 +1,5 @@
 import DiscordSection from '../components/sections/DiscordSection';
+import { BookIcon, HandshakeIcon, TrophyIcon } from '../components/ui/Icons';
 
 /**
  * Community page. Re-uses the same Discord section as the home,
@@ -22,17 +23,17 @@ export default function CommunityPage() {
           marginTop: '3rem',
         }}>
           <LivingCard
-            icon="📖"
+            icon={<BookIcon size={40} />}
             title="Рецепти"
             body="Членовете споделят стотици рецепти — от класическа медовина до плодови варианти."
           />
           <LivingCard
-            icon="🤝"
+            icon={<HandshakeIcon size={40} />}
             title="Помощ"
             body="Задаваш въпрос, получаваш отговор за минути. Никой не е сам в процеса."
           />
           <LivingCard
-            icon="🏆"
+            icon={<TrophyIcon size={40} />}
             title="Предизвикателства"
             body="Всеки месец различна тема с награди и признание."
           />

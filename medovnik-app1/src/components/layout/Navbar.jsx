@@ -5,6 +5,7 @@ import { useScrolled } from '../../hooks/useScrolled';
 import { useCart } from '../../context/CartContext';
 import logo from '../../assets/logo.png';
 import ContactDropdown from './ContactDropdown';
+import { CartIcon } from '../ui/Icons';
 // import UserChip from './UserChip';
 
 /**
@@ -72,7 +73,7 @@ export default function Navbar() {
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
 
         <button className="cart-ico-btn" onClick={toggleCart} aria-label="Количка">
-          🛒
+          <CartIcon size={22} />
           {count > 0 && (
             <span className="cart-badge" style={{ display: 'flex' }}>{count}</span>
           )}

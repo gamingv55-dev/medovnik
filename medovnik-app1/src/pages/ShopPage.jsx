@@ -2,6 +2,7 @@ import { PRODUCTS }    from '../data/products';
 import { ADDONS }      from '../data/addons';
 import { FLAVORINGS }  from '../data/flavorings';
 import ProductCard     from '../components/ui/ProductCard';
+import { LockIcon }   from '../components/ui/Icons';
 import AddonCard       from '../components/ui/AddonCard';
 import HoneyCard       from '../components/ui/HoneyCard';
 
@@ -19,7 +20,7 @@ export default function ShopPage() {
           Всеки комплект включва видео наръчник, достъп до Discord и гаранция за успех.
         </p>
         <div className="preorder-banner">
-          <span className="preorder-icon">🔒</span>
+          <span className="preorder-icon"><LockIcon size={18} /></span>
           <span className="preorder-text">
             Поръчай сега и заключи цената — всяка предварителна поръчка носи
             <strong> 10% отстъпка</strong> при официалния старт на продукта.

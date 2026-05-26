@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { formatPrice } from '../../utils/format';
 import PreorderModal from '../ui/PreorderModal';
+import { PRODUCT_ICONS, BoxIcon } from '../ui/Icons';
 
 /**
  * Slide-in cart drawer. Renders the items, the Discord-unlock
@@ -35,7 +36,9 @@ export default function CartDrawer() {
           ) : (
             items.map((item) => (
               <div className="cart-item" key={item.id}>
-                <div className="ci-emoji">{item.emoji || '📦'}</div>
+                <div className="ci-emoji" style={{ color: 'var(--honey)' }}>
+                  {(() => { const I = PRODUCT_ICONS[item.iconType]; return I ? <I size={28} /> : <BoxIcon size={28} />; })()}
+                </div>
                 <div className="ci-info" style={{ flex: 1 }}>
                   <div className="ci-name">{item.name}</div>
                   <div className="ci-price">

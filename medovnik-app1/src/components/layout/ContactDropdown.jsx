@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
+import { PhoneIcon, MailIcon } from '../ui/Icons';
 
 const PHONE = '+359988779092';
 const EMAIL = 'medovnikbg@gmail.com';
@@ -19,8 +20,8 @@ export default function ContactDropdown() {
       </button>
       <div className={`contact-drop${open ? ' open' : ''}`} style={{ fontWeight: 500, width: 380 }}>
         <div className="contact-drop-head">Свържи се с нас</div>
-        <ContactRow icon="📞" label="Телефон" value="+359 98 877 9092" href={`tel:${PHONE}`} copy={PHONE} />
-        <ContactRow icon="✉️" label="Имейл"   value={EMAIL}            href={`mailto:${EMAIL}`} copy={EMAIL} />
+        <ContactRow icon={<PhoneIcon size={18} />} label="Телефон" value="+359 98 877 9092" href={`tel:${PHONE}`} copy={PHONE} />
+        <ContactRow icon={<MailIcon size={18} />}  label="Имейл"   value={EMAIL}            href={`mailto:${EMAIL}`} copy={EMAIL} />
       </div>
     </span>
   );

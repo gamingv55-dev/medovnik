@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CHANNELS } from '../../data/channels';
+import { TargetIcon } from '../ui/Icons';
 
 /**
  * Discord community section. Used on both the home and community
@@ -49,7 +50,7 @@ export default function DiscordSection({ compactLead = false }) {
 
         <div>
           <div className="comm-cta">
-            <div style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>🎯</div>
+            <div style={{ color: 'var(--honey)', marginBottom: '1.5rem' }}><TargetIcon size={56} /></div>
             <h3>Отключи Discord достъп</h3>
             <p>
               Поръчай за над 70 лв. и получи автоматична покана към нашата частна

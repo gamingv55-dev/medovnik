@@ -8,7 +8,9 @@
       "Bash(ls -t \"c:\\\\Users\\\\gamin\\\\Desktop\\\\\"*.png 2>/dev/null | head -10)",
       "Read(//c/Users/gamin/**)",
       "Bash(timeout 5)",
-      "Bash(dir \"C:\\\\Users\\\\gamin\\\\Desktop\" /b)"
+      "Bash(dir \"C:\\\\Users\\\\gamin\\\\Desktop\" /b)",
+      "Bash(node -e \"require\\('sharp'\\)\")",
+      "Bash(node -e ' *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\gamin\\Desktop"

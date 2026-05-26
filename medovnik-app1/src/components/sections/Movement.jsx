@@ -1,3 +1,5 @@
+import { HandshakeIcon, ScrollIcon, SparkleIcon } from '../ui/Icons';
+
 /**
  * "Защо медовина" — three-column manifesto strip between Trust
  * and HowItWorks. Carries the brand's emotional pitch.
@@ -31,17 +33,17 @@ export default function Movement() {
           margin: '0 auto',
         }}>
           <Pillar
-            icon="🤝"
+            icon={<HandshakeIcon size={40} />}
             title="Споделено е по-сладко"
             body="Няма по-голяма тръпка от това да отвориш бутилка, която ти сам направи, и да я налееш на хората, които обичаш."
           />
           <Pillar
-            icon="📜"
+            icon={<ScrollIcon size={40} />}
             title="Българска традиция"
             body="Траките и прабългарите я варили векове наред. Ние я връщаме — със същата простота, със същата душа."
           />
           <Pillar
-            icon="✨"
+            icon={<SparkleIcon size={40} />}
             title="Твое творение"
             body="Купуваш мед и вода. Получаваш питие, което носи твоя характер, търпение и вкус. Това не е поръчка — това е творчество."
           />

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { HoneyJarIcon } from '../components/ui/Icons';
 
 export default function NotFoundPage() {
   return (
@@ -9,7 +10,7 @@ export default function NotFoundPage() {
       alignItems: 'center', justifyContent: 'center',
       textAlign: 'center', gap: '1.2rem',
     }}>
-      <div style={{ fontSize: '4rem' }}>🍯</div>
+      <div style={{ color: 'var(--honey)' }}><HoneyJarIcon size={72} /></div>
       <h1 className="sec-h2">404 · Страницата я няма</h1>
       <p style={{
         color: 'var(--text)', fontStyle: 'italic',
