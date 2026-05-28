@@ -69,12 +69,12 @@ function doPost(e) {
           + '<span style="font-size:20px">🎉</span>'
           + '<span style="color:#7289da;font-size:15px;font-weight:bold">Отключихте Discord общността!</span>'
           + '</div>'
-          + '<p style="color:#b8a882;font-size:13px;margin:0 0 14px;line-height:1.6">Поръчката ви надхвърля 70 лв. — заделили сме ви място в общността на Медовник пивоварите.</p>'
+          + '<p style="color:#b8a882;font-size:13px;margin:0 0 14px;line-height:1.6">Поръчахте комплект — заделили сме ви място в общността на Медовник пивоварите.</p>'
           + '<div style="background:rgba(88,101,242,0.08);border-radius:6px;padding:14px 16px">'
           + '<p style="color:#b8c4f0;font-size:13px;margin:0;line-height:1.6">⏳ <strong>Поканата ще бъде изпратена автоматично</strong> в момента, в който официално стартираме продукта. Просто очаквайте имейл от нас.</p>'
           + '</div></div>'
         : '<div style="background:rgba(88,101,242,0.07);border:1px solid rgba(88,101,242,0.2);border-radius:6px;padding:16px 18px;margin:20px 0">'
-          + '<p style="color:#b8a882;font-size:13px;margin:0;line-height:1.6">💬 <strong style="color:#7289da">Discord общност:</strong> При поръчка над 70 лв. получавате достъп до нашата общност от домашни пивовари — поканата пристига автоматично при официалния старт.</p>'
+          + '<p style="color:#b8a882;font-size:13px;margin:0;line-height:1.6">💬 <strong style="color:#7289da">Discord общност:</strong> При поръчка на комплект или над 50 лв. получавате достъп до нашата общност от домашни пивовари — поканата пристига автоматично при официалния старт.</p>'
           + '</div>';
 
       var htmlBody = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head>'

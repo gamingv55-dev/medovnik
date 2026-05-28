@@ -75,7 +75,7 @@ export default function CartDrawer() {
               <p className="cup-p">
                 {discordUnlocked
                   ? 'Ще получиш покана на имейл след поръчката.'
-                  : 'Поръчай за над 70 лв. и влез в общността.'}
+                  : 'Поръчай комплект или надвиши 50 лв. и влез в общността.'}
               </p>
             </div>
             <div className="cart-total">

@@ -5,7 +5,7 @@ import { FLAVORINGS } from '../data/flavorings';
 import { HONEY_TYPES } from '../data/honey';
 
 const CartContext = createContext(null);
-const DISCORD_THRESHOLD = 70;
+const DISCORD_THRESHOLD = 50;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -76,7 +76,8 @@ export function CartProvider({ children }) {
   const value = useMemo(() => {
     const total           = state.items.reduce((s, i) => s + (i.price || 0) * (i.qty || 1), 0);
     const count           = state.items.reduce((s, i) => s + (i.qty || 1), 0);
-    const discordUnlocked = total >= DISCORD_THRESHOLD;
+    const hasKit          = state.items.some(i => PRODUCTS.some(p => p.id === i.id));
+    const discordUnlocked = hasKit || total >= DISCORD_THRESHOLD;
     const toDiscord       = Math.max(DISCORD_THRESHOLD - total, 0);
     const isInCart        = (id) => state.items.some(i => i.id === id);
     const qtyInCart       = (id) => { const it = state.items.find(i => i.id === id); return it ? it.qty : 0; };
