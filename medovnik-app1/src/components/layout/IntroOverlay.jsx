@@ -102,6 +102,8 @@ export default function IntroOverlay({ onDone }) {
             alt="Медовник"
             className="intro-logo-img"
             draggable={false}
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
       )}

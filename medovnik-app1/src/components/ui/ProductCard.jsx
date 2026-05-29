@@ -19,6 +19,8 @@ export default function ProductCard({ product }) {
               className="prod-img prod-img-zoomable"
               onClick={() => setLightbox(true)}
               title="Клик за увеличаване"
+              loading="lazy"
+              decoding="async"
             />
           ) : (
             <div className="prod-jar">{product.emoji}</div>
