@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext';
+import { TAG_TIPS } from '../../data/products';
 
 export default function ProductCard({ product }) {
   const { addToCart, isInCart } = useCart();
@@ -31,9 +32,17 @@ export default function ProductCard({ product }) {
           <div className="prod-desc">{product.desc}</div>
 
           <div className="prod-includes">
-            {product.tags.map((tag) => (
-              <span className="tag" key={tag}>{tag}</span>
-            ))}
+            {product.tags.map((tag) => {
+              const tip = TAG_TIPS[tag];
+              return tip ? (
+                <span className="tag tag--tip" key={tag}>
+                  {tag}
+                  <span className="tag-tip">{tip}</span>
+                </span>
+              ) : (
+                <span className="tag" key={tag}>{tag}</span>
+              );
+            })}
           </div>
 
           <div className="prod-foot">
