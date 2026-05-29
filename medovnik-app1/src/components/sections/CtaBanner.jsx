@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+const logo = '/logo.png';
 
 /**
  * Closing call-to-action banner on the home page.
