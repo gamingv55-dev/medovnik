@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useScrolled } from '../../hooks/useScrolled';
 // import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.webp';
 import ContactDropdown from './ContactDropdown';
 import { CartIcon } from '../ui/Icons';
 // import UserChip from './UserChip';

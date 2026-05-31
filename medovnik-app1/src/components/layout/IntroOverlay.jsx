@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo.webp';
 
 // ── Pointy-top hexagon grid math ──────────────────────────────
 const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
