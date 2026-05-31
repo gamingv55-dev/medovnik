@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import logo from '../../assets/logo.webp';
+const logo = '/logo.webp';
 
 // ── Pointy-top hexagon grid math ──────────────────────────────
 const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
@@ -102,6 +102,8 @@ export default function IntroOverlay({ onDone }) {
             alt="Медовник"
             className="intro-logo-img"
             draggable={false}
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
       )}

@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useScrolled } from '../../hooks/useScrolled';
 // import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
-import logo from '../../assets/logo.webp';
+const logo = '/logo.webp';
 import ContactDropdown from './ContactDropdown';
 import { CartIcon } from '../ui/Icons';
 // import UserChip from './UserChip';
@@ -39,6 +39,8 @@ export default function Navbar() {
           src={logo}
           alt="Медовник"
           style={{ width: 160, height: 150, margin: '-2px 15px -90px 0' }}
+          fetchpriority="high"
+          decoding="async"
         />
         {/* Wordmark hidden — the logo PNG already contains the word "МЕДОВНИК". */}
         <span className="logo-text" style={{ display: 'none' }}>Медовник</span>

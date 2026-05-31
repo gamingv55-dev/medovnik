@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.webp';
+const logo = '/logo.webp';
 
 /**
  * Closing call-to-action banner on the home page.
