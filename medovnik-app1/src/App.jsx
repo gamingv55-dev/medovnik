@@ -1,5 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { CartProvider }  from './context/CartContext';
 
@@ -56,6 +57,7 @@ export default function App() {
           <Footer />
         </CartProvider>
 
+      <SpeedInsights />
     </BrowserRouter>
   );
 }
