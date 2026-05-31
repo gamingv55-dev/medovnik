@@ -1,3 +1,4 @@
+import '../styles/shop.css';
 import { PRODUCTS }    from '../data/products';
 import { ADDONS }      from '../data/addons';
 import { FLAVORINGS }  from '../data/flavorings';

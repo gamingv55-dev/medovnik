@@ -21,11 +21,21 @@ const NotFoundPage  = lazy(() => import('./pages/NotFoundPage'));
  * page and overlay can read/write the shared state.
  */
 export default function App() {
-  const [showIntro, setShowIntro] = useState(true);
+  // Play the beehive intro once per browser session — repeat navigations
+  // (and Lighthouse's warm runs) skip the 3s main-thread animation entirely.
+  const [showIntro, setShowIntro] = useState(() => {
+    try { return !sessionStorage.getItem('mdv_intro_seen'); }
+    catch { return true; }
+  });
+
+  const dismissIntro = () => {
+    try { sessionStorage.setItem('mdv_intro_seen', '1'); } catch {}
+    setShowIntro(false);
+  };
 
   return (
     <BrowserRouter>
-      {showIntro && <IntroOverlay onDone={() => setShowIntro(false)} />}
+      {showIntro && <IntroOverlay onDone={dismissIntro} />}
 
         <CartProvider>
           <ScrollToTop />

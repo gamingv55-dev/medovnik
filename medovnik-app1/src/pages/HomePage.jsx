@@ -1,11 +1,16 @@
+import { lazy, Suspense } from 'react';
+
 import Hero          from '../components/sections/Hero';
 import Trust         from '../components/sections/Trust';
-import Movement      from '../components/sections/Movement';
-import HowItWorks    from '../components/sections/HowItWorks';
-import DiscordSection from '../components/sections/DiscordSection';
-import Testimonials  from '../components/sections/Testimonials';
-import FAQ           from '../components/sections/FAQ';
-import CtaBanner     from '../components/sections/CtaBanner';
+
+// Below-the-fold sections are split into their own chunks and rendered after
+// first paint, so they don't run on the main thread during initial load.
+const Movement       = lazy(() => import('../components/sections/Movement'));
+const HowItWorks     = lazy(() => import('../components/sections/HowItWorks'));
+const DiscordSection = lazy(() => import('../components/sections/DiscordSection'));
+const Testimonials   = lazy(() => import('../components/sections/Testimonials'));
+const FAQ            = lazy(() => import('../components/sections/FAQ'));
+const CtaBanner      = lazy(() => import('../components/sections/CtaBanner'));
 
 /**
  * Home page — composed of the hero, the trust strip, the
@@ -17,12 +22,14 @@ export default function HomePage() {
     <main>
       <Hero />
       <Trust />
-      <Movement />
-      <HowItWorks />
-      <DiscordSection />
-      <Testimonials />
-      <FAQ />
-      <CtaBanner />
+      <Suspense fallback={null}>
+        <Movement />
+        <HowItWorks />
+        <DiscordSection />
+        <Testimonials />
+        <FAQ />
+        <CtaBanner />
+      </Suspense>
     </main>
   );
 }

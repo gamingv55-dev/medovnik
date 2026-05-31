@@ -1,3 +1,4 @@
+import '../styles/community.css';
 import DiscordSection from '../components/sections/DiscordSection';
 import { BookIcon, HandshakeIcon, TrophyIcon } from '../components/ui/Icons';
 
