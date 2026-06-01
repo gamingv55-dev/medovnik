@@ -688,15 +688,19 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      background: linear-gradient(160deg, #08060300 0%, #120d07 35%, #1a1007 65%, #080603 100%);
+      background: #080503;
     }
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 60% at 20% 60%, rgba(184, 98, 26, 0.2) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 70% at 80% 30%, rgba(212, 131, 31, 0.12) 0%, transparent 55%),
-        radial-gradient(ellipse 90% 50% at 50% 100%, rgba(42, 26, 13, 0.95) 0%, transparent 70%);
+      background:
+        linear-gradient(
+          170deg,
+          rgba(5, 3, 1, 0.18) 0%,
+          rgba(5, 3, 1, 0.52) 45%,
+          rgba(5, 3, 1, 0.82) 100%
+        ),
+        url('/hero-product.jpg') center 38% / cover no-repeat;
     }
     .orb {
       position: absolute;
@@ -704,9 +708,9 @@
       filter: blur(90px);
       animation: drift 10s ease-in-out infinite;
     }
-    .orb1 { width: 600px; height: 600px; background: rgba(184, 98, 26, 0.15); top: -100px; left: -150px; }
-    .orb2 { width: 400px; height: 400px; background: rgba(242, 200, 78, 0.1); top: 30%; right: -80px; animation-delay: -4s; }
-    .orb3 { width: 250px; height: 250px; background: rgba(212, 131, 31, 0.12); bottom: 15%; left: 25%; animation-delay: -7s; }
+    .orb1 { width: 600px; height: 600px; background: rgba(184, 98, 26, 0.07); top: -100px; left: -150px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(242, 200, 78, 0.04); top: 30%; right: -80px; animation-delay: -4s; }
+    .orb3 { width: 250px; height: 250px; background: rgba(212, 131, 31, 0.05); bottom: 15%; left: 25%; animation-delay: -7s; }
     @keyframes drift {
       0%, 100% { transform: translate(0, 0) scale(1); }
       33% { transform: translate(25px, -35px) scale(1.06); }
@@ -740,6 +744,7 @@
       margin-bottom: 2rem;
       letter-spacing: 0.02em;
       text-transform: uppercase;
+      text-shadow: 0 2px 30px rgba(0, 0, 0, 0.85), 0 4px 60px rgba(0, 0, 0, 0.5);
     }
     .hero-h1 .h1-line {
       display: block;
@@ -747,6 +752,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 2px 18px rgba(184, 98, 26, 0.45));
     }
 
     .hero-sub {
@@ -758,6 +764,7 @@
       margin: 0 auto 3rem;
       line-height: 1.7;
       font-style: italic;
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.9), 0 2px 24px rgba(0, 0, 0, 0.6);
     }
 
     .hero-btns {
