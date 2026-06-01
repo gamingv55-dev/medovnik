@@ -1,5 +1,4 @@
 import Hero          from '../components/sections/Hero';
-import Trust         from '../components/sections/Trust';
 import Movement      from '../components/sections/Movement';
 import HowItWorks    from '../components/sections/HowItWorks';
 import DiscordSection from '../components/sections/DiscordSection';
@@ -16,7 +15,6 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
-      <Trust />
       <Movement />
       <HowItWorks />
       <DiscordSection />
