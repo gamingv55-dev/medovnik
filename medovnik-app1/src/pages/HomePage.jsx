@@ -9,7 +9,6 @@ import Trust   from '../components/sections/Trust';
 const HowItWorks     = lazy(() => import('../components/sections/HowItWorks'));
 const Memories       = lazy(() => import('../components/sections/Memories'));
 const DiscordSection = lazy(() => import('../components/sections/DiscordSection'));
-const Testimonials   = lazy(() => import('../components/sections/Testimonials'));
 const FAQ            = lazy(() => import('../components/sections/FAQ'));
 const CtaBanner      = lazy(() => import('../components/sections/CtaBanner'));
 
@@ -23,7 +22,6 @@ export default function HomePage() {
         <HowItWorks />
         <Memories />
         <DiscordSection />
-        <Testimonials />
         <FAQ />
         <CtaBanner />
       </Suspense>
