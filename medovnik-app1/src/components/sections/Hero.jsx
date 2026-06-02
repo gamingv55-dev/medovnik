@@ -29,8 +29,8 @@ const HERO_CSS = `
 .mh-hero .mh-btn-primary { background: linear-gradient(135deg, #d9b46a 0%, #bb8a3d 100%); color: #271705; border: none; }
 .mh-hero .mh-btn-ghost { background: transparent; color: #f4ead7; border: 1px solid rgba(226, 171, 40, 0.5); }
 
-.mh-hero .mh-trust { position: absolute; left: 50%; transform: translateX(-50%); bottom: clamp(2rem, 7vh, 4.75rem); width: min(80%, 1060px); max-width: calc(100% - 2rem); z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 0.8vw, 0.85rem); }
-.mh-hero .mh-card { display: flex; align-items: center; gap: clamp(0.5rem, 0.8vw, 0.8rem); background: rgba(18, 11, 4, 0.6); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px); border: 1px solid rgba(217, 144, 34, 0.24); border-radius: 10px; padding: clamp(0.6rem, 0.85vw, 0.85rem) clamp(0.65rem, 0.95vw, 1rem); box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34); }
+.mh-hero .mh-trust { position: absolute; left: 4%; bottom: clamp(2rem, 7vh, 4.75rem); width: min(72%, 960px); max-width: calc(100% - 2rem); z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 0.8vw, 0.85rem); }
+.mh-hero .mh-card { display: flex; align-items: center; gap: clamp(0.5rem, 0.8vw, 0.8rem); background: rgba(12, 7, 2, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(217, 144, 34, 0.55); border-radius: 10px; padding: clamp(0.6rem, 0.85vw, 0.85rem) clamp(0.65rem, 0.95vw, 1rem); box-shadow: 0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(242,200,78,0.08); }
 .mh-hero .mh-ico { flex: none; width: clamp(26px, 2.1vw, 38px); height: clamp(26px, 2.1vw, 38px); color: #d6a448; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
 .mh-hero .mh-ico svg { width: 100%; height: 100%; display: block; }
 .mh-hero .mh-lbl { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: clamp(0.62rem, 0.74vw, 0.8rem); letter-spacing: 0.12em; text-transform: uppercase; color: #f0dcab; line-height: 1.22; }
@@ -42,8 +42,8 @@ const HERO_CSS = `
 @media (max-width: 860px) {
   .mh-hero { height: auto; min-height: 100vh; overflow: visible; }
   .mh-hero .mh-photo { object-position: 72% center; }
-  .mh-hero .mh-grad { background: linear-gradient(180deg, rgba(10,7,3,0.55) 0%, rgba(10,7,3,0.2) 40%, rgba(10,7,3,0.85) 100%); }
-  .mh-hero .mh-left { position: relative; left: 0; top: 0; width: auto; max-width: 100%; padding: 7.5rem 1.4rem 2rem; }
+  .mh-hero .mh-grad { background: linear-gradient(180deg, rgba(10,7,3,0.75) 0%, rgba(10,7,3,0.55) 40%, rgba(10,7,3,0.92) 100%); }
+  .mh-hero .mh-left { position: relative; left: 0; top: 0; width: auto; max-width: 100%; padding: 7.5rem 1.4rem 2rem; background: linear-gradient(180deg, rgba(10,7,3,0.45) 0%, transparent 100%); }
   .mh-hero .mh-h1 { font-size: 2.5rem; }
   .mh-hero .mh-divider { width: 48px; margin: 1.4rem 0 1.3rem; }
   .mh-hero .mh-sub { font-size: 1rem; max-width: 30rem; margin-bottom: 2rem; }

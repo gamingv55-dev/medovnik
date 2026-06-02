@@ -2331,7 +2331,7 @@
       .user-menu { right: -8px; min-width: 200px; }
       .sec { padding: 4rem 1.5rem; }
       .cta-banner { padding: 4rem 1.5rem; }
-      .trust { padding: 1.5rem; }
+      .trust { display: none; }
       .trust-inner { gap: 2rem; }
       .trust-div { display: none; }
       .footer { padding: 3rem 1.5rem; }
