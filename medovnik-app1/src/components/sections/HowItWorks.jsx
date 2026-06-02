@@ -3,16 +3,18 @@ import { HONEY_SVG, YEAST_SVG, FERMENT_SVG, BOTTLE_SVG } from '../../data/stepIl
 const HIW_CSS = `
 .hiw * { box-sizing: border-box; }
 .hiw {
-  background: linear-gradient(180deg, #080603 0%, #100a04 55%, #080603 100%);
+  background: linear-gradient(180deg, rgba(8,6,3,0.88) 0%, rgba(16,10,4,0.78) 50%, rgba(8,6,3,0.88) 100%), url('/background-proccess.webp') center/cover no-repeat;
   border-top: 1px solid rgba(184,98,26,0.12);
   border-bottom: 1px solid rgba(184,98,26,0.12);
   padding: 2.8rem clamp(1.5rem,4vw,3.5rem);
 }
 .hiw-inner { max-width: 1300px; margin: 0 auto; }
+.hiw-intro { padding-left: clamp(1.5rem, 10vw, 9rem); margin-bottom: 2rem; }
 
 .hiw-label {
-  font-family: 'UniSans', sans-serif;
-  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #d4831f;
@@ -31,6 +33,7 @@ const HIW_CSS = `
   letter-spacing: -0.01em;
   margin-bottom: 0.7rem;
   font-variant-numeric: lining-nums;
+  font-style: normal;
 }
 .hiw-accent {
   background: linear-gradient(135deg, #f2c84e 0%, #b8621a 100%);
@@ -41,11 +44,11 @@ const HIW_CSS = `
 
 .hiw-sub {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.88rem, 1.05vw, 1rem);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
   color: #b8997a;
   line-height: 1.65;
   max-width: 520px;
-  margin-bottom: 2rem;
 }
 
 .hiw-steps {
@@ -60,12 +63,19 @@ const HIW_CSS = `
   justify-content: center;
   padding: 0 clamp(0.5rem, 1.2vw, 1.2rem);
   padding-top: 84px;
-  color: #4a3520;
+  color: rgba(212,131,31,0.7);
   flex-shrink: 0;
 }
 .hiw-arrow svg { width: 22px; height: 22px; }
 
-.hiw-step { min-width: 0; }
+.hiw-step {
+  min-width: 0;
+  background: rgba(184,98,26,0.1);
+  border: 1px solid rgba(212,131,31,0.25);
+  border-radius: 12px;
+  padding: clamp(1rem, 2vw, 1.6rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  backdrop-filter: blur(4px);
+}
 
 .hiw-n {
   font-family: 'UniSans', sans-serif;
@@ -85,19 +95,20 @@ const HIW_CSS = `
 .hiw-illus svg { max-width: 100%; max-height: 100%; }
 
 .hiw-title {
-  font-family: 'UniSans', sans-serif;
-  font-size: clamp(0.72rem, 0.88vw, 0.9rem);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.68rem, 0.82vw, 0.84rem);
   color: #faf3e0;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 700;
+  letter-spacing: 0.08em;
   line-height: 1.3;
   margin-bottom: 0.5rem;
 }
 
 .hiw-desc {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(0.88rem, 0.95vw, 0.97rem);
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   color: #c7b08a;
   line-height: 1.6;
 }
@@ -136,9 +147,7 @@ export default function HowItWorks() {
       </div>
     );
     if (i < STEPS.length - 1) {
-      items.push(
-        <div className="hiw-arrow" key={`arr-${i}`}><ArrowIcon /></div>
-      );
+      items.push(<div className="hiw-arrow" key={`arr-${i}`}><ArrowIcon /></div>);
     }
   });
 
@@ -146,14 +155,16 @@ export default function HowItWorks() {
     <div className="hiw" id="how">
       <style>{HIW_CSS}</style>
       <div className="hiw-inner">
-        <div className="hiw-label"><span>—</span><span>КАК РАБОТИ</span></div>
-        <h2 className="hiw-h2">
-          4 стъпки до<br />твоята <span className="hiw-accent">първа медовина</span>
-        </h2>
-        <p className="hiw-sub">
-          Без химия, без опит, без скъпо оборудване. Само следваш наръчника
-          и природата свърши останалото.
-        </p>
+        <div className="hiw-intro">
+          <div className="hiw-label"><span>—</span><span>КАК РАБОТИ</span></div>
+          <h2 className="hiw-h2">
+            4 стъпки до<br />твоята <span className="hiw-accent">първа медовина</span>
+          </h2>
+          <p className="hiw-sub">
+            Без химия, без опит, без скъпо оборудване. Само следваш наръчника
+            и природата свърши останалото.
+          </p>
+        </div>
         <div className="hiw-steps">{items}</div>
       </div>
     </div>

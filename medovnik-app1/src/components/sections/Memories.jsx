@@ -16,8 +16,9 @@ const MEM_CSS = `
 }
 
 .mem-label {
-  font-family: 'UniSans', sans-serif;
-  font-size: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #d4831f;
@@ -32,8 +33,10 @@ const MEM_CSS = `
   line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums;
 }
 .mem-accent {
+  font-style: italic;
   background: linear-gradient(135deg, #f2c84e 0%, #b8621a 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -41,8 +44,9 @@ const MEM_CSS = `
 }
 
 .mem-text {
-  font-family: 'Manrope', 'Cormorant Garamond', sans-serif;
-  font-size: clamp(0.88rem, 1vw, 0.97rem);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
   color: #b8997a;
   line-height: 1.7;
   margin-bottom: 1.8rem;
@@ -51,8 +55,9 @@ const MEM_CSS = `
 
 .mem-btn {
   display: inline-block;
-  font-family: 'UniSans', sans-serif;
-  font-size: 0.72rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #d4831f;
