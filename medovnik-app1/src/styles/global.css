@@ -2360,3 +2360,87 @@
       .auth-modal { padding: 1.2rem; }
       .auth-modal .auth-card { padding: 2.4rem 1.6rem 1.6rem; }
     }
+    
+    /* ============================================================
+   МЕДОВНИК — секция „Защо медовина“ (WhyMead)
+   Постави този блок НА ВЪРХОВО НИВО в global.css (НЕ вътре в @media!).
+   Цветовете ползват вече съществуващите --променливи от файла.
+   ============================================================ */
+.why{ position:relative; background:#0a0703; padding:clamp(1.5rem,4vh,3rem) clamp(1.5rem,4vw,4.5rem); overflow:hidden;
+  min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+  --topH:clamp(300px,40vh,478px); }
+.why-inner{ position:relative; max-width:1600px; margin:0 auto; width:100%; }
+
+/* ---- горен блок ---- */
+.why-top{ position:relative; min-height:calc(var(--topH) - 48px); }
+.why-photo{ position:absolute; top:clamp(48px,8vh,84px); right:calc(50% - 50vw); width:53vw; max-width:980px; height:var(--topH); }
+.why-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.why-photo::after{ /* ляво преливане към фона */
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:3;
+  background:linear-gradient(90deg, #0a0703 0%, rgba(10,7,3,0.55) 14%, rgba(10,7,3,0) 34%); }
+.why-photo::before{ /* горно преливане */
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:3;
+  background:linear-gradient(180deg, rgba(10,7,3,0.6) 0%, rgba(10,7,3,0) 22%); }
+
+.why-copy{ position:relative; z-index:4; padding:clamp(4px,1vh,12px) 0 clamp(1rem,2vh,2.5rem) clamp(0px,15vw,250px); max-width:720px; }
+
+.why-eyebrow{ display:flex; align-items:center; gap:1rem; margin-bottom:clamp(0.9rem,1.8vh,1.7rem); }
+.why-eyebrow span{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.78rem;
+  letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); white-space:nowrap; }
+.why-eyebrow i{ display:block; height:1px; width:64px; flex:none;
+  background:linear-gradient(90deg, rgba(217,144,34,0), var(--gold)); }
+.why-eyebrow i:last-child{ background:linear-gradient(90deg, var(--gold), rgba(217,144,34,0)); flex:1; max-width:130px; }
+
+.why-h2{ font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.6rem,4.6vw,4.4rem);
+  line-height:1.04; letter-spacing:-0.01em; color:var(--cream); }
+.why-h2 .accent{ background:linear-gradient(120deg,#f0b33b 0%,#d4831f 55%,#b8621a 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+
+.why-p{ font-family:'Manrope',sans-serif; font-weight:400; font-size:clamp(1rem,1.18vw,1.16rem);
+  line-height:1.75; color:var(--muted); max-width:32rem; margin-top:clamp(1rem,2vh,1.9rem); text-wrap:pretty; }
+.why-p .hl{ color:var(--honey); font-weight:500; }
+
+/* ---- разделител — стои на долния ръб на снимката ---- */
+.why-rule{ height:1px; margin:0;
+  background:linear-gradient(90deg, rgba(184,98,26,0) 0%, rgba(212,131,31,0.7) 22%, rgba(212,131,31,0.7) 78%, rgba(184,98,26,0) 100%); }
+
+/* ---- централна лента ---- */
+.why-band{ display:flex; align-items:center; justify-content:center; gap:1.4rem;
+  margin:clamp(1rem,2.4vh,2.2rem) 0 clamp(1rem,2.4vh,2.2rem); }
+.why-band span{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:clamp(0.8rem,1.1vw,1rem);
+  letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); text-align:center; }
+.why-band .orn{ color:rgba(217,144,34,0.6); flex:none; }
+.why-band .orn svg{ display:block; width:74px; height:14px; }
+
+/* ---- картички ---- */
+.why-cards{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(0.9rem,1.4vw,1.4rem); }
+.wm-card{ position:relative; display:flex; flex-direction:column;
+  background:linear-gradient(180deg, rgba(217,144,34,0.045) 0%, rgba(10,7,3,0.2) 100%);
+  border:1px solid rgba(184,98,26,0.22); border-radius:5px;
+  padding:clamp(1.2rem,1.5vw,1.6rem) clamp(1.2rem,1.6vw,1.7rem) clamp(1.2rem,1.5vw,1.5rem);
+  transition:border-color .35s ease, transform .35s ease, box-shadow .35s ease; }
+.wm-card:hover{ border-color:rgba(240,179,59,0.5); transform:translateY(-4px); box-shadow:0 22px 50px rgba(0,0,0,0.4); }
+.wm-ico{ width:clamp(40px,3vw,46px); height:auto; display:block; margin:0 auto 0.9rem; }
+.wm-title{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:clamp(0.82rem,0.95vw,0.96rem);
+  letter-spacing:0.07em; text-transform:uppercase; color:#ecc578; line-height:1.3; margin-bottom:0.55rem; }
+.wm-desc{ font-family:'Manrope',sans-serif; font-weight:400; font-size:clamp(0.86rem,0.98vw,0.95rem);
+  line-height:1.6; color:var(--muted); text-wrap:pretty; margin-bottom:1.1rem; }
+.wm-photo{ margin-top:auto; }
+.wm-photo img{ width:100%; height:clamp(120px,18vh,210px); object-fit:cover; display:block;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 26%, #000 86%, transparent 100%);
+  mask-image:linear-gradient(180deg, transparent 0%, #000 26%, #000 86%, transparent 100%); }
+
+/* ---- адаптивно ---- */
+@media (max-width:1100px){ .why-cards{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:900px){
+  .why{ min-height:0; justify-content:flex-start; padding-block:clamp(2.5rem,6vw,4rem); }
+  .why-photo{ position:relative; right:auto; width:auto; margin:0 calc(-1*clamp(1.5rem,4vw,4.5rem)); height:340px; }
+  .why-photo::after{ background:linear-gradient(180deg, rgba(10,7,3,0) 55%, #0a0703 100%); }
+  .why-photo::before{ display:none; }
+  .why-copy{ padding:1.5rem 0 2.5rem; max-width:100%; }
+}
+@media (max-width:560px){
+  .why-cards{ grid-template-columns:1fr; }
+  .why-band{ gap:0.8rem; }
+  .why-band .orn svg{ width:40px; }
+}

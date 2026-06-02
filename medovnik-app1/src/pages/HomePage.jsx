@@ -1,11 +1,11 @@
 import { lazy, Suspense } from 'react';
 
 import Hero          from '../components/sections/Hero';
+import WhyMead from '../components/sections/WhyMead';
 import Trust         from '../components/sections/Trust';
 
 // Below-the-fold sections are split into their own chunks and rendered after
 // first paint, so they don't run on the main thread during initial load.
-const Movement       = lazy(() => import('../components/sections/Movement'));
 const HowItWorks     = lazy(() => import('../components/sections/HowItWorks'));
 const DiscordSection = lazy(() => import('../components/sections/DiscordSection'));
 const Testimonials   = lazy(() => import('../components/sections/Testimonials'));
@@ -22,8 +22,8 @@ export default function HomePage() {
     <main>
       <Hero />
       <Trust />
+      <WhyMead />
       <Suspense fallback={null}>
-        <Movement />
         <HowItWorks />
         <DiscordSection />
         <Testimonials />
