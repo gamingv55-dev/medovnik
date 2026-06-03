@@ -12,7 +12,20 @@ const HERO_CSS = `
 
 .mh-hero { position: relative; width: 100%; height: 100vh; min-height: 600px; display: block; overflow: hidden; }
 .mh-hero * { box-sizing: border-box; }
-.mh-hero .mh-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; }
+.mh-hero .mh-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; filter: blur(2.5px); transform: scale(1.03); }
+
+.mh-orb { position: absolute; border-radius: 50%; pointer-events: none; z-index: 2; }
+.mh-orb-1 { width: 90px; height: 90px; top: 28%; left: 58%; background: radial-gradient(circle, rgba(242,200,78,0.38) 0%, rgba(184,98,26,0.14) 55%, transparent 72%); animation: mh-fl1 9s ease-in-out infinite; }
+.mh-orb-2 { width: 55px; height: 55px; top: 55%; left: 72%; background: radial-gradient(circle, rgba(255,220,100,0.32) 0%, rgba(212,131,31,0.12) 55%, transparent 70%); animation: mh-fl2 12s ease-in-out infinite; }
+.mh-orb-3 { width: 120px; height: 120px; top: 15%; left: 78%; background: radial-gradient(circle, rgba(242,200,78,0.22) 0%, rgba(184,98,26,0.08) 55%, transparent 72%); animation: mh-fl3 15s ease-in-out infinite; }
+.mh-orb-4 { width: 40px; height: 40px; top: 70%; left: 45%; background: radial-gradient(circle, rgba(255,210,80,0.42) 0%, rgba(212,131,31,0.15) 55%, transparent 70%); animation: mh-fl4 7s ease-in-out infinite; }
+.mh-orb-5 { width: 65px; height: 65px; top: 40%; left: 88%; background: radial-gradient(circle, rgba(242,190,60,0.3) 0%, rgba(180,95,20,0.1) 55%, transparent 70%); animation: mh-fl5 11s ease-in-out infinite; }
+
+@keyframes mh-fl1 { 0%,100%{transform:translate(0,0)} 30%{transform:translate(12px,-22px)} 65%{transform:translate(-8px,-12px)} }
+@keyframes mh-fl2 { 0%,100%{transform:translate(0,0)} 40%{transform:translate(-14px,-18px)} 70%{transform:translate(6px,-8px)} }
+@keyframes mh-fl3 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(-10px,-16px)} 60%{transform:translate(14px,-24px)} }
+@keyframes mh-fl4 { 0%,100%{transform:translate(0,0)} 35%{transform:translate(8px,-14px)} 75%{transform:translate(-6px,-20px)} }
+@keyframes mh-fl5 { 0%,100%{transform:translate(0,0)} 45%{transform:translate(-12px,-10px)} 80%{transform:translate(10px,-18px)} }
 .mh-hero .mh-grad { position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background:
     linear-gradient(180deg, rgba(10,7,3,0.58) 0%, rgba(10,7,3,0) 17%),
@@ -101,6 +114,11 @@ export default function Hero() {
 
       <img className="mh-photo" src="/hero-product.webp" alt="" aria-hidden="true" fetchPriority="high" />
       <div className="mh-grad" />
+      <div className="mh-orb mh-orb-1" aria-hidden="true" />
+      <div className="mh-orb mh-orb-2" aria-hidden="true" />
+      <div className="mh-orb mh-orb-3" aria-hidden="true" />
+      <div className="mh-orb mh-orb-4" aria-hidden="true" />
+      <div className="mh-orb mh-orb-5" aria-hidden="true" />
 
       <div className="mh-left">
         <h1 className="mh-h1">
