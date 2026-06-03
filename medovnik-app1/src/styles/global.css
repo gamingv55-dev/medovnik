@@ -1,3 +1,26 @@
+@keyframes page-trans-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-transition {
+  animation: page-trans-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ── Scroll reveal ── */
+.sr-hidden {
+  opacity: 0;
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sr-up    { transform: translateY(50px); }
+.sr-left  { transform: translateX(-50px); }
+.sr-right { transform: translateX(50px); }
+.sr-visible {
+  opacity: 1 !important;
+  transform: translate(0, 0) !important;
+}
+
 /* ============================================================
    Медовник — global stylesheet
    ------------------------------------------------------------
@@ -58,15 +81,17 @@
       transition: all 0.5s ease;
     }
     .nav.solid {
-      background: rgba(8, 6, 3, 0.97);
-      border-bottom: 1px solid rgba(184, 98, 26, 0.2);
+      background:
+        linear-gradient(rgba(8, 6, 3, 0.72), rgba(8, 6, 3, 0.72)),
+        url('/button-behind.webp') center / cover no-repeat;
+      border-bottom: 1px solid rgba(184, 98, 26, 0.25);
       padding: 0.8rem 3.5rem;
     }
     .nav.solid::before {
       content: '';
       position: absolute;
       inset: 0;
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(6px);
       z-index: -1;
       pointer-events: none;
     }
@@ -126,7 +151,12 @@
     .nav-links a.active {
       color: var(--honey);
     }
-    .nav-links a.active::after {
+    @keyframes nav-line-in {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    .nav-links a::after {
       content: '';
       position: absolute;
       bottom: -4px;
@@ -135,6 +165,19 @@
       height: 2px;
       background: linear-gradient(90deg, var(--ember), var(--honey));
       border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      opacity: 0;
+    }
+    .nav-links a.active::after {
+      transform: scaleX(1);
+      opacity: 1;
+      animation: nav-line-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      opacity: 0.5;
     }
 
     .nav-contact-wrap { position: relative; }
@@ -1466,10 +1509,10 @@
     }
     .faq-item.open .faq-a {
       max-height: 320px;
-      padding: 0 2rem 1.6rem;
+      padding: 1.1rem 2rem 1.6rem;
     }
     .faq-answer {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       color: var(--text);
       font-style: italic;
       line-height: 1.8;
@@ -1517,7 +1560,7 @@
       text-transform: uppercase;
     }
     .footer-desc {
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       color: var(--text);
       font-style: italic;
       line-height: 1.75;
@@ -1546,7 +1589,7 @@
     }
     .fc-title {
       font-family: 'UniSans', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.92rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--honey);
@@ -1556,7 +1599,7 @@
     .fc-links a {
       color: var(--text);
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.15rem;
       font-style: italic;
       transition: color 0.3s;
       font-family: 'Cormorant Garamond', serif;
@@ -1572,7 +1615,7 @@
     }
     .fc {
       font-family: 'UniSans', sans-serif;
-      font-size: 0.72rem;
+      font-size: 0.88rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
@@ -2443,4 +2486,14 @@
   .why-cards{ grid-template-columns:1fr; }
   .why-band{ gap:0.8rem; }
   .why-band .orn svg{ width:40px; }
+}
+
+/* ── Четимост на малък italic текст ── */
+.cup-p,
+.dot-sub,
+.author-detail,
+.b-progress .day-date,
+.b-notes,
+.calc-recipe .r-abv {
+  font-size: 1.1rem !important;
 }

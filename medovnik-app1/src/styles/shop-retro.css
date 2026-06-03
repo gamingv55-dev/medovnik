@@ -1,0 +1,254 @@
+/* ============================================================
+   МЕДОВНИК · МАГАЗИН — "RETRO COUNTRY" визуален стил
+   ------------------------------------------------------------
+   Drop-in: само OVERRIDE съществуващите класове от shop.css.
+   Не пипа DOM-а / ProductCard.jsx. Наслагва се СЛЕД shop.css.
+
+   Инсталация: в src/pages/ShopPage.jsx, под реда
+       import '../styles/shop.css';
+   добави:
+       import '../styles/shop-retro.css';
+   ============================================================ */
+
+/* Vintage slab за надписите (заместител на UniSans в ретро ключ). */
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&display=swap');
+
+:root{
+  --rc-paper:    #efe1c2;   /* стряскана хартия */
+  --rc-paper-2:  #e6d3a8;
+  --rc-ink:      #2a1a0d;   /* тъмнокафяв "печат" */
+  --rc-ink-soft: #5a4326;
+  --rc-line:     #9a7038;   /* рамки/правила */
+  --rc-line-soft:#bb9560;
+}
+
+/* фина стряскана текстура, ползвана от картите/банера */
+:root{
+  --rc-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ── Заглавна зона ──────────────────────────────────────────── */
+.shop-bg, .sec { }
+.sec-label{
+  font-family:'Zilla Slab', serif;
+  font-weight:600;
+  color:var(--ember);
+  display:inline-flex; align-items:center; gap:0.7rem;
+}
+.sec-label::before,
+.sec-label::after{
+  content:''; width:26px; height:2px;
+  background:linear-gradient(90deg, transparent, var(--ember));
+}
+.sec-label::after{ transform:scaleX(-1); }
+
+/* ── Решетка ──────────────────────────────────────────────── */
+.products{ gap:2.4rem; }
+
+/* ── Картата = стряскана етикетна табелка ───────────────────── */
+.prod{
+  background-color:var(--rc-paper);
+  background-image:
+    var(--rc-grain),
+    radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.35), transparent 60%),
+    linear-gradient(160deg, var(--rc-paper) 0%, var(--rc-paper-2) 100%);
+  border:1px solid var(--rc-line);
+  border-radius:5px;
+  box-shadow:
+    0 26px 50px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(255,250,235,0.5),
+    inset 0 0 0 6px var(--rc-paper),
+    inset 0 0 0 7px rgba(154,112,56,0.55);   /* двойна рамка като стар етикет */
+  overflow:hidden;
+}
+.prod:hover{
+  border-color:var(--ember);
+  transform:translateY(-8px) rotate(-0.3deg);
+  box-shadow:
+    0 44px 80px rgba(0,0,0,0.6),
+    0 0 0 0 transparent,
+    inset 0 0 0 1px rgba(255,250,235,0.6),
+    inset 0 0 0 6px var(--rc-paper),
+    inset 0 0 0 7px var(--ember);
+}
+.prod.featured{
+  background-image:
+    var(--rc-grain),
+    radial-gradient(120% 80% at 50% 0%, rgba(255,240,200,0.5), transparent 60%),
+    linear-gradient(160deg, #f3e6c6 0%, #ecd9ad 100%);
+}
+
+/* ── Снимката = винтидж фото в картонен паспарту ──────────────── */
+.prod-visual{
+  height:268px;
+  margin:7px 7px 0;            /* седи в рамката */
+  border-radius:3px;
+  background:
+    linear-gradient(135deg, #1c130a 0%, #0c0703 100%);
+  box-shadow:
+    inset 0 0 0 6px var(--rc-paper),
+    inset 0 0 0 7px rgba(154,112,56,0.7),
+    inset 0 14px 30px rgba(0,0,0,0.55);
+}
+.prod-visual::after{
+  height:60px;
+  background:linear-gradient(180deg, transparent, rgba(8,6,3,0.55));
+}
+.prod-img{
+  border-radius:0;
+  filter:sepia(0.28) saturate(1.05) contrast(1.03) brightness(0.98);
+}
+.prod:hover .prod-img{ filter:sepia(0.12) saturate(1.1) contrast(1.05); }
+.prod-glow{
+  background:radial-gradient(circle, rgba(242,200,78,0.3), transparent 70%);
+}
+
+/* малък восъчен печат в ъгъла на препоръчания */
+.prod.featured .prod-visual::before{
+  content:'★';
+  position:absolute; top:12px; right:12px; z-index:3;
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; color:var(--rc-paper);
+  background:radial-gradient(circle at 35% 30%, var(--amber), var(--ember));
+  box-shadow:0 4px 10px rgba(0,0,0,0.45), inset 0 0 0 2px rgba(255,240,200,0.5);
+  text-shadow:0 1px 1px rgba(0,0,0,0.3);
+}
+
+/* ── Тяло ──────────────────────────────────────────────────── */
+.prod-body{ padding:1.9rem 2rem 2.1rem; }
+
+.prod-cat{
+  font-family:'Zilla Slab', serif;
+  font-weight:600;
+  color:var(--ember);
+  letter-spacing:0.22em;
+  display:flex; align-items:center; gap:0.55rem;
+}
+.prod-cat::before{
+  content:''; width:18px; height:2px; background:var(--ember); opacity:0.8;
+}
+
+.prod-name{
+  font-family:'Zilla Slab', serif;
+  font-weight:700;
+  color:var(--rc-ink);
+  letter-spacing:0.01em;
+  text-shadow:0 1px 0 rgba(255,255,255,0.45);
+}
+.prod-subtitle{
+  color:var(--ember);
+  opacity:1;
+}
+.prod-desc{
+  color:var(--rc-ink-soft);
+  font-style:italic;
+}
+
+/* двойно правило-разделител над таговете */
+.prod-includes{
+  position:relative;
+  padding-top:1.2rem;
+  margin-top:0.2rem;
+  border-top:1px solid var(--rc-line-soft);
+}
+.prod-includes::before{
+  content:''; position:absolute; top:3px; left:0; right:0;
+  border-top:1px solid rgba(154,112,56,0.4);
+}
+
+/* таговете = картонени талончета */
+.tag{
+  font-family:'Zilla Slab', serif;
+  font-weight:500;
+  color:var(--rc-ink-soft);
+  background:rgba(255,252,242,0.55);
+  border:1px dashed var(--rc-line);
+  border-radius:3px;
+  letter-spacing:0.04em;
+  white-space:nowrap;
+}
+.tag--tip{ border-bottom:1px dashed var(--ember); }
+.prod:hover .tag{ border-color:var(--ember); color:var(--rc-ink); }
+
+/* подложката на тултипа остава тъмна (за четимост) */
+.tag-tip{ font-family:'Cormorant Garamond', serif; font-size:0.92rem; }
+
+/* ── Долен ред: щампована цена + бутон ───────────────────────── */
+.prod-foot{
+  padding-top:1.3rem;
+  margin-top:1.4rem;
+  border-top:1px dashed var(--rc-line);
+}
+.prod-price{
+  color:var(--rc-ink);
+  border:2px solid var(--ember);
+  border-radius:6px;
+  padding:0.45rem 0.9rem 0.5rem;
+  background:rgba(255,250,238,0.4);
+  box-shadow:inset 0 0 0 1px rgba(255,250,235,0.6);
+  transform:rotate(-1.4deg);
+}
+.prod-price-eur{
+  font-family:'Zilla Slab', serif; font-weight:700;
+  color:var(--ember); font-size:1.7rem;
+}
+.prod-price-bgn{ color:var(--rc-ink-soft); }
+.prod-price small{ color:var(--rc-ink-soft); }
+
+.btn-add{
+  font-family:'Zilla Slab', serif;
+  font-weight:700;
+  background:linear-gradient(135deg, var(--ember), var(--amber));
+  color:var(--rc-paper);
+  border-radius:4px;
+  box-shadow:inset 0 0 0 2px rgba(255,245,225,0.55), 0 4px 0 #7a3f12;
+  transform:translateY(0);
+}
+.btn-add:hover{
+  box-shadow:inset 0 0 0 2px rgba(255,245,225,0.7), 0 6px 16px rgba(184,98,26,0.5);
+  transform:translateY(-2px);
+}
+.btn-add:disabled{
+  background:#cdb98c; color:#6a5532; box-shadow:inset 0 0 0 2px rgba(255,255,255,0.4);
+}
+
+/* ── Преди-поръчка банер = винтидж бележка ─────────────────── */
+.preorder-banner{
+  background:
+    var(--rc-grain),
+    linear-gradient(160deg, var(--rc-paper) 0%, var(--rc-paper-2) 100%);
+  border:1px dashed var(--rc-line);
+  box-shadow:inset 0 0 0 4px var(--rc-paper), inset 0 0 0 5px rgba(154,112,56,0.4);
+}
+.preorder-text{ color:var(--rc-ink-soft); }
+.preorder-text strong{ color:var(--ember); }
+.preorder-icon{ color:var(--ember); }
+
+/* ── Вкусове / Мед / Отделни — за консистентност ──────────────── */
+.addon{
+  background:linear-gradient(160deg, var(--rc-paper) 0%, var(--rc-paper-2) 100%);
+  border:1px solid var(--rc-line);
+  box-shadow:inset 0 0 0 4px var(--rc-paper), inset 0 0 0 5px rgba(154,112,56,0.4);
+}
+.addon:hover{ border-color:var(--ember); background:linear-gradient(160deg,#f3e6c6,#ecd9ad); }
+.addon-name{ font-family:'Zilla Slab', serif; color:var(--rc-ink); }
+.addon-desc{ color:var(--rc-ink-soft); opacity:1; }
+.addon-price{ font-family:'Zilla Slab', serif; color:var(--ember); }
+.addon-foot{ border-top:1px dashed var(--rc-line); }
+.addon-add{
+  font-family:'Zilla Slab', serif; color:var(--rc-ink-soft);
+  border:1px dashed var(--rc-line);
+}
+.addon-add:hover{ background:rgba(184,98,26,0.12); color:var(--ember); border-color:var(--ember); }
+
+.honey-card{
+  background:linear-gradient(160deg, var(--rc-paper) 0%, var(--rc-paper-2) 100%);
+  border:1px solid var(--rc-line);
+  box-shadow:inset 0 0 0 5px var(--rc-paper), inset 0 0 0 6px rgba(154,112,56,0.45);
+}
+.honey-title{ font-family:'Zilla Slab', serif; color:var(--rc-ink); }
+.honey-label{ font-family:'Zilla Slab', serif; color:var(--ember); }
+.honey-desc{ color:var(--rc-ink-soft); }
+.honey-price{ font-family:'Zilla Slab', serif; color:var(--ember); }
+.honey-foot{ border-top:1px dashed var(--rc-line); }

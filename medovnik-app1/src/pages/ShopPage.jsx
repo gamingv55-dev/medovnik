@@ -1,4 +1,5 @@
 import '../styles/shop.css';
+import '../styles/shop-wanted.css';
 import { PRODUCTS }    from '../data/products';
 import { ADDONS }      from '../data/addons';
 import { FLAVORINGS }  from '../data/flavorings';
@@ -9,7 +10,7 @@ import HoneyCard       from '../components/ui/HoneyCard';
 
 export default function ShopPage() {
   return (
-    <div style={{ paddingTop: '8rem', background: 'var(--bark)', minHeight: '100vh' }}>
+    <div className="shop-wood" style={{ paddingTop: '8rem', minHeight: '100vh' }}>
       <div className="sec" style={{ paddingTop: '2rem' }}>
 
         {/* ── Комплекти ───────────────────────────────────────── */}

@@ -38,7 +38,10 @@ export default function Navbar() {
           className="logo-img"
           src={logo}
           alt="Медовник"
-          style={{ width: 160, height: 150, margin: '-2px 15px -90px 0' }}
+          style={scrolled
+            ? { width: 72, height: 68, margin: '0 15px 0 0', transition: 'all 0.35s ease' }
+            : { width: 160, height: 150, margin: '-2px 15px -90px 0', transition: 'all 0.35s ease' }
+          }
           fetchpriority="high"
           decoding="async"
         />

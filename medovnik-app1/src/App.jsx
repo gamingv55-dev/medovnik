@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
 import { CartProvider }  from './context/CartContext';
 
@@ -15,6 +15,15 @@ const ShopPage      = lazy(() => import('./pages/ShopPage'));
 const CommunityPage = lazy(() => import('./pages/CommunityPage'));
 const ReviewsPage   = lazy(() => import('./pages/ReviewsPage'));
 const NotFoundPage  = lazy(() => import('./pages/NotFoundPage'));
+
+function AnimatedRoutes({ children }) {
+  const { pathname } = useLocation();
+  return (
+    <div key={pathname} className="page-transition">
+      {children}
+    </div>
+  );
+}
 
 /**
  * App shell. Wraps the router in Auth + Cart providers so every
@@ -44,13 +53,15 @@ export default function App() {
 
 
           <Suspense fallback={null}>
-            <Routes>
-              <Route path="/"           element={<HomePage />} />
-              <Route path="/shop"       element={<ShopPage />} />
-              <Route path="/community"  element={<CommunityPage />} />
-              <Route path="/reviews"    element={<ReviewsPage />} />
-              <Route path="*"           element={<NotFoundPage />} />
-            </Routes>
+            <AnimatedRoutes>
+              <Routes>
+                <Route path="/"           element={<HomePage />} />
+                <Route path="/shop"       element={<ShopPage />} />
+                <Route path="/community"  element={<CommunityPage />} />
+                <Route path="/reviews"    element={<ReviewsPage />} />
+                <Route path="*"           element={<NotFoundPage />} />
+              </Routes>
+            </AnimatedRoutes>
           </Suspense>
 
           <Footer />

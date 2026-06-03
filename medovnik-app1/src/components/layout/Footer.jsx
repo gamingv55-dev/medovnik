@@ -30,7 +30,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span className="fc">© {year} Медовник · Всички права запазени</span>
+        <span className="fc">© {year} Медовник · Всички права запазени · All Rights Reserved</span>
       </div>
     </footer>
   );

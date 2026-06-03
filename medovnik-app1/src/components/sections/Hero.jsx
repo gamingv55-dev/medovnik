@@ -10,6 +10,14 @@ import { Link } from 'react-router-dom';
 const HERO_CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@600;700&family=Manrope:wght@400;500;600&display=swap&subset=cyrillic,cyrillic-ext,latin');
 
+@font-face {
+  font-family: 'Beograd';
+  src: url('/fonts/Beograd.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .mh-hero { position: relative; width: 100%; height: 100vh; min-height: 600px; display: block; overflow: hidden; }
 .mh-hero * { box-sizing: border-box; }
 .mh-hero .mh-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; z-index: 0; filter: blur(2.5px); transform: scale(1.03); }
@@ -32,17 +40,27 @@ const HERO_CSS = `
     linear-gradient(0deg,   rgba(10,7,3,0.62) 0%, rgba(10,7,3,0) 22%),
     linear-gradient(90deg,  rgba(10,7,3,0.80) 0%, rgba(10,7,3,0.38) 32%, rgba(10,7,3,0) 56%); }
 .mh-hero .mh-left { position: absolute; left: 4%; top: 22%; width: 42%; z-index: 5; }
-.mh-hero .mh-h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 3.65vw; line-height: 1.07; letter-spacing: -0.01em; color: #faf3e0; margin: 0; }
+.mh-hero .mh-h1 { font-family: 'Beograd', 'Cormorant Garamond', serif; font-weight: normal; font-size: 3.65vw; line-height: 1.07; letter-spacing: -0.01em; color: #faf3e0; margin: 0; }
 .mh-hero .mh-h1 .mh-white { display: block; }
 .mh-hero .mh-h1 .mh-line { display: block; padding-bottom: 0.16em; line-height: 1.18; background: linear-gradient(120deg, #f0b33b 0%, #d4831f 55%, #b8621a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.mh-hero .mh-divider { width: 3.5vw; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #f0b33b, #b8621a); margin: 2vw 0 1.8vw; }
+.mh-hero .mh-divider-row { display: flex; align-items: center; gap: 1rem; margin: 0.8vw 0 0.8vw; }
+.mh-hero .mh-divider { width: 3.5vw; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #f0b33b, #b8621a); flex-shrink: 0; }
 .mh-hero .mh-sub { font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 1.12vw; line-height: 1.7; color: #c7b69a; max-width: 30vw; margin: 0 0 2.6vw; }
 .mh-hero .mh-btns { display: flex; gap: 1.1vw; flex-wrap: wrap; }
+
+.mh-hero .mh-what { position: relative; display: inline-flex; align-items: center; gap: 0.55rem; border: 1px solid rgba(226,171,40,0.45); border-radius: 4px; padding: 0.6vw 1.2vw; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.8vw; letter-spacing: 0.1em; text-transform: uppercase; color: #e8c97a; cursor: default; width: fit-content; transition: border-color 0.2s, background 0.2s; }
+.mh-hero .mh-what:hover { border-color: rgba(226,171,40,0.8); background: rgba(226,171,40,0.06); }
+.mh-hero .mh-what-icon { font-style: normal; font-size: 1em; opacity: 0.75; }
+.mh-hero .mh-what-tip { position: absolute; top: calc(100% + 10px); left: 0; width: 300px; background: rgba(10,6,2,0.97); border: 1px solid rgba(217,144,34,0.4); border-radius: 8px; padding: 1rem 1.2rem; font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 0.85rem; line-height: 1.65; color: #c7b69a; letter-spacing: 0; text-transform: none; opacity: 0; pointer-events: none; transform: translateY(-6px); transition: opacity 0.22s ease, transform 0.22s ease; z-index: 20; backdrop-filter: blur(8px); box-shadow: 0 12px 32px rgba(0,0,0,0.6); }
+.mh-hero .mh-what-tip::before { content: ''; position: absolute; top: -6px; left: 18px; width: 10px; height: 10px; background: rgba(10,6,2,0.97); border-left: 1px solid rgba(217,144,34,0.4); border-top: 1px solid rgba(217,144,34,0.4); transform: rotate(45deg); }
+.mh-hero .mh-what:hover .mh-what-tip { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 860px) { .mh-hero .mh-what { font-size: 0.72rem; padding: 0.6rem 1rem; } .mh-hero .mh-what-tip { width: 260px; } }
 .mh-hero .mh-btn-primary, .mh-hero .mh-btn-ghost { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.92vw; letter-spacing: 0.13em; text-transform: uppercase; padding: 1.15vw 2.3vw; border-radius: 4px; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
 .mh-hero .mh-btn-primary { background: linear-gradient(135deg, #d9b46a 0%, #bb8a3d 100%); color: #271705; border: none; }
 .mh-hero .mh-btn-ghost { background: transparent; color: #f4ead7; border: 1px solid rgba(226, 171, 40, 0.5); }
 
-.mh-hero .mh-trust { position: absolute; left: 4%; bottom: clamp(2rem, 7vh, 4.75rem); width: min(72%, 960px); max-width: calc(100% - 2rem); z-index: 5; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 0.8vw, 0.85rem); }
+.mh-hero .mh-trust { position: absolute; left: 4%; bottom: clamp(2rem, 7vh, 4.75rem); width: min(72%, 960px); max-width: calc(100% - 2rem); z-index: 8; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.5rem, 0.8vw, 0.85rem); }
 .mh-hero .mh-card { display: flex; align-items: center; gap: clamp(0.5rem, 0.8vw, 0.8rem); background: rgba(12, 7, 2, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(217, 144, 34, 0.55); border-radius: 10px; padding: clamp(0.6rem, 0.85vw, 0.85rem) clamp(0.65rem, 0.95vw, 1rem); box-shadow: 0 4px 24px rgba(0,0,0,0.55), inset 0 1px 0 rgba(242,200,78,0.08); }
 .mh-hero .mh-ico { flex: none; width: clamp(26px, 2.1vw, 38px); height: clamp(26px, 2.1vw, 38px); color: #d6a448; display: flex; align-items: center; justify-content: center; align-self: flex-start; }
 .mh-hero .mh-ico svg { width: 100%; height: 100%; display: block; }
@@ -126,7 +144,18 @@ export default function Hero() {
           <span className="mh-line">медовина у дома.</span>
         </h1>
 
-        <div className="mh-divider" />
+        <div className="mh-divider-row">
+          <div className="mh-divider" />
+          <div className="mh-what">
+            <i className="mh-what-icon">?</i>
+            Какво е медовина?
+            <div className="mh-what-tip">
+              Медовината е една от най-древните алкохолни напитки в света — приготвя се от мед, вода и дрожди.
+              Ферментацията превръща натуралните захари в алкохол, а резултатът е напитка с богат,
+              сладко-плодов вкус и мека текстура. Позната от хилядолетия в почти всяка култура по света.
+            </div>
+          </div>
+        </div>
 
         <p className="mh-sub">
           Представи си момента — отваряш бутилка, която ти сам направи
