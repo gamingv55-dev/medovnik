@@ -1,4 +1,4 @@
-import{j as e}from"./index-nD8QzkGf.js";import"./vendor-router-U-89qT9Z.js";const f=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+import{j as e}from"./index-CI3_4TUN.js";import"./vendor-router-U-89qT9Z.js";const o=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="honeyGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#f2c84e"/>
@@ -122,7 +122,7 @@ import{j as e}from"./index-nD8QzkGf.js";import"./vendor-router-U-89qT9Z.js";cons
                   <rect x="84" y="135" width="32" height="22" rx="2" fill="#16100a" opacity="0.85" stroke="#d4831f" stroke-width="1"/>
                   <text x="100" y="151" text-anchor="middle" fill="#f2c84e" font-family="UniSans, sans-serif" font-size="11" font-weight="900">5L</text>
                 </g>
-              </svg>`,n=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              </svg>`,f=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="yeastLiquidGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#e8aa28" stop-opacity="0.55"/>
@@ -235,7 +235,7 @@ import{j as e}from"./index-nD8QzkGf.js";import"./vendor-router-U-89qT9Z.js";cons
                     <circle cx="0" cy="0" r="1" fill="#d4831f" opacity="0.5"/>
                   </g>
                 </g>
-              </svg>`,y=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              </svg>`,n=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="fermentGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#e8aa28"/>
@@ -381,4 +381,124 @@ import{j as e}from"./index-nD8QzkGf.js";import"./vendor-router-U-89qT9Z.js";cons
                   <circle cx="152" cy="30" r="13" fill="#0a0805" stroke="#f2c84e" stroke-width="2"/>
                   <path d="M 146 30 L 150.5 34.5 L 158 26" stroke="#f2c84e" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
-              </svg>`;function h(){return e.jsx("div",{className:"how-bg",id:"how",children:e.jsxs("div",{className:"sec",children:[e.jsx("div",{className:"sec-label",children:"Как работи"}),e.jsxs("h2",{className:"sec-h2",children:["4 стъпки до твоята ",e.jsx("span",{className:"h2-accent",children:"първа медовина"})]}),e.jsx("p",{className:"sec-body",children:"Без химия, без опит, без скъпо оборудване. Само следваш наръчника и природата свърши останалото."}),e.jsxs("div",{className:"steps",children:[e.jsx(l,{svg:f,num:"01",day:"Ден 1",title:"Добавяш мед и вода",desc:"Разтваряш меда в хладка вода в 5-литровия съд. Пропорцията определя силата и вкуса на медовината.",descSize:20,descWeight:500}),e.jsx(l,{svg:n,num:"02",day:"Ден 1-2",title:"Слагаш дрождите",desc:"Малките организми се събуждат и започват да хапят захарта. Те ще работят за теб следващите седмици.",descSize:20}),e.jsx(l,{svg:y,num:"03",day:"Ден 3-25",title:"Ферментацията тече",desc:"Дрождите превръщат захарта в алкохол. Виждаш как мехурчетата излизат през въздушния клапан.",descSize:20}),e.jsx(l,{svg:p,num:"04",day:"Ден 30+",title:"Бутилираш и опитваш",desc:"Прехвърляш медовината в бутилки за вторична ферментация. След няколко дни е готова за наздравица.",descSize:20})]})]})})}function l({svg:i,num:t,day:s,title:c,desc:r,descSize:a=16,descWeight:o}){return e.jsxs("div",{className:"step",children:[e.jsx("div",{className:"step-illustration",dangerouslySetInnerHTML:{__html:i}}),e.jsx("div",{className:"step-n",children:t}),e.jsx("div",{className:"step-day",children:s}),e.jsx("div",{className:"step-title",children:c}),e.jsx("div",{className:"step-desc",style:{fontFamily:'"Cormorant Garamond"',fontWeight:o,fontSize:a},children:r})]})}export{h as default};
+              </svg>`,d=`
+.hiw * { box-sizing: border-box; }
+.hiw {
+  background: linear-gradient(180deg, rgba(8,6,3,0.88) 0%, rgba(16,10,4,0.78) 50%, rgba(8,6,3,0.88) 100%), url('/background-proccess.webp') center/cover no-repeat;
+  border-top: 1px solid rgba(184,98,26,0.12);
+  border-bottom: 1px solid rgba(184,98,26,0.12);
+  padding: 2.8rem clamp(1.5rem,4vw,3.5rem);
+}
+.hiw-inner { max-width: 1300px; margin: 0 auto; }
+.hiw-intro { padding-left: clamp(1.5rem, 10vw, 9rem); margin-bottom: 2rem; }
+
+.hiw-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d4831f;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.9rem;
+}
+
+.hiw-h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: #faf3e0;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.7rem;
+  font-variant-numeric: lining-nums;
+  font-style: normal;
+}
+.hiw-accent {
+  background: linear-gradient(135deg, #f2c84e 0%, #b8621a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hiw-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  color: #b8997a;
+  line-height: 1.65;
+  max-width: 520px;
+}
+
+.hiw-steps {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: start;
+}
+
+.hiw-arrow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 clamp(0.5rem, 1.2vw, 1.2rem);
+  padding-top: 84px;
+  color: rgba(212,131,31,0.7);
+  flex-shrink: 0;
+}
+.hiw-arrow svg { width: 22px; height: 22px; }
+
+.hiw-step {
+  min-width: 0;
+  background: rgba(184,98,26,0.1);
+  border: 1px solid rgba(212,131,31,0.25);
+  border-radius: 12px;
+  padding: clamp(1rem, 2vw, 1.6rem) clamp(0.8rem, 1.5vw, 1.2rem);
+  backdrop-filter: blur(4px);
+}
+
+.hiw-n {
+  font-family: 'UniSans', sans-serif;
+  font-size: 0.82rem;
+  color: #d4831f;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.55rem;
+}
+
+.hiw-illus {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.hiw-illus svg { max-width: 100%; max-height: 100%; }
+
+.hiw-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.68rem, 0.82vw, 0.84rem);
+  color: #faf3e0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.hiw-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  color: #c7b08a;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .hiw-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
+  .hiw-arrow { display: none; }
+}
+@media (max-width: 540px) {
+  .hiw-steps { grid-template-columns: 1fr; gap: 2rem; }
+}
+`,r=[{svg:o,num:"01",title:"Добавяш мед и вода",desc:"Разтваряш меда в хладка вода в 5-литровия съд. Пропорцията определя силата и вкуса на медовината."},{svg:f,num:"02",title:"Слагаш дрождите",desc:"Малките организми се събуждат и започват да хапят захарта. Те ще работят за теб следващите седмици."},{svg:n,num:"03",title:"Ферментацията тече",desc:"Дрождите превръщат захарта в алкохол. Виждаш как мехурчетата излизат през въздушния клапан."},{svg:p,num:"04",title:"Бутилираш и опитваш",desc:"Прехвърляш медовината в бутилки за вторична ферментация. След няколко дни е готова за наздравица."}],y=()=>e.jsxs("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"1.4",strokeLinecap:"round",strokeLinejoin:"round",children:[e.jsx("path",{d:"M5 12h14"}),e.jsx("path",{d:"M13 6l6 6-6 6"})]});function g(){const i=[];return r.forEach(({svg:s,num:l,title:a,desc:c},t)=>{i.push(e.jsxs("div",{className:"hiw-step",children:[e.jsx("div",{className:"hiw-n",children:l}),e.jsx("div",{className:"hiw-illus",dangerouslySetInnerHTML:{__html:s}}),e.jsx("div",{className:"hiw-title",children:a}),e.jsx("p",{className:"hiw-desc",children:c})]},l)),t<r.length-1&&i.push(e.jsx("div",{className:"hiw-arrow",children:e.jsx(y,{})},`arr-${t}`))}),e.jsxs("div",{className:"hiw",id:"how",children:[e.jsx("style",{children:d}),e.jsxs("div",{className:"hiw-inner",children:[e.jsxs("div",{className:"hiw-intro",children:[e.jsxs("div",{className:"hiw-label",children:[e.jsx("span",{children:"—"}),e.jsx("span",{children:"КАК РАБОТИ"})]}),e.jsxs("h2",{className:"hiw-h2",children:["4 стъпки до",e.jsx("br",{}),"твоята ",e.jsx("span",{className:"hiw-accent",children:"първа медовина"})]}),e.jsx("p",{className:"hiw-sub",children:"Без химия, без опит, без скъпо оборудване. Само следваш наръчника и природата свърши останалото."})]}),e.jsx("div",{className:"hiw-steps",children:i})]})]})}export{g as default};
