@@ -12,6 +12,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Oswald:wght@500;600;700&display=swap');
 
 @font-face {
+  font-family: 'CorrectionBrush';
+  src: url('/fonts/CorrectionBrush-ywW7Y.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Beograd';
   src: url('/fonts/Beograd.ttf') format('truetype');
   font-weight: normal;
@@ -32,13 +40,13 @@
 
 /* ── Заглавна зона ── */
 .shop-wood .sec-label{
-  font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:0.32em; color:var(--honey);
+  font-family:'CorrectionBrush',sans-serif; font-weight:normal; letter-spacing:0.12em; color:var(--honey);
   display:inline-flex; align-items:center; gap:0.7rem; text-shadow:0 2px 6px rgba(0,0,0,0.6);
 }
 .shop-wood .sec-label::before, .shop-wood .sec-label::after{
   content:''; width:28px; height:2px; background:linear-gradient(90deg, transparent, var(--honey)); }
 .shop-wood .sec-label::after{ transform:scaleX(-1); }
-.shop-wood .sec-h2{ font-family:'Playfair Display',serif; font-weight:900; text-shadow:0 3px 14px rgba(0,0,0,0.7); }
+.shop-wood .sec-h2{ font-family:'CorrectionBrush',sans-serif; font-weight:normal; text-shadow:0 3px 14px rgba(0,0,0,0.7); }
 .shop-wood .h2-accent{ color:var(--honey); -webkit-text-fill-color:var(--honey); background:none; }
 .shop-wood .sec-body{ color:var(--cream); text-shadow:0 2px 8px rgba(0,0,0,0.7); }
 
@@ -50,7 +58,7 @@
 .shop-wood .preorder-banner::after{
   content:''; position:absolute; inset:6px; border:1px solid rgba(120,80,30,0.35); border-radius:2px; pointer-events:none; }
 .shop-wood .preorder-icon{ color:#b8621a; }
-.shop-wood .preorder-text{ color:#1e0f05; font-size:1rem; font-weight:600; }
+.shop-wood .preorder-text{ color:#1e0f05; font-size:1.25rem; font-weight:600; line-height:1.6; }
 .shop-wood .preorder-text strong{ color:#7a2800; font-weight:800; }
 
 /* ── Решетка ── */
