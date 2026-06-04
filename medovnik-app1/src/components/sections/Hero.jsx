@@ -71,7 +71,7 @@ const HERO_CSS = `
   .mh-hero .mh-trust { grid-template-columns: repeat(2, 1fr); width: min(70%, 720px); left: auto; right: 4%; transform: none; }
 }
 @media (max-width: 860px) {
-  .mh-hero { height: auto; min-height: 100vh; overflow: visible; display: flex; flex-direction: column; }
+  .mh-hero { height: auto; min-height: 100vh; overflow: visible; }
   .mh-hero .mh-photo { object-position: 72% center; }
   .mh-hero .mh-grad { background: linear-gradient(180deg, rgba(10,7,3,0.75) 0%, rgba(10,7,3,0.55) 40%, rgba(10,7,3,0.92) 100%); }
   .mh-hero .mh-left { position: relative; left: 0; top: 0; width: auto; max-width: 100%; padding: 7.5rem 1.4rem 2rem; background: linear-gradient(180deg, rgba(10,7,3,0.45) 0%, transparent 100%); }
@@ -80,7 +80,7 @@ const HERO_CSS = `
   .mh-hero .mh-sub { font-size: 1rem; max-width: 30rem; margin-bottom: 2rem; }
   .mh-hero .mh-btn-primary, .mh-hero .mh-btn-ghost { font-size: 0.8rem; padding: 1rem 1.6rem; }
   .mh-hero .mh-btn-ghost { margin-top: 1rem; }
-  .mh-hero .mh-trust { position: relative; z-index: 8; transform: none; left: auto; right: auto; width: auto; margin: auto 1.4rem 2rem; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
+  .mh-hero .mh-trust { position: relative; z-index: 8; transform: none; left: auto; right: auto; width: auto; margin: 2.5rem 1.4rem 0; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
 .mh-hero .mh-card { background: #372008; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: rgba(217,144,34,0.75); box-shadow: 0 4px 18px rgba(0,0,0,0.4); }
   .mh-hero .mh-lbl { color: #faebc4; }
   .mh-hero .mh-desc { color: #e2ceaa; }
