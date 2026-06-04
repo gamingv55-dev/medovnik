@@ -62,7 +62,7 @@ const cardStyle = {
 };
 
 const titleStyle = {
-  fontFamily: "'UniSans', sans-serif",
+  fontFamily: "'Ithaca', 'UniSans', sans-serif",
   fontSize: '1.3rem',
   color: 'var(--cream)',
   marginBottom: '0.8rem',

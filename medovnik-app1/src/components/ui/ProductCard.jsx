@@ -6,10 +6,16 @@ export default function ProductCard({ product }) {
   const { addToCart, isInCart } = useCart();
   const inCart = isInCart(product.id);
   const [lightbox, setLightbox] = useState(false);
+  const [qty, setQty] = useState(1);
 
   return (
     <>
       <div className={`prod${product.featured ? ' featured' : ''}`}>
+        {product.featured && (
+          <div className="prod-recommended" aria-label="Препоръчан избор">
+            <span className="prod-rec-text">ПРЕПОРЪЧАН ИЗБОР</span>
+          </div>
+        )}
         <div className="prod-visual">
           <div className="prod-glow" />
           {product.image ? (
@@ -31,7 +37,7 @@ export default function ProductCard({ product }) {
           <div className="prod-cat">{product.cat}</div>
           <div className="prod-name">{product.name}</div>
           {product.subtitle && <div className="prod-subtitle">{product.subtitle}</div>}
-          <div className="prod-desc">{product.desc}</div>
+          <div className="prod-desc" style={{ whiteSpace: 'pre-line' }}>{product.desc}</div>
 
           <div className="prod-includes">
             {product.tags.map((tag) => {
@@ -53,9 +59,14 @@ export default function ProductCard({ product }) {
               <span className="prod-price-bgn">{product.price} лв.</span>
               <small>еднократно</small>
             </div>
+            <div className="prod-qty">
+              <button className="prod-qty-btn" type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Намали">−</button>
+              <span className="prod-qty-num">{qty}</span>
+              <button className="prod-qty-btn" type="button" onClick={() => setQty(q => Math.min(20, q + 1))} aria-label="Увеличи">+</button>
+            </div>
             <button
               className="btn-add"
-              onClick={() => addToCart(product)}
+              onClick={() => addToCart(product, qty)}
               disabled={inCart}
             >
               {inCart ? '✓ Добавен' : 'Добави →'}

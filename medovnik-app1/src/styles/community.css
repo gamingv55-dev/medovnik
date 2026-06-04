@@ -8,6 +8,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Ithaca';
+  src: url('/fonts/Ithaca-LVB75.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .comm-bg {
   background: linear-gradient(180deg, rgba(6,4,2,0.86) 0%, rgba(14,9,3,0.76) 50%, rgba(6,4,2,0.86) 100%),
               url('/background-discord.webp') center/cover no-repeat;
@@ -27,7 +35,7 @@
 
 /* ── Heading ── */
 .comm-h2 {
-  font-family: 'Beograd', 'UniSans', sans-serif;
+  font-family: 'Ithaca', 'Beograd', 'UniSans', sans-serif;
   font-size: clamp(2.2rem, 4.5vw, 3.8rem);
   font-weight: 700;
   color: #faf3e0;
@@ -92,8 +100,8 @@
   position: absolute;
   top: calc(100% + 0.7rem);
   left: 0;
-  width: 300px;
-  padding: 0.9rem 1.1rem;
+  width: 340px;
+  padding: 1.2rem 1.4rem;
   background: #120d07;
   border: 1px solid rgba(184,98,26,0.4);
   border-radius: 8px;
@@ -102,9 +110,9 @@
   font-style: italic;
   text-transform: none;
   letter-spacing: 0;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: #c7b08a;
+  font-size: 1.25rem;
+  line-height: 1.65;
+  color: #e8d5b0;
   opacity: 0;
   transform: translateY(-6px);
   pointer-events: none;
@@ -221,7 +229,7 @@
   margin-bottom: 1.5rem;
 }
 .comm-cta-h3 {
-  font-family: 'UniSans', sans-serif;
+  font-family: 'Ithaca', 'UniSans', sans-serif;
   font-size: clamp(1.3rem, 2vw, 1.7rem);
   font-weight: 700;
   color: #faf3e0;
