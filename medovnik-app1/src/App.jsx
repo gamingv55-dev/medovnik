@@ -8,6 +8,7 @@ import Footer        from './components/layout/Footer';
 import CartDrawer    from './components/layout/CartDrawer';
 import IntroOverlay  from './components/layout/IntroOverlay';
 import ScrollToTop   from './components/layout/ScrollToTop';
+import MeadChatbot   from './components/MeadChatbot';
 
 import HomePage      from './pages/HomePage';
 
@@ -65,6 +66,7 @@ export default function App() {
           </Suspense>
 
           <Footer />
+          <MeadChatbot />
         </CartProvider>
 
     </BrowserRouter>
