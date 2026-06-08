@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { QA_DATABASE, QUICK_QUESTIONS, FALLBACK_RESPONSES, GREETING } from '../data/meadChatData';
 import '../styles/chatbot.css';
 
@@ -30,8 +30,27 @@ export default function MeadChatbot() {
   const [msgs, setMsgs] = useState([mkMsg('bot', GREETING)]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
+  const [showArrow, setShowArrow] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+  const arrowTimer = useRef(null);
+
+  const scheduleArrow = useCallback(() => {
+    clearTimeout(arrowTimer.current);
+    // показва стрелката след 5s, скрива след 6s, и се повтаря на всеки 18s
+    arrowTimer.current = setTimeout(() => {
+      setShowArrow(true);
+      setTimeout(() => {
+        setShowArrow(false);
+        arrowTimer.current = setTimeout(() => scheduleArrow(), 18000);
+      }, 6000);
+    }, 5000);
+  }, []);
+
+  useEffect(() => {
+    scheduleArrow();
+    return () => clearTimeout(arrowTimer.current);
+  }, [scheduleArrow]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -40,6 +59,8 @@ export default function MeadChatbot() {
   useEffect(() => {
     if (open) {
       setSeen(true);
+      setShowArrow(false);
+      clearTimeout(arrowTimer.current);
       setTimeout(() => inputRef.current?.focus(), 300);
     }
   }, [open]);
@@ -63,6 +84,17 @@ export default function MeadChatbot() {
 
   return (
     <>
+      {/* FAQ arrow callout */}
+      {!open && (
+        <div className={`mbot-arrow-callout ${showArrow ? 'visible' : ''}`} aria-hidden="true">
+          <span className="mbot-arrow-label">Често задавани въпроси</span>
+          <svg className="mbot-arrow-svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <path d="M6 6 Q18 10 28 28" stroke="#f2c84e" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+            <polyline points="20,28 28,28 28,20" stroke="#f2c84e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+          </svg>
+        </div>
+      )}
+
       {/* FAB */}
       <button
         className={`mbot-fab ${open ? 'open' : ''}`}

@@ -9,7 +9,6 @@ import ScrollReveal from '../components/layout/ScrollReveal';
 // first paint, so they don't run on the main thread during initial load.
 const HowItWorks     = lazy(() => import('../components/sections/HowItWorks'));
 const DiscordSection = lazy(() => import('../components/sections/DiscordSection'));
-const FAQ            = lazy(() => import('../components/sections/FAQ'));
 const CtaBanner      = lazy(() => import('../components/sections/CtaBanner'));
 
 export default function HomePage() {
@@ -28,9 +27,6 @@ export default function HomePage() {
         </ScrollReveal>
         <ScrollReveal direction="right" delay={60}>
           <DiscordSection />
-        </ScrollReveal>
-        <ScrollReveal direction="up" delay={60}>
-          <FAQ />
         </ScrollReveal>
         <ScrollReveal direction="up" delay={80}>
           <CtaBanner />

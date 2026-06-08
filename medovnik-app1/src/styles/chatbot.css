@@ -265,7 +265,50 @@
 .mbot-send:hover { opacity: 0.9; transform: scale(1.05); }
 .mbot-send:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
+/* ── FAQ arrow callout ── */
+.mbot-arrow-callout {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  z-index: 9996;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.mbot-arrow-callout.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mbot-arrow-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #f2c84e;
+  background: rgba(10,6,2,0.88);
+  border: 1px solid rgba(242,200,78,0.35);
+  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  animation: mbot-arrow-bob 2s ease-in-out infinite;
+}
+.mbot-arrow-svg {
+  margin-right: 0.6rem;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  animation: mbot-arrow-bob 2s ease-in-out infinite;
+}
+@keyframes mbot-arrow-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
 @media (max-width: 480px) {
   .mbot-fab { bottom: 1.25rem; right: 1.25rem; }
   .mbot-panel { bottom: 5.5rem; right: 1rem; left: 1rem; width: auto; }
+  .mbot-arrow-callout { right: 1.5rem; bottom: 4.8rem; }
 }
