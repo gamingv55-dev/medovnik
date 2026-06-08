@@ -212,8 +212,8 @@
   border-radius: 999px;
   color: #c7a060;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.85rem;
-  padding: 0.28rem 0.75rem;
+  font-size: 1.05rem;
+  padding: 0.38rem 0.9rem;
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   white-space: nowrap;
@@ -286,20 +286,22 @@
 }
 .mbot-arrow-label {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-style: italic;
   color: #f2c84e;
-  background: rgba(10,6,2,0.88);
-  border: 1px solid rgba(242,200,78,0.35);
-  border-radius: 8px;
-  padding: 0.35rem 0.75rem;
+  background: rgba(10,6,2,0.92);
+  border: 1px solid rgba(242,200,78,0.45);
+  border-radius: 10px;
+  padding: 0.55rem 1.1rem;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.6);
   animation: mbot-arrow-bob 2s ease-in-out infinite;
 }
 .mbot-arrow-svg {
-  margin-right: 0.6rem;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  width: 52px;
+  height: 52px;
+  margin-right: 0.8rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
   animation: mbot-arrow-bob 2s ease-in-out infinite;
 }
 @keyframes mbot-arrow-bob {

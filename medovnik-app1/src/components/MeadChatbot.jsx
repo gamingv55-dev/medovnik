@@ -42,9 +42,9 @@ export default function MeadChatbot() {
       setShowArrow(true);
       setTimeout(() => {
         setShowArrow(false);
-        arrowTimer.current = setTimeout(() => scheduleArrow(), 18000);
-      }, 6000);
-    }, 5000);
+        arrowTimer.current = setTimeout(() => scheduleArrow(), 8000);
+      }, 8000);
+    }, 4000);
   }, []);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function MeadChatbot() {
       {!open && (
         <div className={`mbot-arrow-callout ${showArrow ? 'visible' : ''}`} aria-hidden="true">
           <span className="mbot-arrow-label">Често задавани въпроси</span>
-          <svg className="mbot-arrow-svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <svg className="mbot-arrow-svg" width="52" height="52" viewBox="0 0 36 36" fill="none">
             <path d="M6 6 Q18 10 28 28" stroke="#f2c84e" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
             <polyline points="20,28 28,28 28,20" stroke="#f2c84e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
           </svg>
