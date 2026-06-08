@@ -1,6 +1,20 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { QA_DATABASE, QUICK_QUESTIONS, FALLBACK_RESPONSES, GREETING } from '../data/meadChatData';
+import { QA_DATABASE, QUICK_CATEGORIES, MORE_QUESTIONS, FALLBACK_RESPONSES, GREETING } from '../data/meadChatData';
 import '../styles/chatbot.css';
+
+// Score an entry: keyword matches + similarity to question text
+function scoreEntry(entry, lower) {
+  let score = 0;
+  for (const kw of entry.keywords) {
+    if (lower.includes(kw.toLowerCase())) score += 2;
+  }
+  // bonus if user input contains words from the canonical question
+  const qWords = entry.question.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  for (const w of qWords) {
+    if (lower.includes(w)) score += 1;
+  }
+  return score;
+}
 
 function findAnswer(text) {
   const lower = text.toLowerCase().trim();
@@ -8,14 +22,11 @@ function findAnswer(text) {
   let bestScore = 0;
 
   for (const entry of QA_DATABASE) {
-    let score = 0;
-    for (const kw of entry.keywords) {
-      if (lower.includes(kw.toLowerCase())) score++;
-    }
+    const score = scoreEntry(entry, lower);
     if (score > bestScore) { bestScore = score; best = entry; }
   }
 
-  if (bestScore === 0) {
+  if (bestScore < 2) {
     return FALLBACK_RESPONSES[Math.floor(Math.random() * FALLBACK_RESPONSES.length)];
   }
   return best.answer;
@@ -31,13 +42,13 @@ export default function MeadChatbot() {
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [showArrow, setShowArrow] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
   const arrowTimer = useRef(null);
 
   const scheduleArrow = useCallback(() => {
     clearTimeout(arrowTimer.current);
-    // показва стрелката след 5s, скрива след 6s, и се повтаря на всеки 18s
     arrowTimer.current = setTimeout(() => {
       setShowArrow(true);
       setTimeout(() => {
@@ -69,6 +80,7 @@ export default function MeadChatbot() {
     const q = (text || input).trim();
     if (!q || typing) return;
     setInput('');
+    setShowMore(false);
     setMsgs(prev => [...prev, mkMsg('user', q)]);
     setTyping(true);
     setTimeout(() => {
@@ -152,13 +164,34 @@ export default function MeadChatbot() {
           <div ref={bottomRef} />
         </div>
 
-        {/* Quick questions */}
+        {/* Quick questions — categorised */}
         <div className="mbot-quick">
-          {QUICK_QUESTIONS.map(q => (
-            <button key={q} className="mbot-chip" onClick={() => send(q)}>
-              {q}
-            </button>
+          {QUICK_CATEGORIES.map(cat => (
+            <div key={cat.label} className="mbot-cat">
+              <div className="mbot-cat-label">{cat.label}</div>
+              <div className="mbot-cat-chips">
+                {cat.questions.map(q => (
+                  <button key={q} className="mbot-chip" onClick={() => send(q)}>{q}</button>
+                ))}
+              </div>
+            </div>
           ))}
+
+          {/* More questions toggle */}
+          {showMore && (
+            <div className="mbot-cat">
+              <div className="mbot-cat-label">Още въпроси</div>
+              <div className="mbot-cat-chips">
+                {MORE_QUESTIONS.map(q => (
+                  <button key={q} className="mbot-chip" onClick={() => send(q)}>{q}</button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <button className="mbot-more-btn" onClick={() => setShowMore(v => !v)}>
+            {showMore ? '▲ По-малко' : '▼ Виж още въпроси'}
+          </button>
         </div>
 
         {/* Input */}

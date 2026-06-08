@@ -198,13 +198,33 @@
 
 /* ── Quick questions ── */
 .mbot-quick {
-  padding: 0.6rem 1rem;
+  padding: 0.65rem 1rem 0.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+  flex-direction: column;
+  gap: 0.55rem;
   border-top: 1px solid rgba(212,131,31,0.15);
   background: rgba(0,0,0,0.2);
   flex-shrink: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+.mbot-quick::-webkit-scrollbar { width: 3px; }
+.mbot-quick::-webkit-scrollbar-thumb { background: rgba(212,131,31,0.25); border-radius: 2px; }
+
+.mbot-cat { display: flex; flex-direction: column; gap: 0.35rem; }
+.mbot-cat-label {
+  font-family: 'UniSans', 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #d4831f;
+  opacity: 0.8;
+}
+.mbot-cat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 .mbot-chip {
   background: rgba(212,131,31,0.1);
@@ -223,6 +243,21 @@
   border-color: rgba(242,200,78,0.5);
   color: #faf3e0;
 }
+.mbot-more-btn {
+  align-self: center;
+  background: none;
+  border: none;
+  color: #6a5240;
+  font-family: 'UniSans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  transition: color 0.2s;
+  margin-top: 0.1rem;
+}
+.mbot-more-btn:hover { color: #d4831f; }
 
 /* ── Input ── */
 .mbot-input-row {
