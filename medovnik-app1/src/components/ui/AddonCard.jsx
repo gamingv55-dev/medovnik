@@ -17,8 +17,9 @@ export default function AddonCard({ addon }) {
   }
 
   return (
-    <article className="addon">
+    <article className={`addon${!ready ? ' addon--coming-soon' : ''}`}>
       <div className="addon-visual">
+        {!ready && <div className="addon-coming-badge">Очаквайте скоро</div>}
         {addon.image
           ? <img src={addon.image} alt={addon.name} className="addon-img" />
           : Visual

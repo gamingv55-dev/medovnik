@@ -20,13 +20,11 @@ export const FLAVORINGS = [
     name: 'Cherry Oak Reserve',
     quantifiable: true,
     desc: 'Сушени череши и дъбови стърготини — богат, дълбок вкус с нотки на дърво и плод.',
-    price: 14,
   },
   {
     id: 204,
     name: 'Citrus Honey Brew',
     quantifiable: true,
     desc: 'Лимон, портокал и лайм — свежа и искряща лятна медовина с цитрусов аромат.',
-    price: 11,
   },
 ];
