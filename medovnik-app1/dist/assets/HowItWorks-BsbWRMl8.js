@@ -1,4 +1,4 @@
-import{j as e}from"./index-Bkn4MxqO.js";import"./vendor-router-U-89qT9Z.js";const o=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+import{j as e}from"./index-QnpGEQyg.js";import"./vendor-router-U-89qT9Z.js";const o=`<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="honeyGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#f2c84e"/>

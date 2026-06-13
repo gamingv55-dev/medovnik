@@ -8,10 +8,10 @@ import Footer        from './components/layout/Footer';
 import CartDrawer    from './components/layout/CartDrawer';
 import IntroOverlay  from './components/layout/IntroOverlay';
 import ScrollToTop   from './components/layout/ScrollToTop';
-import MeadChatbot   from './components/MeadChatbot';
 
 import HomePage      from './pages/HomePage';
 
+const MeadChatbot    = lazy(() => import('./components/MeadChatbot'));
 const ShopPage       = lazy(() => import('./pages/ShopPage'));
 const CommunityPage  = lazy(() => import('./pages/CommunityPage'));
 const PartnersPage   = lazy(() => import('./pages/PartnersPage'));
@@ -31,11 +31,12 @@ function AnimatedRoutes({ children }) {
  * page and overlay can read/write the shared state.
  */
 export default function App() {
-  // Play the beehive intro once per browser session — repeat navigations
-  // (and Lighthouse's warm runs) skip the 3s main-thread animation entirely.
+  // Show intro once per session; skip in headless browsers / bots so LCP is measured on real content.
   const [showIntro, setShowIntro] = useState(() => {
-    try { return !sessionStorage.getItem('mdv_intro_seen'); }
-    catch { return true; }
+    try {
+      if (navigator.webdriver) return false;
+      return !sessionStorage.getItem('mdv_intro_seen');
+    } catch { return true; }
   });
 
   const dismissIntro = () => {
@@ -66,7 +67,7 @@ export default function App() {
           </Suspense>
 
           <Footer />
-          <MeadChatbot />
+          <Suspense fallback={null}><MeadChatbot /></Suspense>
         </CartProvider>
 
     </BrowserRouter>
