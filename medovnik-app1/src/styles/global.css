@@ -486,11 +486,16 @@
       position: absolute;
       inset: -12%;
       will-change: transform;
-      transition: transform 0s;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .intro-hive-zoom {
-      transform: scale(9);
-      transition: transform 0.82s cubic-bezier(0.55, 0, 0.75, 0.45) !important;
+      animation: hiveZoom 0.92s cubic-bezier(0.22, 0, 0.58, 1) forwards;
+    }
+    @keyframes hiveZoom {
+      from { transform: scale(1)  translateZ(0); }
+      to   { transform: scale(9)  translateZ(0); }
     }
     .intro-svg {
       width: 100%;

@@ -42,23 +42,28 @@ const VOID_RATIO  = isMobile ? 0.38 : 0.20;
 const FRAME_RATIO = isMobile ? 0.50 : 0.32;
 
 export default function IntroOverlay({ onDone }) {
-  const [phase, setPhase] = useState('init');
+  const [phase,   setPhase]   = useState('init');
+  const [logoOut, setLogoOut] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     const raf = requestAnimationFrame(() => setPhase('enter'));
-    const t1  = setTimeout(() => setPhase('zoom'),  1900);
-    const t2  = setTimeout(() => setPhase('fade'),  2600);
-    const t3  = setTimeout(() => { onDone?.(); },   3300);
+    // Double-rAF ensures the GPU layer is ready before the zoom animation starts,
+    // preventing the 2-frame freeze that happens when transition + layer promotion coincide.
+    const t1 = setTimeout(() => {
+      requestAnimationFrame(() => requestAnimationFrame(() => setPhase('zoom')));
+    }, 1900);
+    const t1b = setTimeout(() => setLogoOut(true), 2100);
+    const t2  = setTimeout(() => setPhase('fade'), 2750);
+    const t3  = setTimeout(() => { onDone?.(); },  3450);
     return () => {
       document.body.style.overflow = '';
       cancelAnimationFrame(raf);
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+      clearTimeout(t1); clearTimeout(t1b); clearTimeout(t2); clearTimeout(t3);
     };
   }, [onDone]);
 
   const isZoomed = phase === 'zoom' || phase === 'fade';
-  const logoOut  = phase === 'zoom' || phase === 'fade';
 
   return (
     <div className={`intro intro-${phase}`} aria-hidden="true">
