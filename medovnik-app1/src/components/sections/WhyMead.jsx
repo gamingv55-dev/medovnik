@@ -1,10 +1,10 @@
 /* Иконите са готови златни PNG-та с прозрачен фон — слагат се в public/.
    Долните снимки също се слагат в public/. */
 const CARDS = [
-  { icon: '/icon-cheers.png',   title: 'Събира приятели',      desc: 'Отвори бутилка, налей в чаша и създай повод за разговори, смях и спомени.', img: '/why-friends.webp' },
-  { icon: '/icon-gift.png',     title: 'Подарък със стойност', desc: 'Домашната медовина е личен подарък, който показва внимание и отношение.',   img: '/why-gift.webp' },
-  { icon: '/icon-calendar.png', title: 'Възнаградено търпение', desc: 'Няколко седмици и получаваш питие с характер и история, създадено от теб.',  img: '/why-patience.webp' },
-  { icon: '/icon-heart.png',    title: 'Споделяш емоция',      desc: 'Във всяка чаша има твоя труд, време и желание да създадеш нещо истинско.',  img: '/why-emotion.webp' },
+  { icon: '/icon-cheers.webp',   title: 'Събира приятели',      desc: 'Отвори бутилка, налей в чаша и създай повод за разговори, смях и спомени.', img: '/why-friends.webp' },
+  { icon: '/icon-gift.webp',     title: 'Подарък със стойност', desc: 'Домашната медовина е личен подарък, който показва внимание и отношение.',   img: '/why-gift.webp' },
+  { icon: '/icon-calendar.webp', title: 'Възнаградено търпение', desc: 'Няколко седмици и получаваш питие с характер и история, създадено от теб.',  img: '/why-patience.webp' },
+  { icon: '/icon-heart.webp',    title: 'Споделяш емоция',      desc: 'Във всяка чаша има твоя труд, време и желание да създадеш нещо истинско.',  img: '/why-emotion.webp' },
 ];
 
 export default function WhyMead() {
@@ -43,7 +43,7 @@ export default function WhyMead() {
         <div className="why-cards">
           {CARDS.map(({ icon, title, desc, img }) => (
             <article className="wm-card" key={title}>
-              <img className="wm-ico" src={icon} alt="" />
+              <img className="wm-ico" src={icon} alt="" loading="lazy" decoding="async" />
               <h3 className="wm-title">{title}</h3>
               <p className="wm-desc">{desc}</p>
               <div className="wm-photo"><img src={img} alt={title} loading="lazy" /></div>

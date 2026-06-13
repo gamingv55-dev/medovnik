@@ -29,9 +29,9 @@
 
 .shop-wood{
   --pi:#3a2410; --pi-soft:#6a4524; --pi-rule:#8a5e30;
-  --tex-parch:url('/parchment.png');
-  --tex-leather:url('/leather.png');
-  --tex-wood:url('/wood-bg.png');
+  --tex-parch:url('/parchment.webp');
+  --tex-leather:url('/leather.webp');
+  --tex-wood:url('/wood-bg.webp');
   --divider:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='18' viewBox='0 0 320 18'%3E%3Cg stroke='%238a5e30' stroke-width='1.4' fill='%238a5e30'%3E%3Cline x1='26' y1='9' x2='130' y2='9'/%3E%3Cline x1='190' y1='9' x2='294' y2='9'/%3E%3Ccircle cx='20' cy='9' r='3.4' fill='none'/%3E%3Ccircle cx='300' cy='9' r='3.4' fill='none'/%3E%3Cpath d='M160 1 L168 9 L160 17 L152 9 Z'/%3E%3Cpath d='M138 9 L150 5.5 L150 12.5 Z'/%3E%3Cpath d='M182 9 L170 5.5 L170 12.5 Z'/%3E%3C/g%3E%3C/svg%3E");
 
   background:linear-gradient(rgba(10,6,2,0.55), rgba(10,6,2,0.62)), #140d06 var(--tex-wood) !important;

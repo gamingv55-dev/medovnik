@@ -18,11 +18,17 @@
 
     <title>Медовник — Домашна медовина</title>
 
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="/fonts/UniSans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/cormorant-garamond-400-italic-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/cormorant-garamond-400-italic-latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Preload LCP image -->
+    <link rel="preload" as="image" href="/hero-product.webp" fetchpriority="high" />
+    <!-- Non-blocking Google Fonts (Vollkorn footer + Montserrat/Manrope hero) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700&family=Manrope:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@600;700&family=Manrope:wght@400;500;600&display=swap" /></noscript>
 
     <!-- Self-hosted fonts (was Google Fonts) — identical files, no external request chain -->
     <style>

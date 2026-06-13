@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
    ============================================================ */
 
 const HERO_CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@600;700&family=Manrope:wght@400;500;600&display=swap&subset=cyrillic,cyrillic-ext,latin');
-
 @font-face {
   font-family: 'Beograd';
   src: url('/fonts/Beograd.ttf') format('truetype');
