@@ -9,7 +9,7 @@ import { BookIcon, HandshakeIcon, TrophyIcon } from '../components/ui/Icons';
 export default function CommunityPage() {
   return (
     <div style={{ paddingTop: '8rem', minHeight: '100vh' }}>
-      <DiscordSection compactLead />
+      <DiscordSection compactLead noBorderTop />
 
       <div className="sec">
         <div className="sec-label">Discord живот</div>

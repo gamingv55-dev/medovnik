@@ -54,9 +54,9 @@ const DiscordHexIcon = () => (
   </svg>
 );
 
-export default function DiscordSection({ compactLead = false }) {
+export default function DiscordSection({ compactLead = false, noBorderTop = false }) {
   return (
-    <div className="comm-bg">
+    <div className="comm-bg" style={noBorderTop ? { borderTop: 'none' } : undefined}>
       <div className="comm-grid">
 
         {/* LEFT */}
