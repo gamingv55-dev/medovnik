@@ -42,8 +42,8 @@ export default function PartnersPage() {
               Ако работиш с мед, билки, оборудване или просто обичаш медовината —
               пиши ни. Търсим хора, с които да растем.
             </p>
-            <a href="mailto:medovnik@abv.bg" className="prt-footer-link">
-              medovnik@abv.bg
+            <a href="mailto:medovnikbg@gmail.com" className="prt-footer-link">
+              medovnikbg@gmail.com
             </a>
           </div>
         </ScrollReveal>

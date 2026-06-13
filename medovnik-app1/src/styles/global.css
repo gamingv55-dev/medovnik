@@ -1561,12 +1561,12 @@
       text-transform: uppercase;
     }
     .footer-desc {
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       color: var(--text);
-      font-style: italic;
+      font-style: normal;
       line-height: 1.75;
       margin-bottom: 1.5rem;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Vollkorn', Georgia, serif;
     }
     .socials { display: flex; gap: 1rem; }
     .soc {
@@ -1600,10 +1600,10 @@
     .fc-links a {
       color: var(--text);
       text-decoration: none;
-      font-size: 1.15rem;
-      font-style: italic;
+      font-size: 1rem;
+      font-style: normal;
       transition: color 0.3s;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Vollkorn', Georgia, serif;
     }
     .fc-links a:hover { color: var(--honey); }
     .footer-bottom {
