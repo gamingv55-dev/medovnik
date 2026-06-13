@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 const logo = '/logo.webp';
 
 // ── Pointy-top hexagon grid math ──────────────────────────────
+// Portrait phones need a taller grid so the honeycomb fills the screen
+// without extreme zoom that pushes hexes off-center.
 const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
-// Larger cells + fewer rows/cols ⇒ ~40% fewer SVG nodes to animate/paint
-// (266→154 on desktop) while the honeycomb still fills the screen.
-const R     = 58;
+const R     = isMobile ? 34 : 58;
 const W     = R * Math.sqrt(3);
 const H     = R * 2;
 const ROW_H = H * 0.75;
-const COLS  = isMobile ? 9 : 14;
-const ROWS  = isMobile ? 7 : 11;
+const COLS  = isMobile ? 7  : 14;
+const ROWS  = isMobile ? 16 : 11;
 const GRID_W = (COLS + 0.5) * W;
 const GRID_H = ROWS * ROW_H + H * 0.25;
 const CX = GRID_W / 2;
