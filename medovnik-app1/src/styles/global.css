@@ -2660,6 +2660,175 @@
   text-wrap: pretty;
 }
 
+/* ── Keyframes ── */
+@keyframes prt-breathe {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.7; }
+}
+@keyframes prt-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes prt-hex-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.55; }
+  50%       { transform: scale(1.08); opacity: 0.9; }
+}
+@keyframes prt-shimmer {
+  0%   { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(250%)  skewX(-12deg); }
+}
+@keyframes prt-label-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Empty placeholder card ── */
+.prt-card-empty {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 210px;
+  background: linear-gradient(145deg, rgba(16,9,4,0.9) 0%, rgba(10,6,3,0.95) 100%);
+  border: 1px solid rgba(184,98,26,0.2);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+}
+.prt-card-empty:hover {
+  border-color: rgba(212,131,31,0.55);
+  box-shadow:
+    0 0 0 1px rgba(212,131,31,0.12),
+    0 20px 60px rgba(0,0,0,0.55),
+    inset 0 0 60px rgba(184,98,26,0.06);
+  transform: translateY(-4px);
+}
+
+/* Въртящ се gradient border */
+.prt-empty-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(212,131,31,0.6) 40deg,
+    rgba(242,200,78,0.8) 70deg,
+    rgba(212,131,31,0.6) 100deg,
+    transparent 140deg
+  );
+  animation: prt-spin 5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.prt-empty-border::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(145deg, #100904, #0a0603);
+  border-radius: inherit;
+}
+.prt-card-empty:hover .prt-empty-border {
+  opacity: 1;
+}
+
+/* Shimmer sweep при hover */
+.prt-card-empty::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(242,200,78,0.07) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%) skewX(-12deg);
+  pointer-events: none;
+  z-index: 2;
+}
+.prt-card-empty:hover::after {
+  animation: prt-shimmer 0.7s ease forwards;
+}
+
+/* Ъглови скоби */
+.prt-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(184,98,26,0.45);
+  border-style: solid;
+  transition: border-color 0.4s ease, width 0.4s ease, height 0.4s ease;
+  z-index: 3;
+}
+.prt-corner-tl { top: 10px;  left: 10px;  border-width: 1px 0 0 1px; }
+.prt-corner-tr { top: 10px;  right: 10px; border-width: 1px 1px 0 0; }
+.prt-corner-bl { bottom: 10px; left: 10px;  border-width: 0 0 1px 1px; }
+.prt-corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+
+.prt-card-empty:hover .prt-corner {
+  border-color: rgba(242,200,78,0.7);
+  width: 18px;
+  height: 18px;
+}
+
+/* Централно съдържание */
+.prt-empty-inner {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Hexagon иконка */
+.prt-empty-hex {
+  color: var(--amber);
+  animation: prt-hex-pulse 3.5s ease-in-out infinite;
+  transition: color 0.3s ease;
+}
+.prt-card-empty:hover .prt-empty-hex {
+  color: var(--honey);
+  animation: none;
+  transform: scale(1.12);
+}
+
+.prt-empty-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--muted);
+  opacity: 0.6;
+  transition: opacity 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  transform: translateY(2px);
+}
+.prt-card-empty:hover .prt-empty-label {
+  opacity: 1;
+  color: var(--cream);
+  transform: translateY(0);
+}
+
+.prt-empty-sub {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+}
+.prt-card-empty:hover .prt-empty-sub {
+  opacity: 0.75;
+  transform: translateY(0);
+}
+
 .prt-footer {
   text-align: center;
   padding: 3rem 0 0;

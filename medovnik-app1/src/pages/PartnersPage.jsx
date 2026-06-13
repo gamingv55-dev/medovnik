@@ -1,4 +1,3 @@
-import { PARTNERS } from '../data/partners';
 import ScrollReveal from '../components/layout/ScrollReveal';
 
 export default function PartnersPage() {
@@ -26,9 +25,9 @@ export default function PartnersPage() {
         <div className="prt-rule" />
 
         <div className="prt-grid">
-          {PARTNERS.map((p, i) => (
-            <ScrollReveal key={p.id} delay={i * 70}>
-              <PartnerCard partner={p} />
+          {[0, 1, 2, 3].map((i) => (
+            <ScrollReveal key={i} delay={i * 70}>
+              <PlaceholderCard />
             </ScrollReveal>
           ))}
         </div>
@@ -54,13 +53,30 @@ export default function PartnersPage() {
   );
 }
 
-function PartnerCard({ partner }) {
+function PlaceholderCard() {
   return (
-    <article className="prt-card">
-      <div className="prt-card-type">{partner.typeLabel}</div>
-      <h2 className="prt-card-name">{partner.name}</h2>
-      <div className="prt-card-tagline">{partner.tagline}</div>
-      <p className="prt-card-desc">{partner.description}</p>
+    <article className="prt-card prt-card-empty">
+      {/* Въртящ се border ефект */}
+      <div className="prt-empty-border" aria-hidden="true" />
+
+      {/* Ъглови декорации */}
+      <span className="prt-corner prt-corner-tl" aria-hidden="true" />
+      <span className="prt-corner prt-corner-tr" aria-hidden="true" />
+      <span className="prt-corner prt-corner-bl" aria-hidden="true" />
+      <span className="prt-corner prt-corner-br" aria-hidden="true" />
+
+      {/* Централно съдържание */}
+      <div className="prt-empty-inner">
+        <div className="prt-empty-hex" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+            <path d="M12 3 L20 7.5 L20 16.5 L12 21 L4 16.5 L4 7.5 Z" />
+            <line x1="12" y1="9" x2="12" y2="15" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+          </svg>
+        </div>
+        <p className="prt-empty-label">Това може да сте вие</p>
+        <span className="prt-empty-sub">Свържете се с нас →</span>
+      </div>
     </article>
   );
 }
