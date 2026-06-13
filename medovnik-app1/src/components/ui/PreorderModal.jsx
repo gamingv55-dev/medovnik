@@ -4,12 +4,23 @@ import { formatPrice } from '../../utils/format';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznixroXH49aoXdDFts5ZT3kDU6ILG8msYcI9yw8wall0RViQD2er59-cgw8WN6CKkfTg/exec';
 const EUR_RATE   = 1.95583;
 
+// Excludes ambiguous chars (0/O, 1/I/L) so codes are easy to read and communicate.
+const CODE_CHARS = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+function generateOrderCode() {
+  let suffix = '';
+  const arr = new Uint8Array(7);
+  crypto.getRandomValues(arr);
+  for (const byte of arr) suffix += CODE_CHARS[byte % CODE_CHARS.length];
+  return 'MDV-' + suffix;
+}
+
 export default function PreorderModal({ items, total, discordUnlocked, onClose, onSuccess }) {
   const [name,   setName]   = useState('');
   const [phone,  setPhone]  = useState('');
   const [email,  setEmail]  = useState('');
   const [note,   setNote]   = useState('');
   const [status, setStatus] = useState('idle');
+  const [orderCode]         = useState(generateOrderCode);
 
   const totalEur = items
     .reduce((s, i) => s + (i.priceEur ?? i.price / EUR_RATE) * (i.qty || 1), 0)
@@ -27,6 +38,7 @@ export default function PreorderModal({ items, total, discordUnlocked, onClose, 
       }));
 
       const params = new URLSearchParams({
+        orderCode,
         name,
         phone,
         email,
@@ -56,7 +68,16 @@ export default function PreorderModal({ items, total, discordUnlocked, onClose, 
           <div className="po-success">
             <div className="po-success-icon">✓</div>
             <h3>Поръчката е приета!</h3>
-            <p>Изпратихме потвърждение на <strong>{email}</strong>. Ще се свържем с вас скоро!</p>
+            <p style={{ marginBottom: '0.5rem' }}>
+              Изпратихме потвърждение на <strong>{email}</strong>.
+            </p>
+            <p style={{ marginBottom: '1rem' }}>
+              Код на поръчката:{' '}
+              <strong style={{ fontFamily: 'monospace', letterSpacing: '0.08em', fontSize: '1.1em' }}>
+                {orderCode}
+              </strong>
+            </p>
+            <p style={{ fontSize: '0.88rem', opacity: 0.7 }}>Ще се свържем с вас скоро!</p>
           </div>
         ) : (
           <>
