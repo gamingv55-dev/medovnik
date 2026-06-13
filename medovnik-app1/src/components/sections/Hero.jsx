@@ -132,7 +132,7 @@ export default function Hero() {
     <section className="mh-hero">
       <style>{HERO_CSS}</style>
 
-      <img className="mh-photo" src="/hero-product.webp" srcSet="/hero-product-mobile.webp 768w, /hero-product.webp 1920w" sizes="100vw" alt="" aria-hidden="true" fetchPriority="high" />
+      <img className="mh-photo" src="/hero-product.webp" srcSet="/hero-product-mobile.webp 768w, /hero-product.webp 1920w" sizes="100vw" width="1920" height="1280" alt="" aria-hidden="true" fetchPriority="high" />
       <div className="mh-grad" />
       <div className="mh-orb mh-orb-1" aria-hidden="true" />
       <div className="mh-orb mh-orb-2" aria-hidden="true" />

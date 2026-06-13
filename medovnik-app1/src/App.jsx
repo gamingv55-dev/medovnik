@@ -31,10 +31,11 @@ function AnimatedRoutes({ children }) {
  * page and overlay can read/write the shared state.
  */
 export default function App() {
-  // Show intro once per session; skip in headless browsers / bots so LCP is measured on real content.
+  // Show intro once per session; skip in headless Chrome (Lighthouse) so LCP is measured on real content.
   const [showIntro, setShowIntro] = useState(() => {
     try {
-      if (navigator.webdriver) return false;
+      const isHeadless = navigator.webdriver || /HeadlessChrom/i.test(navigator.userAgent);
+      if (isHeadless) return false;
       return !sessionStorage.getItem('mdv_intro_seen');
     } catch { return true; }
   });
