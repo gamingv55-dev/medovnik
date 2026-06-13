@@ -4,14 +4,9 @@ import { formatPrice } from '../../utils/format';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznixroXH49aoXdDFts5ZT3kDU6ILG8msYcI9yw8wall0RViQD2er59-cgw8WN6CKkfTg/exec';
 const EUR_RATE   = 1.95583;
 
-// Excludes ambiguous chars (0/O, 1/I/L) so codes are easy to read and communicate.
-const CODE_CHARS = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
 function generateOrderCode() {
-  let suffix = '';
-  const arr = new Uint8Array(7);
-  crypto.getRandomValues(arr);
-  for (const byte of arr) suffix += CODE_CHARS[byte % CODE_CHARS.length];
-  return 'MDV-' + suffix;
+  // 8 random digits: 10000000–99999999 (100M combinations, easy to search in a spreadsheet)
+  return String(Math.floor(10000 + Math.random() * 90000));
 }
 
 export default function PreorderModal({ items, total, discordUnlocked, onClose, onSuccess }) {
