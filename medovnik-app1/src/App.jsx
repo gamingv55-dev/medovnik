@@ -12,10 +12,10 @@ import MeadChatbot   from './components/MeadChatbot';
 
 import HomePage      from './pages/HomePage';
 
-const ShopPage      = lazy(() => import('./pages/ShopPage'));
-const CommunityPage = lazy(() => import('./pages/CommunityPage'));
-const ReviewsPage   = lazy(() => import('./pages/ReviewsPage'));
-const NotFoundPage  = lazy(() => import('./pages/NotFoundPage'));
+const ShopPage       = lazy(() => import('./pages/ShopPage'));
+const CommunityPage  = lazy(() => import('./pages/CommunityPage'));
+const PartnersPage   = lazy(() => import('./pages/PartnersPage'));
+const NotFoundPage   = lazy(() => import('./pages/NotFoundPage'));
 
 function AnimatedRoutes({ children }) {
   const { pathname } = useLocation();
@@ -59,7 +59,7 @@ export default function App() {
                 <Route path="/"           element={<HomePage />} />
                 <Route path="/shop"       element={<ShopPage />} />
                 <Route path="/community"  element={<CommunityPage />} />
-                <Route path="/reviews"    element={<ReviewsPage />} />
+                <Route path="/partners"   element={<PartnersPage />} />
                 <Route path="*"           element={<NotFoundPage />} />
               </Routes>
             </AnimatedRoutes>

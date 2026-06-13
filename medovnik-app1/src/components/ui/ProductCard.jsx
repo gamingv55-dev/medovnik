@@ -3,8 +3,9 @@ import { useCart } from '../../context/CartContext';
 import { TAG_TIPS } from '../../data/products';
 
 export default function ProductCard({ product }) {
-  const { addToCart, isInCart } = useCart();
+  const { addToCart, isInCart, qtyInCart, incrementCart, decrementCart } = useCart();
   const inCart = isInCart(product.id);
+  const cartQty = qtyInCart(product.id);
   const [lightbox, setLightbox] = useState(false);
   const [qty, setQty] = useState(1);
 
@@ -60,9 +61,19 @@ export default function ProductCard({ product }) {
               <small>еднократно</small>
             </div>
             <div className="prod-qty">
-              <button className="prod-qty-btn" type="button" onClick={() => setQty(q => Math.max(1, q - 1))} aria-label="Намали">−</button>
-              <span className="prod-qty-num">{qty}</span>
-              <button className="prod-qty-btn" type="button" onClick={() => setQty(q => Math.min(20, q + 1))} aria-label="Увеличи">+</button>
+              <button
+                className="prod-qty-btn"
+                type="button"
+                onClick={() => inCart ? decrementCart(product.id) : setQty(q => Math.max(1, q - 1))}
+                aria-label="Намали"
+              >−</button>
+              <span className="prod-qty-num">{inCart ? cartQty : qty}</span>
+              <button
+                className="prod-qty-btn"
+                type="button"
+                onClick={() => inCart ? incrementCart(product.id) : setQty(q => Math.min(20, q + 1))}
+                aria-label="Увеличи"
+              >+</button>
             </div>
             <button
               className="btn-add"

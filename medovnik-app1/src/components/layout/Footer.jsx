@@ -25,7 +25,8 @@ export default function Footer() {
         ]} />
 
         <FooterCol title="Помощ" links={[
-          { label: 'Discord', to: '/community' },
+          { label: 'Discord',    to: '/community' },
+          { label: 'Партньори', to: '/partners' },
         ]} faqLink />
       </div>
 

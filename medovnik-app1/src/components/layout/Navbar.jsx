@@ -66,7 +66,7 @@ export default function Navbar() {
         <NavItem to="/"          onClick={closeMenu}>Начало</NavItem>
         <NavItem to="/shop"      onClick={closeMenu}>Магазин</NavItem>
         <NavItem to="/community" onClick={closeMenu}>Общност</NavItem>
-        <NavItem to="/reviews"   onClick={closeMenu}>Обратна връзка</NavItem>
+        <NavItem to="/partners"  onClick={closeMenu}>Партньори</NavItem>
         {/* {user && (
           <NavItem to="/my-mead" onClick={closeMenu}>Моята медовина</NavItem>
         )} */}
