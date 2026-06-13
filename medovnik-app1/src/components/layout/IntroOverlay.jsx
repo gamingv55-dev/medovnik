@@ -37,8 +37,9 @@ const HEXES = (() => {
 })();
 
 const MAX_D      = Math.max(...HEXES.map(h => h.dist));
-const VOID_RATIO  = 0.20;
-const FRAME_RATIO = 0.32;
+// Mobile needs a larger void so the logo sits in clean empty space.
+const VOID_RATIO  = isMobile ? 0.38 : 0.20;
+const FRAME_RATIO = isMobile ? 0.50 : 0.32;
 
 export default function IntroOverlay({ onDone }) {
   const [phase, setPhase] = useState('init');
