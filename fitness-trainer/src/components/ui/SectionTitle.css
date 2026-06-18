@@ -1,0 +1,30 @@
+.section-title {
+  margin-bottom: var(--sp-12);
+}
+
+.section-title--center {
+  text-align: center;
+}
+
+.section-title--left {
+  text-align: left;
+}
+
+.section-title__h2 {
+  font-size: clamp(var(--fs-3xl), 4vw, var(--fs-5xl));
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--sp-4);
+  line-height: 1.1;
+}
+
+.section-title__sub {
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.section-title--center .section-title__sub {
+  margin-inline: auto;
+}

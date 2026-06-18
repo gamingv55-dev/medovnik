@@ -1,0 +1,126 @@
+.competition__layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--sp-16);
+  align-items: start;
+}
+
+.competition__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.competition__text {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.competition__stage-cta {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.competition__stage-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--color-gold);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.competition__stage-cta p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Results list */
+.competition__results {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.competition__card {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+  padding: var(--sp-5) var(--sp-6);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  transition: background var(--duration-fast);
+}
+
+.competition__card:last-child {
+  border-bottom: none;
+}
+
+.competition__card:hover {
+  background: var(--color-bg-card-hover);
+}
+
+.competition__placement {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  min-width: 100px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.competition__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.competition__year-badge {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  color: var(--color-text-faint);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--sp-1);
+}
+
+.competition__comp-name {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semi);
+  color: var(--color-text);
+}
+
+.competition__category {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+.competition__fed {
+  font-size: var(--fs-xs);
+  color: var(--color-text-faint);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 900px) {
+  .competition__layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp-10);
+  }
+}
+
+@media (max-width: 480px) {
+  .competition__placement {
+    min-width: 70px;
+    font-size: var(--fs-base);
+  }
+}

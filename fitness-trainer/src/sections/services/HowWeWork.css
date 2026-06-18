@@ -1,0 +1,114 @@
+.process__steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--sp-4);
+  position: relative;
+}
+
+.process__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-inline: var(--sp-3);
+  position: relative;
+}
+
+/* Numbered circle */
+.process__step-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-card);
+  border: 2px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+  position: relative;
+  z-index: 2;
+}
+
+.process__step-num {
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-gold);
+}
+
+/* Connecting line between circles */
+.process__connector {
+  position: absolute;
+  top: 30px;
+  left: calc(50% + 30px);
+  right: calc(-50% + 30px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold-dim) 0%, rgba(138, 110, 46, 0.2) 100%);
+  z-index: 1;
+}
+
+.process__step-icon {
+  color: var(--color-text-muted);
+  margin-bottom: var(--sp-3);
+}
+
+.process__step-title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semi);
+  color: var(--color-text);
+  margin-bottom: var(--sp-2);
+}
+
+.process__step-desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Mobile: vertical */
+@media (max-width: 800px) {
+  .process__steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-left: var(--sp-16);
+    position: relative;
+  }
+
+  .process__steps::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 29px;
+    bottom: 30px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--color-gold-dim), rgba(138, 110, 46, 0.15));
+    z-index: 0;
+  }
+
+  .process__step {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: var(--sp-5);
+    padding-block: var(--sp-5);
+    padding-inline: 0;
+  }
+
+  .process__step-circle {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    position: absolute;
+    left: calc(-1 * var(--sp-16));
+  }
+
+  .process__connector {
+    display: none;
+  }
+
+  .process__step-icon {
+    display: none;
+  }
+
+  .process__step-title {
+    margin-bottom: var(--sp-1);
+  }
+}

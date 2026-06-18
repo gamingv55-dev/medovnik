@@ -1,0 +1,119 @@
+.about-full__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--sp-16);
+  align-items: start;
+}
+
+.about-full__image-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  position: sticky;
+  top: calc(var(--header-h) + var(--sp-8));
+}
+
+.about-full__image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(145deg, #222 0%, #1a1a1a 60%, #141414 100%);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.about-full__image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+}
+
+.about-full__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.about-full__quote-block {
+  background: var(--color-bg-card);
+  border-left: 3px solid var(--color-gold);
+  padding: var(--sp-5) var(--sp-6);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.about-full__quote {
+  font-size: var(--fs-base);
+  font-style: italic;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+/* Content column */
+.about-full__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+  padding-top: var(--sp-4);
+}
+
+.about-full__h1 {
+  font-size: clamp(var(--fs-2xl), 3vw, var(--fs-4xl));
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+}
+
+.about-full__text {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 56ch;
+}
+
+.about-full__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-block: var(--sp-4);
+}
+
+.about-full__bullets-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semi);
+  color: var(--color-text);
+}
+
+.about-full__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.about-full__bullet {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text);
+}
+
+.about-full__check {
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .about-full__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-full__image-col {
+    position: static;
+  }
+
+  .about-full__image {
+    aspect-ratio: 4 / 3;
+    max-width: 480px;
+  }
+}
