@@ -13,8 +13,7 @@ export default function HoneyCard() {
   return (
     <div className="honey-card">
       <div className="honey-visual">
-        <span className="honey-jar-ico"><HoneyJarIcon size={52} /></span>
-        <div className="honey-glow" />
+        <img src="/honey.webp" alt="Мед за медовина" className="honey-photo" />
       </div>
 
       <div className="honey-body">
@@ -38,13 +37,8 @@ export default function HoneyCard() {
 
         <div className="honey-foot">
           <div className="honey-price">{selected.price} лв.</div>
-          <button
-            className="addon-add"
-            type="button"
-            disabled={inCart}
-            onClick={() => !inCart && addToCart(selected)}
-          >
-            {inCart ? '✓ Добавен' : 'Добави →'}
+          <button className="addon-add" type="button" disabled>
+            Очаквайте
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@ export const FLAVORINGS = [
     quantifiable: true,
     desc: 'Мащерка, хмел и бъзак — автентичен викингски вкус за смели рецепти.',
     price: 12,
+    priceEur: 6,
     image: '/viking.webp',
   },
   {
@@ -13,6 +14,7 @@ export const FLAVORINGS = [
     quantifiable: true,
     desc: 'Канела, карамфил и портокалова кора — уютна зимна медовина за студените вечери.',
     price: 10,
+    priceEur: 5,
     image: '/winter-spice.webp',
   },
   {

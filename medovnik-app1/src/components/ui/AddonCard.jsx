@@ -35,38 +35,18 @@ export default function AddonCard({ addon }) {
         <div className="addon-foot">
           <div className="addon-price-col">
             <div className="addon-price">
-              {ready ? `${addon.price} лв.` : <span className="placeholder">Скоро</span>}
+              {ready ? (
+                <>
+                  <span className="addon-price-eur">{addon.priceEur} €</span>
+                  <span className="addon-price-bgn">{addon.price} лв.</span>
+                </>
+              ) : <span className="placeholder">Скоро</span>}
             </div>
-            {inCart && cartQty > 0 && (
-              <div className="addon-in-cart">× {cartQty} в количката</div>
-            )}
           </div>
 
           <div className="addon-actions">
-            {addon.quantifiable && ready && (
-              <div className="addon-qty">
-                <button
-                  className="addon-qty-btn"
-                  type="button"
-                  onClick={() => setQty(q => Math.max(1, q - 1))}
-                  aria-label="Намали"
-                >−</button>
-                <span className="addon-qty-num">{qty}</span>
-                <button
-                  className="addon-qty-btn"
-                  type="button"
-                  onClick={() => setQty(q => Math.min(20, q + 1))}
-                  aria-label="Увеличи"
-                >+</button>
-              </div>
-            )}
-            <button
-              className="addon-add"
-              type="button"
-              disabled={!ready}
-              onClick={handleAdd}
-            >
-              {ready ? 'Добави →' : 'Очаквайте'}
+            <button className="addon-add" type="button" disabled>
+              Очаквайте
             </button>
           </div>
         </div>
