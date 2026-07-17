@@ -6,18 +6,6 @@ export default function CommunityPage() {
   return (
     <div style={{ paddingTop: '8rem', minHeight: '100vh' }}>
 
-      <div className="social-bar">
-        <a className="social-link" href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-          <IconTikTok />
-          <span>TikTok</span>
-        </a>
-        <div className="social-sep" />
-        <a className="social-link" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <IconInstagram />
-          <span>Instagram</span>
-        </a>
-      </div>
-
       <DiscordSection compactLead noBorderTop />
 
       <div className="dc-divider">

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { QA_DATABASE, QUICK_CATEGORIES, MORE_QUESTIONS, FALLBACK_RESPONSES, GREETING } from '../data/meadChatData';
+import { QA_DATABASE, QUICK_CATEGORIES, MORE_QUESTIONS, FALLBACK_RESPONSES } from '../data/meadChatData';
 import '../styles/chatbot.css';
 
 // Score an entry: keyword matches + similarity to question text
@@ -38,14 +38,18 @@ const mkMsg = (role, text) => ({ id: ++msgId, role, text });
 export default function MeadChatbot() {
   const [open, setOpen] = useState(false);
   const [seen, setSeen] = useState(false);
-  const [msgs, setMsgs] = useState([mkMsg('bot', GREETING)]);
+  const [msgs, setMsgs] = useState([]);
   const [input, setInput] = useState('');
   const [typing, setTyping] = useState(false);
   const [showArrow, setShowArrow] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [quickHidden, setQuickHidden] = useState(false);
+  const [showWalkthrough, setShowWalkthrough] = useState(false);
+  const [walkthroughHiding, setWalkthroughHiding] = useState(false);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
   const arrowTimer = useRef(null);
+  const walkthroughTimer = useRef(null);
 
   const scheduleArrow = useCallback(() => {
     clearTimeout(arrowTimer.current);
@@ -53,9 +57,15 @@ export default function MeadChatbot() {
       setShowArrow(true);
       setTimeout(() => {
         setShowArrow(false);
-        arrowTimer.current = setTimeout(() => scheduleArrow(), 8000);
-      }, 8000);
-    }, 4000);
+        arrowTimer.current = setTimeout(() => scheduleArrow(), 45000);
+      }, 5000);
+    }, 20000);
+  }, []);
+
+  const dismissWalkthrough = useCallback(() => {
+    clearTimeout(walkthroughTimer.current);
+    setWalkthroughHiding(true);
+    setTimeout(() => { setShowWalkthrough(false); setWalkthroughHiding(false); }, 500);
   }, []);
 
   useEffect(() => {
@@ -69,11 +79,16 @@ export default function MeadChatbot() {
 
   useEffect(() => {
     if (open) {
+      if (!seen) {
+        setShowWalkthrough(true);
+        walkthroughTimer.current = setTimeout(dismissWalkthrough, 3800);
+      }
       setSeen(true);
       setShowArrow(false);
       clearTimeout(arrowTimer.current);
       setTimeout(() => inputRef.current?.focus(), 300);
     }
+    return () => clearTimeout(walkthroughTimer.current);
   }, [open]);
 
   function send(text) {
@@ -130,6 +145,21 @@ export default function MeadChatbot() {
 
       {/* Panel */}
       <div className={`mbot-panel ${open ? 'open' : ''}`} role="dialog" aria-label="Медко Асистент">
+        {showWalkthrough && (
+          <div
+            className={`mbot-walkthrough${walkthroughHiding ? ' mbot-walkthrough--hide' : ''}`}
+            onClick={dismissWalkthrough}
+          >
+            <div className="mbot-walkthrough-icon">🍯</div>
+            <div className="mbot-walkthrough-title">Здравей, аз съм Медко</div>
+            <p className="mbot-walkthrough-text">
+              Твоят асистент за медовини — питай ме за рецепти, ферментация или избери
+              готов въпрос отдолу, а аз ще ти отговоря веднага.
+            </p>
+            <span className="mbot-walkthrough-hint">Натисни за да продължиш</span>
+          </div>
+        )}
+
         {/* Header */}
         <div className="mbot-header">
           <div className="mbot-avatar">🍯</div>
@@ -148,7 +178,7 @@ export default function MeadChatbot() {
         </div>
 
         {/* Messages */}
-        <div className="mbot-messages">
+        <div className={`mbot-messages${msgs.length === 0 && !typing ? ' mbot-messages--empty' : ''}`}>
           {msgs.map(m => (
             <div key={m.id} className={`mbot-msg mbot-msg--${m.role}`}>
               <div className="mbot-bubble">{m.text}</div>
@@ -165,7 +195,16 @@ export default function MeadChatbot() {
         </div>
 
         {/* Quick questions — categorised */}
-        <div className="mbot-quick">
+        <div className={`mbot-quick${msgs.length === 0 && !typing && !quickHidden ? ' mbot-quick--fill' : ''}${quickHidden ? ' mbot-quick--collapsed' : ''}`}>
+          <button className="mbot-quick-toggle" onClick={() => setQuickHidden(v => !v)}>
+            <span>Бързи въпроси</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transform: quickHidden ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+
+          {!quickHidden && (
+          <>
           {QUICK_CATEGORIES.map(cat => (
             <div key={cat.label} className="mbot-cat">
               <div className="mbot-cat-label">{cat.label}</div>
@@ -192,6 +231,8 @@ export default function MeadChatbot() {
           <button className="mbot-more-btn" onClick={() => setShowMore(v => !v)}>
             {showMore ? '▲ По-малко' : '▼ Виж още въпроси'}
           </button>
+          </>
+          )}
         </div>
 
         {/* Input */}

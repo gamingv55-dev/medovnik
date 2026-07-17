@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '../../context/CartContext';
 import { TAG_TIPS } from '../../data/products';
 
@@ -8,6 +8,13 @@ export default function ProductCard({ product }) {
   const cartQty = qtyInCart(product.id);
   const [lightbox, setLightbox] = useState(false);
   const [qty, setQty] = useState(1);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = prevOverflow; };
+  }, [lightbox]);
 
   return (
     <>
@@ -97,7 +104,7 @@ export default function ProductCard({ product }) {
             src={product.image}
             alt={product.name}
             className="lightbox-img"
-            onClick={(e) => e.stopPropagation()}
+            onClick={() => setLightbox(false)}
           />
         </div>
       )}

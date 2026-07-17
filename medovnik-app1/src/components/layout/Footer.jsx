@@ -21,7 +21,7 @@ export default function Footer() {
         <FooterCol title="Магазин" links={[
           { label: 'Starter Kit', to: '/shop' },
           { label: 'Premium Kit', to: '/shop' },
-          { label: 'Абонамент',   to: '/community' },
+          { label: 'Абонамент',   to: '/shop' },
         ]} />
 
         <FooterCol title="Помощ" links={[
