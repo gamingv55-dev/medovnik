@@ -5,7 +5,7 @@ import { FLAVORINGS } from '../data/flavorings';
 import { HONEY_TYPES } from '../data/honey';
 
 const CartContext = createContext(null);
-const DISCORD_THRESHOLD = 50;
+const DISCORD_THRESHOLD = 25; // EUR
 
 function reducer(state, action) {
   switch (action.type) {
@@ -84,7 +84,7 @@ export function CartProvider({ children }) {
 
     return {
       items: state.items, isOpen: state.isOpen,
-      total, count, discordUnlocked, toDiscord,
+      total, count, discordUnlocked, toDiscord, discordThreshold: DISCORD_THRESHOLD,
       isInCart, qtyInCart,
       addToCart, removeFromCart, incrementCart, decrementCart,
       clearCart, openCart, closeCart, toggleCart,

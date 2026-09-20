@@ -340,9 +340,10 @@
   transform: translateY(0);
 }
 .mbot-arrow-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.92rem;
-  font-style: italic;
+  font-family: 'UniSans', sans-serif;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: #f2c84e;
   background: rgba(10,6,2,0.92);
   border: 1px solid rgba(242,200,78,0.45);

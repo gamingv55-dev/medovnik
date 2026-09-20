@@ -36,10 +36,7 @@ export default function AddonCard({ addon }) {
           <div className="addon-price-col">
             <div className="addon-price">
               {ready ? (
-                <>
-                  <span className="addon-price-eur">{addon.priceEur} €</span>
-                  <span className="addon-price-bgn">{addon.price} лв.</span>
-                </>
+                <span className="addon-price-eur">{addon.price} €</span>
               ) : <span className="placeholder">Скоро</span>}
             </div>
           </div>

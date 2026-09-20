@@ -255,21 +255,20 @@
   width: 100%;
   font-family: 'UniSans', sans-serif;
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #0a0602;
-  background: linear-gradient(135deg, #f2c84e 0%, #d4831f 100%);
+  color: var(--ink);
+  background: var(--amber);
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 1.1rem 2rem;
   text-decoration: none;
-  transition: opacity 0.25s, transform 0.2s;
+  transition: background 0.2s;
   margin-bottom: 1.2rem;
 }
 .comm-cta-btn:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  background: var(--ember);
 }
 .unlock-hint {
   display: flex;

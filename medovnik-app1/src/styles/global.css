@@ -7,6 +7,26 @@
   animation: page-trans-in 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* ── Fly-to-cart add animation ── */
+.fly-to-cart {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f2c84e, #b8621a);
+  box-shadow: 0 0 12px rgba(212, 131, 31, 0.7);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 1;
+  transition: transform 0.65s cubic-bezier(0.34, 0.02, 0.35, 1), opacity 0.65s ease;
+}
+@keyframes cart-bump {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.28); }
+  100% { transform: scale(1); }
+}
+.cart-bump { animation: cart-bump 0.35s ease; }
+
 /* ── Scroll reveal ── */
 .sr-hidden {
   opacity: 0;
@@ -280,21 +300,21 @@
     }
 
     .nav-cta {
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       color: var(--ink);
       font-family: 'UniSans', sans-serif;
+      font-weight: 600;
       font-size: 0.8rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 0.75rem 1.6rem;
       border: none;
-      border-radius: 3px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: background 0.2s;
     }
     .nav-cta:hover {
-      box-shadow: 0 10px 30px rgba(184, 98, 26, 0.5);
-      transform: translateY(-2px);
+      background: var(--ember);
     }
 
     .nav-social {
@@ -389,8 +409,11 @@
       text-align: center;
       padding: 3rem 0;
       color: var(--muted);
-      font-style: italic;
-      font-size: 1.05rem;
+      font-family: 'Manrope', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.6;
     }
     .cart-item {
       display: flex;
@@ -463,19 +486,20 @@
     }
     .btn-checkout {
       width: 100%;
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       color: var(--ink);
       font-family: 'UniSans', sans-serif;
+      font-weight: 600;
       font-size: 0.85rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 1.2rem;
       border: none;
-      border-radius: 3px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: background 0.2s;
     }
-    .btn-checkout:hover { box-shadow: 0 12px 35px rgba(184, 98, 26, 0.55); }
+    .btn-checkout:hover { background: var(--ember); }
 
     /* ── INTRO / BEEHIVE ANIMATION ──────────────────────────── */
     .intro {
@@ -831,24 +855,22 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       color: var(--ink);
       font-family: 'UniSans', sans-serif;
+      font-weight: 600;
       font-size: 0.88rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 1.15rem 2.5rem;
       border: none;
-      border-radius: 3px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.35s;
+      transition: background 0.2s;
       display: inline-block;
       text-decoration: none;
     }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 45px rgba(184, 98, 26, 0.55);
-    }
+    .btn-primary:hover { background: var(--ember); }
 
     .btn-ghost {
       background: transparent;
@@ -1871,7 +1893,7 @@
     }
     .mead-tab:hover { color: var(--cream); }
     .mead-tab.active {
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       color: var(--ink);
     }
     .mead-section { display: none; }
@@ -1898,18 +1920,19 @@
     .batch-empty button {
       margin-top: 1.4rem;
       font-family: 'UniSans', sans-serif;
+      font-weight: 600;
       font-size: 0.75rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink);
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       border: none;
-      border-radius: 999px;
+      border-radius: 4px;
       padding: 0.95rem 1.6rem;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: background 0.2s;
     }
-    .batch-empty button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(184, 98, 26, 0.45); }
+    .batch-empty button:hover { background: var(--ember); }
 
     .batch-card {
       background: linear-gradient(180deg, rgba(184, 98, 26, 0.05), rgba(8, 6, 3, 0.4));
@@ -2179,19 +2202,20 @@
     .calc-save input:focus { outline: none; border-color: rgba(242, 200, 78, 0.5); }
     .calc-save button {
       font-family: 'UniSans', sans-serif;
+      font-weight: 600;
       font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--ink);
-      background: linear-gradient(135deg, var(--ember), var(--amber));
+      background: var(--amber);
       border: none;
-      border-radius: 999px;
+      border-radius: 4px;
       padding: 0.95rem 1.5rem;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: background 0.2s;
     }
-    .calc-save button:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(184, 98, 26, 0.45); }
-    .calc-save button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+    .calc-save button:hover { background: var(--ember); }
+    .calc-save button:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .login-wall {
       max-width: 540px;

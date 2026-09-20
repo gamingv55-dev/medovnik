@@ -36,7 +36,7 @@ export default function HoneyCard() {
         <p className="honey-desc">{selected.desc}</p>
 
         <div className="honey-foot">
-          <div className="honey-price">{selected.price} лв.</div>
+          <div className="honey-price">{selected.price} €</div>
           <button className="addon-add" type="button" disabled>
             Очаквайте
           </button>

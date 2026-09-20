@@ -44,7 +44,8 @@ const HERO_CSS = `
 .mh-hero .mh-sub { font-family: 'Manrope', sans-serif; font-weight: 400; font-size: 1.1vw; line-height: 1.8; color: #c7b69a; max-width: 32vw; margin: 0 0 2.8vw; }
 
 .mh-hero .mh-btns { display: flex; align-items: center; gap: 1.6vw; flex-wrap: wrap; margin-bottom: 3.2vw; }
-.mh-hero .mh-btn-primary { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.88vw; letter-spacing: 0.13em; text-transform: uppercase; padding: 1.1vw 2vw; border-radius: 4px; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; background: linear-gradient(135deg, #d9b46a 0%, #bb8a3d 100%); color: #271705; border: none; }
+.mh-hero .mh-btn-primary { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.88vw; letter-spacing: 0.08em; text-transform: uppercase; padding: 1.1vw 2vw; border-radius: 4px; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; background: #d4831f; color: #271705; border: none; transition: background 0.2s; }
+.mh-hero .mh-btn-primary:hover { background: #b8621a; }
 
 .mh-hero .mh-what { position: relative; display: inline-flex; align-items: center; gap: 0.7rem; cursor: pointer; background: none; border: none; padding: 0; }
 .mh-hero .mh-what-play { width: 2.4vw; height: 2.4vw; min-width: 36px; min-height: 36px; border-radius: 50%; border: 1px solid rgba(226,171,40,0.55); display: flex; align-items: center; justify-content: center; color: #e8c97a; flex-shrink: 0; transition: border-color 0.2s, background 0.2s; }

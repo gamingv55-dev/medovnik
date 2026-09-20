@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useCart } from '../../context/CartContext';
 import { TAG_TIPS } from '../../data/products';
+import { flyToCart } from '../../utils/flyToCart';
 
 export default function ProductCard({ product }) {
   const { addToCart, isInCart, qtyInCart, incrementCart, decrementCart } = useCart();
@@ -11,9 +13,9 @@ export default function ProductCard({ product }) {
 
   useEffect(() => {
     if (!lightbox) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prevOverflow; };
+    const prevOverflow = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    return () => { document.documentElement.style.overflow = prevOverflow; };
   }, [lightbox]);
 
   return (
@@ -26,18 +28,21 @@ export default function ProductCard({ product }) {
         )}
         <div className="prod-visual">
           <div className="prod-glow" />
+          {product.comingSoon && (
+            <div className="prod-stamp" aria-hidden="true"><span>Очаквай скоро</span></div>
+          )}
           {product.image ? (
             <img
               src={product.image}
               alt={product.name}
-              className="prod-img prod-img-zoomable"
+              className={`prod-img prod-img-zoomable${product.comingSoon ? ' prod-img--muted' : ''}`}
               onClick={() => setLightbox(true)}
               title="Клик за увеличаване"
               loading="lazy"
               decoding="async"
             />
           ) : (
-            <div className="prod-jar">{product.emoji}</div>
+            <div className={`prod-jar${product.comingSoon ? ' prod-jar--muted' : ''}`}>{product.emoji}</div>
           )}
         </div>
 
@@ -63,37 +68,43 @@ export default function ProductCard({ product }) {
 
           <div className="prod-foot">
             <div className="prod-price">
-              <span className="prod-price-eur">{product.priceEur ?? product.price} €</span>
-              <span className="prod-price-bgn">{product.price} лв.</span>
+              <span className="prod-price-eur">{product.price} €</span>
               <small>еднократно</small>
             </div>
-            <div className="prod-qty">
+            {!product.comingSoon && (
+              <div className="prod-qty">
+                <button
+                  className="prod-qty-btn"
+                  type="button"
+                  onClick={() => inCart ? decrementCart(product.id) : setQty(q => Math.max(1, q - 1))}
+                  aria-label="Намали"
+                >−</button>
+                <span className="prod-qty-num">{inCart ? cartQty : qty}</span>
+                <button
+                  className="prod-qty-btn"
+                  type="button"
+                  onClick={() => inCart ? incrementCart(product.id) : setQty(q => Math.min(20, q + 1))}
+                  aria-label="Увеличи"
+                >+</button>
+              </div>
+            )}
+            {product.comingSoon ? (
+              <button className="btn-add btn-add--soon" type="button" disabled>
+                Очаквайте
+              </button>
+            ) : (
               <button
-                className="prod-qty-btn"
-                type="button"
-                onClick={() => inCart ? decrementCart(product.id) : setQty(q => Math.max(1, q - 1))}
-                aria-label="Намали"
-              >−</button>
-              <span className="prod-qty-num">{inCart ? cartQty : qty}</span>
-              <button
-                className="prod-qty-btn"
-                type="button"
-                onClick={() => inCart ? incrementCart(product.id) : setQty(q => Math.min(20, q + 1))}
-                aria-label="Увеличи"
-              >+</button>
-            </div>
-            <button
-              className="btn-add"
-              onClick={() => addToCart(product, qty)}
-              disabled={inCart}
-            >
-              {inCart ? '✓ Добавен' : 'Добави →'}
-            </button>
+                className="btn-add"
+                onClick={(e) => { addToCart(product, qty); flyToCart(e.currentTarget); }}
+              >
+                Добави →
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {lightbox && (
+      {lightbox && createPortal(
         <div className="lightbox" onClick={() => setLightbox(false)}>
           <button
             className="lightbox-close"
@@ -106,7 +117,8 @@ export default function ProductCard({ product }) {
             className="lightbox-img"
             onClick={() => setLightbox(false)}
           />
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

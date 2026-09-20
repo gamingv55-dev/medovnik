@@ -21,7 +21,7 @@ export default function SubscriptionCard({ plan }) {
       <div style={tierLabel}>{plan.plan}</div>
       <div style={tierName}>{plan.name}</div>
       <div style={tierPrice}>
-        {plan.price} лв.
+        {plan.price} €
         <span style={tierPer}>{plan.per}</span>
       </div>
 

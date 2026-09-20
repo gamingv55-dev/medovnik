@@ -140,7 +140,7 @@
   text-transform:uppercase; color:var(--cream); padding:0.85rem 2rem; border-radius:4px;
   background:linear-gradient(135deg,#2a1a0d,#3d2713); border:1px solid rgba(180,130,60,0.4);
   box-shadow:inset 0 1px 0 rgba(200,150,80,0.3), 0 4px 0 #160d05, 0 6px 12px rgba(0,0,0,0.5); }
-.shop-wood .btn-add:hover{ background:linear-gradient(135deg,var(--ember),var(--amber)); color:var(--ink);
+.shop-wood .btn-add:hover{ background:var(--amber); color:var(--ink);
   box-shadow:inset 0 1px 0 rgba(255,240,200,0.5), 0 4px 0 #7a3f12, 0 8px 18px rgba(184,98,26,0.45); transform:translateY(-2px); }
 
 /* Вкусове / Мед / Отделни — пергамент за консистентност */

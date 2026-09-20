@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { formatPrice } from '../../utils/format';
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbznixroXH49aoXdDFts5ZT3kDU6ILG8msYcI9yw8wall0RViQD2er59-cgw8WN6CKkfTg/exec';
-const EUR_RATE   = 1.95583;
 
 function generateOrderCode() {
   // 8 random digits: 10000000–99999999 (100M combinations, easy to search in a spreadsheet)
@@ -17,19 +16,14 @@ export default function PreorderModal({ items, total, discordUnlocked, onClose, 
   const [status, setStatus] = useState('idle');
   const [orderCode]         = useState(generateOrderCode);
 
-  const totalEur = items
-    .reduce((s, i) => s + (i.priceEur ?? i.price / EUR_RATE) * (i.qty || 1), 0)
-    .toFixed(2);
-
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus('loading');
     try {
       const itemsDetail = items.map(i => ({
-        name:     i.name,
-        qty:      i.qty || 1,
-        priceEur: i.priceEur ? Number(i.priceEur) : Number((i.price / EUR_RATE).toFixed(2)),
-        priceBgn: i.price,
+        name:  i.name,
+        qty:   i.qty || 1,
+        price: i.price,
       }));
 
       const params = new URLSearchParams({
@@ -41,7 +35,6 @@ export default function PreorderModal({ items, total, discordUnlocked, onClose, 
         date:            new Date().toLocaleString('bg-BG'),
         items:           items.map(i => `${i.name}${i.qty > 1 ? ' ×' + i.qty : ''}`).join(', '),
         total:           total,
-        totalEur:        totalEur,
         discordUnlocked: discordUnlocked ? '1' : '0',
         itemsJson:       JSON.stringify(itemsDetail),
       });
@@ -90,7 +83,7 @@ export default function PreorderModal({ items, total, discordUnlocked, onClose, 
               ))}
               <div className="po-summary-total">
                 <span>Общо</span>
-                <span>{totalEur} € / {formatPrice(total)}</span>
+                <span>{formatPrice(total)}</span>
               </div>
             </div>
 

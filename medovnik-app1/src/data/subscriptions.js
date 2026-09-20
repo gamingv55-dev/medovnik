@@ -15,7 +15,7 @@ export const SUBSCRIPTIONS = [
     id: 'monthly',
     plan: 'Месечен',
     name: 'Mead of Month',
-    price: '39',
+    price: '20',
     per: '/месец',
     hl: true,
     features: [
@@ -30,7 +30,7 @@ export const SUBSCRIPTIONS = [
     id: 'annual',
     plan: 'Годишен',
     name: 'Годишен план',
-    price: '349',
+    price: '178',
     per: '/година',
     features: [
       'Всичко от месечния',

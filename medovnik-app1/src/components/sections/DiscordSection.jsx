@@ -110,7 +110,7 @@ export default function DiscordSection({ compactLead = false, noBorderTop = fals
           <div className="comm-cta-icon"><DiscordHexIcon /></div>
           <h3 className="comm-cta-h3">ОТКЛЮЧИ DISCORD ДОСТЪП</h3>
           <p className="comm-cta-p">
-            Първият комплект или дарение от 50 лв. ти дава автоматичен достъп до нашата частна Discord общност.
+            Първият комплект или дарение от 25 € ти дава автоматичен достъп до нашата частна Discord общност.
           </p>
           <Link className="comm-cta-btn" to="/shop">
             Разгледай комплектите

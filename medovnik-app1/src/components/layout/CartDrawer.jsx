@@ -12,7 +12,7 @@ export default function CartDrawer() {
   const {
     items, isOpen, total, toggleCart, closeCart,
     removeFromCart, incrementCart, decrementCart,
-    clearCart, discordUnlocked, toDiscord,
+    clearCart, discordUnlocked, toDiscord, discordThreshold,
   } = useCart();
   const [showModal, setShowModal] = useState(false);
 
@@ -44,23 +44,20 @@ export default function CartDrawer() {
                   <div className="ci-price">
                     {formatPrice(item.price * (item.qty || 1))}
                     {item.qty > 1 && (
-                      <span className="ci-unit"> ({item.price} лв. × {item.qty})</span>
+                      <span className="ci-unit"> ({item.price} € × {item.qty})</span>
                     )}
                   </div>
                 </div>
-                {item.quantifiable ? (
-                  <div className="ci-qty-ctrl">
-                    <button className="ci-q-btn" onClick={() => decrementCart(item.id)}>−</button>
-                    <span className="ci-q-num">{item.qty}</span>
-                    <button className="ci-q-btn" onClick={() => incrementCart(item.id)}>+</button>
-                  </div>
-                ) : (
-                  <button
-                    className="ci-rm"
-                    onClick={() => removeFromCart(item.id)}
-                    aria-label={`Премахни ${item.name}`}
-                  >✕</button>
-                )}
+                <div className="ci-qty-ctrl">
+                  <button className="ci-q-btn" onClick={() => decrementCart(item.id)} aria-label="Намали">−</button>
+                  <span className="ci-q-num">{item.qty}</span>
+                  <button className="ci-q-btn" onClick={() => incrementCart(item.id)} aria-label="Увеличи">+</button>
+                </div>
+                <button
+                  className="ci-rm"
+                  onClick={() => removeFromCart(item.id)}
+                  aria-label={`Премахни ${item.name}`}
+                >✕</button>
               </div>
             ))
           )}
@@ -70,12 +67,12 @@ export default function CartDrawer() {
           <div className="cart-foot" style={{ display: 'block' }}>
             <div className="cart-upsell">
               <div className="cup-lbl">
-                {discordUnlocked ? '✅ Discord отключен!' : `До Discord: ${toDiscord} лв.`}
+                {discordUnlocked ? '✅ Discord отключен!' : `До Discord: ${toDiscord} €`}
               </div>
               <p className="cup-p">
                 {discordUnlocked
                   ? 'Ще получиш покана на имейл след поръчката.'
-                  : 'Поръчай комплект или надвиши 50 лв. и влез в общността.'}
+                  : `Поръчай комплект или надвиши ${discordThreshold} € и влез в общността.`}
               </p>
             </div>
             <div className="cart-total">
