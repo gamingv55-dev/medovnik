@@ -67,9 +67,19 @@ export default function DiscordSection({ compactLead = false, noBorderTop = fals
           </div>
 
           <h2 className="comm-h2">
-            <span className="h2-accent">ПРИСЪЕДИНИ СЕ</span><br />
-            КЪМ НАШАТА<br />
-            ДИСКОРД ОБЩНОСТ
+            {compactLead ? (
+              <>
+                <span className="h2-accent">ПРИСЪЕДИНИ СЕ</span><br />
+                КЪМ НАШАТА<br />
+                ДИСКОРД ОБЩНОСТ
+              </>
+            ) : (
+              <>
+                <span className="h2-accent">ИМАМЕ ОБЩНОСТ</span><br />
+                ОТ ЛЮБИТЕЛИ НА<br />
+                ДОМАШНА МЕДОВИНА
+              </>
+            )}
           </h2>
 
           <p className="comm-body">
