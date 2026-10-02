@@ -66,10 +66,11 @@ const HERO_CSS = `
   .mh-hero .mh-sub { font-size: 1vw; max-width: 34vw; }
 }
 @media (max-width: 860px) {
-  .mh-hero .mh-main { min-height: 100vh; }
+  .mh-hero { height: auto; min-height: 0; }
+  .mh-hero .mh-main { height: auto; min-height: 0; }
   .mh-hero .mh-photo { object-position: 72% center; }
   .mh-hero .mh-grad { background: linear-gradient(180deg, rgba(10,7,3,0.8) 0%, rgba(10,7,3,0.6) 40%, rgba(10,7,3,0.95) 100%); }
-  .mh-hero .mh-left { position: relative; left: 0; top: 0; transform: none; width: auto; max-width: 100%; padding: 7.5rem 1.4rem 2rem; }
+  .mh-hero .mh-left { position: relative; left: 0; top: 0; transform: none; width: auto; max-width: 100%; padding: 7.5rem 1.4rem 3.2rem; }
   .mh-hero .mh-h1 { font-size: 2.4rem; }
   .mh-hero .mh-divider { width: 44px; margin: 1.3rem 0 1.2rem; }
   .mh-hero .mh-sub { font-size: 1rem; max-width: 30rem; margin-bottom: 1.6rem; }

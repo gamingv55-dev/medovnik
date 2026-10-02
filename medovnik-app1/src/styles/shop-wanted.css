@@ -79,10 +79,7 @@
   background:#241808 var(--tex-wood); background-size:340px auto;
   border:none; border-radius:7px; overflow:visible;
   box-shadow:0 30px 60px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(20,12,4,0.8),
-    inset 0 0 22px rgba(0,0,0,0.55), inset 0 2px 2px rgba(180,130,60,0.25);
-  transition:transform .45s cubic-bezier(.25,.46,.45,.94), box-shadow .45s; }
-.shop-wood .prod:hover{ transform:translateY(-10px);
-  box-shadow:0 46px 84px rgba(0,0,0,0.7), inset 0 0 0 2px rgba(20,12,4,0.85), inset 0 0 22px rgba(0,0,0,0.55), 0 0 40px rgba(184,98,26,0.18); }
+    inset 0 0 22px rgba(0,0,0,0.55), inset 0 2px 2px rgba(180,130,60,0.25); }
 /* капси горе */
 .shop-wood .prod::before, .shop-wood .prod::after{
   content:''; position:absolute; top:24px; width:13px; height:13px; border-radius:50%; z-index:5;
@@ -98,7 +95,6 @@
 .shop-wood .prod-visual::after{ height:60px; background:linear-gradient(180deg, transparent, rgba(8,6,3,0.6)); }
 .shop-wood .prod-glow{ background:radial-gradient(circle, rgba(242,200,78,0.22), transparent 70%); }
 .shop-wood .prod-img{ border-radius:0; }
-.shop-wood .prod:hover .prod-img{ transform:scale(1.03); }
 
 /* пергаментов ариш */
 .shop-wood .prod-body{
@@ -124,7 +120,6 @@
   text-transform:uppercase; color:#3a2010; background:rgba(255,248,235,0.7);
   border:1px solid rgba(120,80,30,0.5); border-radius:2px; padding:0.32rem 0.6rem; white-space:nowrap; }
 .shop-wood .tag--tip{ border-style:dashed; border-bottom-style:dashed; }
-.shop-wood .prod:hover .tag{ border-color:#7a3510; color:#1e0f05; }
 
 .shop-wood .prod-foot{ flex-direction:column; align-items:center; gap:0.9rem; width:100%;
   padding-top:1.1rem; border-top:1px dashed rgba(120,80,30,0.45); }

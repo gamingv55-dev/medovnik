@@ -2372,7 +2372,7 @@
       .hero-scroll { display: none; }
       .nav { padding: 0.9rem 1.2rem !important; gap: 0.6rem; justify-content: flex-start; }
       .nav.solid { padding: 0.7rem 1.2rem !important; }
-      .logo-img { width: 80px !important; height: 80px !important; margin: -8px 0 -8px 0 !important; padding: 0 !important; filter: none !important; transition: all 0.35s ease; }
+      .logo-img { width: 80px !important; height: 80px !important; margin: -8px 0 -8px -13px !important; padding: 0 !important; filter: none !important; transition: all 0.35s ease; }
       .nav.solid .logo-img { width: 52px !important; height: 52px !important; margin: 0 !important; }
       .nav-toggle { display: flex; order: 3; }
       .nav-icons { order: 2; margin-left: auto; }
