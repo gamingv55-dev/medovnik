@@ -1,0 +1,38 @@
+# Builds a debug APK of the Медовник app. Touches nothing outside medovnik-app/.
+name: Medovnik app APK
+
+on:
+  push:
+    paths:
+      - 'medovnik-app/**'
+      - '.github/workflows/medovnik-app-apk.yml'
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: medovnik-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: medovnik-app/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - run: npm run test
+      - run: npm run build
+      - run: npx cap sync android
+      - name: Build debug APK
+        working-directory: medovnik-app/android
+        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: medovnik-debug-apk
+          path: medovnik-app/android/app/build/outputs/apk/debug/app-debug.apk

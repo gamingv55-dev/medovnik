@@ -29,3 +29,16 @@ src/
 ```
 
 Цветовете и шрифтовете са в `src/index.css` и `tailwind.config.js`.
+
+## Android (APK)
+
+Същият build се опакова с Capacitor. APK се билдва автоматично от GitHub Actions
+(`.github/workflows/medovnik-app-apk.yml`) при всяка промяна в тази папка и се тегли от
+раздел Actions → последното изпълнение → Artifacts → `medovnik-debug-apk`.
+
+Локално (нужни са Android Studio и JDK 21):
+
+```bash
+npm run android:sync
+npx cap open android
+```
