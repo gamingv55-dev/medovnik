@@ -62,6 +62,9 @@ export function RecipeDetailPage() {
         </div>
         <p className="max-w-prose text-[1.05rem] text-text/90">{recipe.profile}</p>
         {!recipe.verified && <Note>{t.common.demoNote}</Note>}
+        <Button to={`/batches/new?recipe=${recipe.id}&liters=${liters}`} className="w-full sm:w-fit">
+          {r.start} <ArrowRight size={16} aria-hidden />
+        </Button>
       </header>
 
       <div className="grid gap-4 lg:grid-cols-[1.15fr_1fr] lg:items-start">

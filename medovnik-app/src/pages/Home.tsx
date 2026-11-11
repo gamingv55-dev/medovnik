@@ -7,7 +7,9 @@ import { RecipeCard } from '@/components/RecipeCard';
 import { LESSONS } from '@/content/lessons';
 import { KITS } from '@/content/kits';
 import { RECIPES } from '@/content/recipes';
+import { useBatches } from '@/store/batches';
 import { usePrefs } from '@/store/prefs';
+import { BatchCard } from './Batches';
 import { CALCULATORS, CalculatorTile } from './calculators';
 import { LessonRow } from './Guide';
 import { KitCard } from './Kits';
@@ -46,9 +48,20 @@ function Hero() {
 
 export function Home() {
   const { readLessons } = usePrefs();
+  const active = useBatches().filter((b) => !b.stages.bottling).slice(0, 4);
   return (
     <div className="flex flex-col gap-12">
       <Hero />
+      {active.length > 0 && (
+        <section>
+          <SectionTitle title={t.home.batches} action={{ to: '/batches', label: t.common.seeAll }} />
+          <div className="grid gap-3 md:grid-cols-2">
+            {active.map((b) => (
+              <BatchCard key={b.id} batch={b} />
+            ))}
+          </div>
+        </section>
+      )}
       <section>
         <SectionTitle title={t.home.recipes} action={{ to: '/recipes', label: t.common.seeAll }} />
         <div className="grid gap-3 md:grid-cols-2">

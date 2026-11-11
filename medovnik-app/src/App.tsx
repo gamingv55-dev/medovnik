@@ -3,6 +3,9 @@ import { AppShell } from '@/components/layout/AppShell';
 import { Home } from '@/pages/Home';
 import { NotFound } from '@/pages/NotFound';
 import { Settings } from '@/pages/Settings';
+import { BatchDetailPage } from '@/pages/BatchDetail';
+import { BatchNewPage } from '@/pages/BatchNew';
+import { BatchesPage } from '@/pages/Batches';
 import { GuidePage } from '@/pages/Guide';
 import { KitsPage } from '@/pages/Kits';
 import { LessonPage } from '@/pages/Lesson';
@@ -26,6 +29,9 @@ export default function App() {
           <Route path="/guide/problems" element={<ProblemsPage />} />
           <Route path="/guide/problems/:id" element={<ProblemPage />} />
           <Route path="/guide/helper" element={<HelperPage />} />
+          <Route path="/batches" element={<BatchesPage />} />
+          <Route path="/batches/new" element={<BatchNewPage />} />
+          <Route path="/batches/:id" element={<BatchDetailPage />} />
           <Route path="/kits" element={<KitsPage />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />

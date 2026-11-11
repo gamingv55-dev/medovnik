@@ -38,7 +38,7 @@ export function Button({ variant = 'primary', to, href, className, children, ...
 /* ── Card ───────────────────────────────────────────────── */
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cx('rounded-xl border border-line bg-surface/85 shadow-card', className)}>{children}</div>;
+  return <div className={cx('min-w-0 rounded-xl border border-line bg-surface/85 shadow-card', className)}>{children}</div>;
 }
 
 /* ── Fields ─────────────────────────────────────────────── */
@@ -54,7 +54,7 @@ interface FieldShellProps {
 
 function FieldShell({ label, hint, error, unit, id, children }: FieldShellProps) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex min-w-0 flex-col gap-1.5">
       <label htmlFor={id} className="label">{label}</label>
       <div
         className={cx(

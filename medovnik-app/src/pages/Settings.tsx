@@ -1,5 +1,7 @@
-import { ArrowUpRight, Monitor, Moon, Sun } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { ArrowUpRight, Download, Monitor, Moon, Sun, Trash2, Upload } from 'lucide-react';
 import { Button, Card, PageHeader, cx } from '@/components/ui';
+import { exportBackup, parseBackup, restoreBackup, wipeEverything } from '@/lib/backup';
 import { SITE_URL } from '@/lib/site';
 import { setTheme, usePrefs, type Theme } from '@/store/prefs';
 import { t } from '@/i18n';
@@ -12,6 +14,22 @@ const THEMES: Array<{ value: Theme; label: string; icon: typeof Sun }> = [
 
 export function Settings() {
   const { theme } = usePrefs();
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
+
+  const onFile = async (file: File | undefined) => {
+    if (!file) return;
+    const backup = parseBackup(await file.text());
+    if (backup) restoreBackup(backup);
+    setMessage(backup ? { ok: true, text: t.settings.importOk } : { ok: false, text: t.settings.importBad });
+    if (fileRef.current) fileRef.current.value = '';
+  };
+
+  const wipe = () => {
+    if (!window.confirm(t.settings.wipeConfirm)) return;
+    wipeEverything();
+    setMessage(null);
+  };
   return (
     <>
       <PageHeader title={t.settings.title} />
@@ -39,6 +57,25 @@ export function Settings() {
               );
             })}
           </div>
+        </Card>
+        <Card className="flex flex-col gap-4 p-5">
+          <h2 className="label text-gold">{t.settings.data}</h2>
+          <p className="text-[0.95rem] text-text/90">{t.settings.dataText}</p>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" onClick={exportBackup}>
+              <Download size={15} aria-hidden /> {t.settings.export}
+            </Button>
+            <Button variant="outline" onClick={() => fileRef.current?.click()}>
+              <Upload size={15} aria-hidden /> {t.settings.import}
+            </Button>
+            <input ref={fileRef} type="file" accept="application/json,.json" className="hidden" onChange={(e) => void onFile(e.target.files?.[0])} />
+          </div>
+          {message && (
+            <p role="status" className={message.ok ? 'text-[0.9rem] text-ok' : 'text-[0.9rem] text-danger'}>{message.text}</p>
+          )}
+          <Button variant="quiet" onClick={wipe} className="-ml-3 w-fit !text-danger">
+            <Trash2 size={15} aria-hidden /> {t.settings.wipe}
+          </Button>
         </Card>
         <Card className="flex flex-col gap-3 p-5">
           <h2 className="label text-gold">{t.settings.about}</h2>

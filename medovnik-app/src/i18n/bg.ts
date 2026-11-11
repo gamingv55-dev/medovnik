@@ -1,4 +1,5 @@
 import { calculators } from './bg.calculators';
+import { batches } from './bg.batches';
 import { pages } from './bg.pages';
 
 /**
@@ -9,6 +10,7 @@ import { pages } from './bg.pages';
 export const bg = {
   calcs: calculators,
   ...pages,
+  batches,
   app: { name: 'Медовник', tagline: 'Всичко за домашната медовина' },
   nav: {
     home: 'Начало',
