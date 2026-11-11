@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
-import { Calculator, House } from 'lucide-react';
+import { BookOpen, Calculator, House, ScrollText } from 'lucide-react';
 import { t } from '@/i18n';
 
 export interface NavItem {
@@ -12,6 +12,8 @@ export interface NavItem {
 export const NAV: NavItem[] = [
   { to: '/', label: t.nav.home, icon: House },
   { to: '/calculators', label: t.nav.calculators, icon: Calculator },
+  { to: '/recipes', label: t.nav.recipes, icon: ScrollText },
+  { to: '/guide', label: t.nav.guide, icon: BookOpen },
 ];
 
 export const isActive = (pathname: string, to: string): boolean =>

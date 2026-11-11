@@ -1,4 +1,5 @@
 import { calculators } from './bg.calculators';
+import { pages } from './bg.pages';
 
 /**
  * Interface strings, Bulgarian. To add English, copy this file to en.ts,
@@ -7,6 +8,7 @@ import { calculators } from './bg.calculators';
  */
 export const bg = {
   calcs: calculators,
+  ...pages,
   app: { name: 'Медовник', tagline: 'Всичко за домашната медовина' },
   nav: {
     home: 'Начало',

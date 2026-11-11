@@ -203,7 +203,7 @@ export function Stat({ label, value, unit, lead, note }: StatProps) {
           className={cx(
             'text-strong',
             // Figures go in the mono face; words (a sweetness class, say) in the display face.
-            /^[\d\s.,×—-]+$/.test(value) ? 'num' : 'font-display',
+            /^[\d\s.,×—–≈-]+$/.test(value) ? 'num' : 'font-display',
             lead ? 'text-[2.6rem] leading-none text-gold' : 'text-xl',
           )}
         >
@@ -242,7 +242,7 @@ export function Badge({ children, tone = 'plain' }: { children: ReactNode; tone?
   return (
     <span
       className={cx(
-        'inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[0.72rem] leading-5',
+        'inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[0.72rem] leading-5',
         tone === 'gold' && 'border-gold/50 text-gold',
         tone === 'demo' && 'border-dashed border-muted/60 text-muted',
         tone === 'plain' && 'border-line text-muted',

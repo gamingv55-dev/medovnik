@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Settings } from 'lucide-react';
+import { Package, Settings } from 'lucide-react';
 import { t } from '@/i18n';
 import { cx } from '@/components/ui';
 import { NAV, isActive } from './nav';
@@ -24,7 +24,10 @@ function Brand({ large }: { large?: boolean }) {
 }
 
 function SideRail({ pathname }: { pathname: string }) {
-  const secondary = [{ to: '/settings', label: t.nav.settings, icon: Settings }];
+  const secondary = [
+    { to: '/kits', label: t.nav.kits, icon: Package },
+    { to: '/settings', label: t.nav.settings, icon: Settings },
+  ];
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-line bg-surface/70 px-5 py-7 backdrop-blur lg:flex">
       <Brand large />
@@ -78,6 +81,9 @@ function TopBar() {
     >
       <Brand />
       <div className="flex items-center">
+        <Link to="/kits" aria-label={t.nav.kits} className="grid h-11 w-11 place-items-center text-muted hover:text-strong">
+          <Package size={20} strokeWidth={1.7} aria-hidden />
+        </Link>
         <Link to="/settings" aria-label={t.nav.settings} className="grid h-11 w-11 place-items-center text-muted hover:text-strong">
           <Settings size={20} strokeWidth={1.7} aria-hidden />
         </Link>
