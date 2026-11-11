@@ -1,0 +1,11 @@
+{
+  "name": "Медовник",
+  "short_name": "Медовник",
+  "description": "Всичко за домашната медовина: калкулатори, рецепти, наръчник и дневник на партидите.",
+  "lang": "bg",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080603",
+  "theme_color": "#080603",
+  "icons": [{ "src": "/logo.png", "sizes": "320x320", "type": "image/png", "purpose": "any" }]
+}

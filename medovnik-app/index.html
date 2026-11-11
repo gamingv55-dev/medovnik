@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080603" />
+    <meta name="description" content="Медовник — всичко за домашната медовина: калкулатори, рецепти, наръчник и дневник на партидите." />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/fonts/cormorant-garamond-500-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-400-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Медовник</title>
+    <script>
+      // Apply the saved theme before first paint (dark is the default).
+      try {
+        var t = JSON.parse(localStorage.getItem('medovnik.prefs') || '{}').theme;
+        if (t === 'light' || (t === 'system' && matchMedia('(prefers-color-scheme: light)').matches)) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

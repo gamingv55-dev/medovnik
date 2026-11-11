@@ -1,0 +1,106 @@
+@import './fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens. Dark is the brand's home; light is an alternative set on
+ * <html data-theme="light">. Values are RGB triplets so Tailwind can apply alpha.
+ */
+:root {
+  --ground: 8 6 3;
+  --surface: 22 16 10;
+  --raised: 34 24 14;
+  --line: 58 40 22;
+  --text: 240 220 174;
+  --muted: 184 153 122;
+  --dim: 128 101 68;
+  --gold: 232 170 40;
+  --honey: 242 200 78;
+  --amber: 212 131 31;
+  --ember: 184 98 26;
+  --strong: 250 243 224;
+  --ongold: 22 16 10;
+  --danger: 228 116 98;
+  --ok: 156 196 124;
+  --sheen: 255 255 255;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --ground: 247 241 227;
+  --surface: 255 251 242;
+  --raised: 240 231 211;
+  --line: 219 205 177;
+  --text: 62 43 24;
+  --muted: 112 87 56;
+  --dim: 158 136 100;
+  --gold: 156 101 8;
+  --honey: 128 82 6;
+  --amber: 170 92 18;
+  --ember: 150 74 16;
+  --strong: 32 21 10;
+  --ongold: 255 251 242;
+  --danger: 168 50 38;
+  --ok: 66 116 46;
+  --sheen: 255 255 255;
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-ground font-sans text-text antialiased;
+    min-height: 100dvh;
+    font-size: 16px;
+    line-height: 1.6;
+    background-image: radial-gradient(120% 55% at 50% -12%, rgb(var(--amber) / 0.11), transparent 62%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  h1, h2, h3 {
+    @apply font-display font-medium text-strong;
+    text-wrap: balance;
+    line-height: 1.12;
+  }
+  p { text-wrap: pretty; }
+  :focus-visible {
+    outline: 2px solid rgb(var(--gold));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  input, select, textarea, button { font: inherit; color: inherit; }
+  input[type='number'] { -moz-appearance: textfield; }
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  ::selection { background: rgb(var(--gold) / 0.3); }
+}
+
+@layer components {
+  /* Small caps label in the brand's heavy face. */
+  .label {
+    @apply font-label text-[0.68rem] uppercase text-muted;
+    letter-spacing: 0.14em;
+    line-height: 1.3;
+  }
+  .num { @apply font-mono; font-variant-numeric: tabular-nums; }
+  .hairline { @apply h-px w-full bg-line; }
+  .prose-app p + p { margin-top: 0.85em; }
+  .skeleton {
+    background: linear-gradient(90deg, rgb(var(--raised)) 25%, rgb(var(--line)) 37%, rgb(var(--raised)) 63%);
+    background-size: 400% 100%;
+    @apply animate-shimmer rounded;
+  }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
