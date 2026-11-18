@@ -49,13 +49,13 @@
 
 /* ── Заглавна зона ── */
 .shop-wood .sec-label{
-  font-family:'CorrectionBrush',sans-serif; font-weight:normal; letter-spacing:0.12em; color:var(--honey);
+  font-family:'UniSans',sans-serif; font-weight:normal; text-transform:uppercase; letter-spacing:0.15em; font-size:0.9rem; color:var(--honey);
   display:inline-flex; align-items:center; gap:0.7rem; text-shadow:0 2px 6px rgba(0,0,0,0.6);
 }
 .shop-wood .sec-label::before, .shop-wood .sec-label::after{
   content:''; width:28px; height:2px; background:linear-gradient(90deg, transparent, var(--honey)); }
 .shop-wood .sec-label::after{ transform:scaleX(-1); }
-.shop-wood .sec-h2{ font-family:'CorrectionBrush',sans-serif; font-weight:normal; text-shadow:0 3px 14px rgba(0,0,0,0.7); }
+.shop-wood .sec-h2{ font-family:'UniSans',sans-serif; font-weight:normal; text-transform:uppercase; letter-spacing:0.06em; text-shadow:0 3px 14px rgba(0,0,0,0.7); }
 .shop-wood .h2-accent{ color:var(--honey); -webkit-text-fill-color:var(--honey); background:none; }
 .shop-wood .sec-body{ color:var(--cream); text-shadow:0 2px 8px rgba(0,0,0,0.7); }
 
@@ -104,16 +104,16 @@
   box-shadow:inset 0 0 50px rgba(120,80,30,0.22), inset 0 0 0 1px rgba(120,80,30,0.3); }
 .shop-wood .prod-body::before{ content:''; position:absolute; inset:7px; border:1px solid rgba(120,80,30,0.3); border-radius:2px; pointer-events:none; }
 
-.shop-wood .prod-cat{ font-family:'Beograd','Oswald',sans-serif; font-weight:normal; font-size:0.88rem; letter-spacing:0.22em;
+.shop-wood .prod-cat{ font-family:'Montserrat',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.2em;
   text-transform:uppercase; color:#5a1800; margin-bottom:0.5rem; }
 .shop-wood .prod-name{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:1.9rem; line-height:1.08;
   text-transform:uppercase; color:#1e0f05; margin-bottom:0.35rem; text-shadow:0 1px 0 rgba(255,250,235,0.4); letter-spacing:0.07em; }
-.shop-wood .prod-subtitle{ font-family:'Beograd','Cormorant Garamond',serif; font-style:normal; font-size:1.25rem;
+.shop-wood .prod-subtitle{ font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; font-size:1.15rem;
   color:#2e1205; opacity:1; margin-bottom:0.7rem; }
 .shop-wood .prod-subtitle::after{ content:''; display:block; width:230px; max-width:80%; height:18px; margin:0.6rem auto 0;
   background:var(--divider) center/contain no-repeat; }
-.shop-wood .prod-desc{ font-family:'Beograd','Cormorant Garamond',serif; font-size:1.3rem; line-height:1.7; color:#1e0c03;
-  font-style:normal; margin-bottom:1.1rem; max-width:30ch; font-weight:normal; }
+.shop-wood .prod-desc{ font-family:'Vollkorn',Georgia,serif; font-size:1.12rem; line-height:1.65; color:#1e0c03;
+  font-style:normal; margin-bottom:1.1rem; max-width:32ch; font-weight:600; }
 
 .shop-wood .prod-includes{ justify-content:center; margin-bottom:1.3rem; }
 .shop-wood .tag{ font-family:'Oswald',sans-serif; font-weight:600; font-size:0.7rem; letter-spacing:0.06em;

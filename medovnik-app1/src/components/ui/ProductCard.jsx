@@ -1,8 +1,20 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useCart } from '../../context/CartContext';
-import { TAG_TIPS } from '../../data/products';
+import { TAG_TIPS, KIT_BONUSES } from '../../data/products';
 import { flyToCart } from '../../utils/flyToCart';
+
+// Прогресивно размазване: [blur px, начало %, край %] — всеки слой се добавя върху предишния,
+// така че размазването нараства плавно от горе (лек блър) към долу (силен).
+const SOLD_BLUR_LAYERS = [
+  [6, 0, 0],
+  [2, 6, 24],
+  [4, 20, 38],
+  [5, 34, 54],
+  [6, 48, 72],
+  [7, 62, 88],
+  [8, 76, 100],
+];
 
 export default function ProductCard({ product }) {
   const { addToCart, isInCart, qtyInCart, incrementCart, decrementCart } = useCart();
@@ -28,9 +40,6 @@ export default function ProductCard({ product }) {
         )}
         <div className="prod-visual">
           <div className="prod-glow" />
-          {product.comingSoon && (
-            <div className="prod-stamp" aria-hidden="true"><span>Очаквай скоро</span></div>
-          )}
           {product.image ? (
             <img
               src={product.image}
@@ -66,6 +75,22 @@ export default function ProductCard({ product }) {
             })}
           </div>
 
+          <div className="prod-bonus" aria-label="Бонуси към комплекта">
+            <div className="prod-bonus-head"><span>Бонус към комплекта</span></div>
+            <ul>
+              {KIT_BONUSES.map((b) => (
+                <li key={b}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="3" y="8" width="18" height="4" rx="1" />
+                    <path d="M12 8v13M5 12v8a1 1 0 001 1h12a1 1 0 001-1v-8" />
+                    <path d="M12 8c-1.5-4-6-4-5-1 .6 1.6 3 1 5 1zM12 8c1.5-4 6-4 5-1-.6 1.6-3 1-5 1z" />
+                  </svg>
+                  <em>Бонус</em> {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="prod-foot">
             <div className="prod-price">
               <span className="prod-price-eur">{product.price} €</span>
@@ -90,7 +115,7 @@ export default function ProductCard({ product }) {
             )}
             {product.comingSoon ? (
               <button className="btn-add btn-add--soon" type="button" disabled>
-                Очаквайте
+                Няма в наличност
               </button>
             ) : (
               <button
@@ -102,6 +127,32 @@ export default function ProductCard({ product }) {
             )}
           </div>
         </div>
+
+        {product.comingSoon && (
+          <div className="prod-soldout" role="note">
+            {SOLD_BLUR_LAYERS.map(([blur, from, to], i) => {
+              const mask = `linear-gradient(180deg, transparent ${from}%, #000 ${to}%)`;
+              return (
+                <div
+                  key={i}
+                  className="prod-soldout-blur"
+                  aria-hidden="true"
+                  style={{
+                    backdropFilter: `blur(${blur}px)`,
+                    WebkitBackdropFilter: `blur(${blur}px)`,
+                    maskImage: mask,
+                    WebkitMaskImage: mask,
+                  }}
+                />
+              );
+            })}
+            <div className="prod-soldout-tint" aria-hidden="true" />
+            <div className="prod-soldout-msg">
+              <strong>Няма в наличност</strong>
+              <small>Бурканът е празен — скоро пак ще има</small>
+            </div>
+          </div>
+        )}
       </div>
 
       {lightbox && createPortal(

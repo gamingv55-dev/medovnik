@@ -1,5 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CHANNELS } from '../../data/channels';
+import DiscordPreview from '../ui/DiscordPreview';
 import '../../styles/community.css';
 
 const ChatIcon = () => (
@@ -55,6 +57,20 @@ const DiscordHexIcon = () => (
 );
 
 export default function DiscordSection({ compactLead = false, noBorderTop = false }) {
+  const listRef = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') { setShown(true); return; }
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { setShown(true); io.disconnect(); }
+    }, { threshold: 0.15 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="comm-bg" style={noBorderTop ? { borderTop: 'none' } : undefined}>
       <div className="comm-grid">
@@ -87,19 +103,22 @@ export default function DiscordSection({ compactLead = false, noBorderTop = fals
             решават проблеми и се надграждат всеки месец.
           </p>
 
-          <button type="button" className="discord-info" aria-label="Какво е Discord">
-            <span className="di-q">?</span>
-            КАКВО Е DISCORD?
-            <span className="di-tip">
-              Приложение чрез което комуникацията между хора е много лесна и удобна.
-            </span>
-          </button>
+          <div className="comm-btn-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem', alignItems: 'flex-start', marginBottom: '2rem' }}>
+            <button type="button" className="discord-info" aria-label="Какво е Discord">
+              <span className="di-q">?</span>
+              КАКВО Е DISCORD?
+              <span className="di-tip">
+                Приложение чрез което комуникацията между хора е много лесна и удобна.
+              </span>
+            </button>
+            <DiscordPreview />
+          </div>
 
-          <ul className="channels">
-            {CHANNELS.map((c) => {
+          <ul className={`channels${shown ? ' channels--in' : ''}`} ref={listRef}>
+            {CHANNELS.map((c, i) => {
               const Icon = ICONS[c.icon] || ChatIcon;
               return (
-                <li className="channel" key={c.name}>
+                <li className="channel" key={c.name} style={{ '--i': i }}>
                   <span className="ch-icon"><Icon /></span>
                   <span className="ch-body">
                     <span className="ch-name">{c.name}</span>
